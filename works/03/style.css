@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Comfortaa', sans-serif;
+}
+
+html,
+body {
+    /* height: 100%; */
+    height: 100vh;
+    overflow: hidden;
+}
+
+body {
+    background: linear-gradient(#ff1b41, #ff617b);
+}
+
+.card {
+    width: 23%;
+    height: 80vh;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 3rem;
+    border-radius: 35px;
+    box-shadow: 5px 5px 45px black;
+    position: relative;
+}
+
+.top {
+    /* border: 1px dashed red; */
+    width: 100%;
+    height: 35%;
+    background-image: url('images/bg.jpg');
+    background-position: center;
+    background-size: cover;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+    z-index: 1;
+}
+
+.bottom {
+    /* border: 1px dashed purple; */
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+    width: 100%;
+    height: 65%;
+    background-color: whitesmoke;
+    padding: 0.8rem;
+    z-index: 1;
+}
+
+.three-dots-container {
+    /* border: 1px dashed red; */
+    width: 100%;
+    height: 10%;
+    font-size: 1.5rem;
+    text-align: right;
+}
+
+.fa-ellipsis-vertical {
+    /* border: 1px dashed red; */
+    background-color: whitesmoke;
+    margin: 0;
+    padding: 0.5rem;
+    border-radius: 25px;
+}
+
+.name-title {
+    /* border: 1px dashed red; */
+    text-align: center;
+    padding: 1rem;
+}
+
+.name-title h1 {
+    margin-bottom: 1rem;
+}
+
+.stats {
+    /* border: 1px dashed yellow; */
+    padding: 1rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.people {
+    text-align: center;
+    padding: 0.6rem;
+    border-radius: 12px;
+}
+
+.people:hover {
+    background-color: #dedede;
+}
+
+.numbers {
+    color: rgb(0, 94, 255);
+    font-size: 1.8rem;
+    font-weight: 760;
+    margin-bottom: 0.4rem;
+}
+
+.button-container {
+    /* border: 1px dashed red; */
+    text-align: center;
+    padding: 0.5rem;
+}
+
+button {
+    background-color: #FFB81C;
+    width: 86%;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 1rem 0;
+    border: none;
+    border-radius: 25px;
+    margin-bottom: 1rem;
+}
+
+button:hover {
+    background-color: #ffae00;
+    width: 88%;
+    font-size: 1.2rem;
+}
+
+.text {
+    /* border: 1px dashed red; */
+    width: 100%;
+    padding: 0 7%;
+}
+
+.id-pic-container {
+    /* border: 1px dashed red; */
+    position: absolute;
+    height: 9rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    bottom: 28rem;
+}
+
+.id-pic {
+    border: 5px solid white;
+    background-image: url('images/emma.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 9rem;
+    height: 9rem;
+    border-radius: 50%;
+    box-shadow: 2px 2px 20px black;
+}
+
+.id-pic:hover {
+    width: 9.2rem;
+    height: 9.2rem;
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 50%;
+    }
+}
+
+@media (max-width: 1275px) {
+
+    .card {
+        width: 30%;
+    }
+}
+
+@media (max-width: 980px) {
+
+    .card {
+        width: 35%;
+    }
+}
+
+@media (max-width: 840px) {
+
+    .card {
+        width: 45%;
+    }
+}
+
+@media (max-width: 672px) {
+
+    .card {
+        width: 55%;
+    }
+}
+
+@media (max-width: 534px) {
+
+    .card {
+        width: 65%;
+    }
+}
+
+@media (max-width: 453px) {
+
+    .card {
+        width: 75%;
+    }
+}
