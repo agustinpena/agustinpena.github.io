@@ -208,7 +208,7 @@ button:hover {
 @media (max-width: 365px) {
 
     body {
-        overflow: auto;
+        overflow: scroll;
     }
 
     .id-pic-container {
