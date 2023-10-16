@@ -32,6 +32,8 @@ body {
 .form-container h1 {
     font-size: 2rem;
     text-align: center;
+    color: white;
+    text-decoration: none;
 }
 
 .form-container .input-box {
