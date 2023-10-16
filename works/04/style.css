@@ -37,6 +37,11 @@ body {
     text-decoration: none;
 }
 
+.form-container h1 a {
+    color: white;
+    text-decoration: none;
+}
+
 .form-container .input-box {
     position: relative;
     width: 100%;
