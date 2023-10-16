@@ -27,6 +27,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     color: #fff;
     padding: 30px 40px;
+    text-decoration: none;
 }
 
 .form-container h1 {
