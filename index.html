@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percentage Calculator - 7 Free Online Calculation Tools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-percentage"></i> Advanced Percentage Calculator</h1>
+            <p>7 free online tools to calculate percentages for discounts, tips, increases, and more</p>
+        </header>
+        
+        <div class="calculator-tabs">
+            <button class="tab-btn active" onclick="showCalculator('basic')">Basic</button>
+            <button class="tab-btn" onclick="showCalculator('discount')">Discount</button>
+            <button class="tab-btn" onclick="showCalculator('tip')">Tip Calculator</button>
+            <button class="tab-btn" onclick="showCalculator('grade')">Grade Calculator</button>
+            <button class="tab-btn" onclick="showCalculator('margin')">Profit Margin</button>
+            <button class="tab-btn" onclick="showCalculator('interest')">Interest</button>
+            <button class="tab-btn" onclick="showCalculator('difference')">Difference</button>
+        </div>
+        
+        <div class="ad-container">
+            <div class="ad-placeholder">
+                AdSense Banner Ad (320x100)
+            </div>
+        </div>
+        
+        <!-- Basic Percentage Calculator -->
+        <div id="basic-calc" class="calculator-section">
+            <div class="calculator-grid">
+                <div class="calculator-card">
+                    <h3><i class="fas fa-calculator"></i> What is X% of Y?</h3>
+                    <div class="input-group">
+                        <label for="percentage">Percentage (X%)</label>
+                        <input type="number" id="percentage" placeholder="Enter percentage">
+                    </div>
+                    <div class="input-group">
+                        <label for="number">Number (Y)</label>
+                        <input type="number" id="number" placeholder="Enter number">
+                    </div>
+                    <button class="btn" onclick="calculatePercentage()">Calculate</button>
+                    <div class="result" id="result1">Result will appear here</div>
+                </div>
+                
+                <div class="calculator-card">
+                    <h3><i class="fas fa-question-circle"></i> X is what % of Y?</h3>
+                    <div class="input-group">
+                        <label for="part">Part (X)</label>
+                        <input type="number" id="part" placeholder="Enter part">
+                    </div>
+                    <div class="input-group">
+                        <label for="whole">Whole (Y)</label>
+                        <input type="number" id="whole" placeholder="Enter whole">
+                    </div>
+                    <button class="btn" onclick="calculateWhatPercentage()">Calculate</button>
+                    <div class="result" id="result2">Result will appear here</div>
+                </div>
+                
+                <div class="calculator-card">
+                    <h3><i class="fas fa-chart-line"></i> Percentage Change</h3>
+                    <div class="input-group">
+                        <label for="originalValue">Original Value</label>
+                        <input type="number" id="originalValue" placeholder="Enter original value">
+                    </div>
+                    <div class="input-group">
+                        <label for="newValue">New Value</label>
+                        <input type="number" id="newValue" placeholder="Enter new value">
+                    </div>
+                    <button class="btn" onclick="calculatePercentageChange()">Calculate</button>
+                    <div class="result" id="result3">Result will appear here</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Discount Calculator -->
+        <div id="discount-calc" class="calculator-section hidden">
+            <div class="calculator-grid">
+                <div class="calculator-card">
+                    <h3><i class="fas fa-tag"></i> Discount Calculator</h3>
+                    <div class="input-group">
+                        <label for="originalPrice">Original Price ($)</label>
+                        <input type="number" id="originalPrice" placeholder="Enter original price">
+                    </div>
+                    <div class="input-group">
+                        <label for="discountPercent">Discount Percentage (%)</label>
+                        <input type="number" id="discountPercent" placeholder="Enter discount %">
+                    </div>
+                    <button class="btn" onclick="calculateDiscount()">Calculate</button>
+                    <div class="result" id="discountResult">Result will appear here</div>
+                </div>
+                
+                <div class="calculator-card">
+                    <h3><i class="fas fa-receipt"></i> Final Price After Discount</h3>
+                    <div class="input-group">
+                        <label for="priceBeforeDiscount">Original Price ($)</label>
+                        <input type="number" id="priceBeforeDiscount" placeholder="Enter original price">
+                    </div>
+                    <div class="input-group">
+                        <label for="discountValue">Discount Percentage (%)</label>
+                        <input type="number" id="discountValue" placeholder="Enter discount %">
+                    </div>
+                    <button class="btn" onclick="calculateFinalPrice()">Calculate</button>
+                    <div class="result" id="finalPriceResult">Result will appear here</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tip Calculator -->
+        <div id="tip-calc" class="calculator-section hidden">
+            <div class="calculator-grid">
+                <div class="calculator-card">
+                    <h3><i class="fas fa-utensils"></i> Tip Calculator</h3>
+                    <div class="input-group">
+                        <label for="billAmount">Bill Amount ($)</label>
+                        <input type="number" id="billAmount" placeholder="Enter bill amount">
+                    </div>
+                    <div class="input-group">
+                        <label for="tipPercent">Tip Percentage (%)</label>
+                        <input type="number" id="tipPercent" placeholder="Enter tip %" value="15">
+                    </div>
+                    <div class="input-group">
+                        <label for="numPeople">Number of People</label>
+                        <input type="number" id="numPeople" placeholder="Number of people" value="1">
+                    </div>
+                    <button class="btn" onclick="calculateTip()">Calculate</button>
+                    <div class="result" id="tipResult">Result will appear here</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Grade Calculator -->
+        <div id="grade-calc" class="calculator-section hidden">
+            <div class="calculator-grid">
+                <div class="calculator-card">
+                    <h3><i class="fas fa-graduation-cap"></i> Grade Calculator</h3>
+                    <div class="input-group">
+                        <label for="currentGrade">Current Grade (%)</label>
+                        <input type="number" id="currentGrade" placeholder="Enter current grade">
+                    </div>
+                    <div class="input-group">
+                        <label for="finalWeight">Final Exam Weight (%)</label>
+                        <input type="number" id="finalWeight" placeholder="Enter final weight %">
+                    </div>
+                    <div class="input-group">
+                        <label for="desiredGrade">Desired Course Grade (%)</label>
+                        <input type="number" id="desiredGrade" placeholder="Enter desired grade">
+                    </div>
+                    <button class="btn" onclick="calculateGradeNeeded()">Calculate</button>
+                    <div class="result" id="gradeResult">Result will appear here</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Profit Margin Calculator -->
+        <div id="margin-calc" class="calculator-section hidden">
+            <div class="calculator-grid">
+                <div class="calculator-card">
+                    <h3><i class="fas fa-chart-pie"></i> Profit Margin Calculator</h3>
+                    <div class="input-group">
+                        <label for="cost">Cost ($)</label>
+                        <input type="number" id="cost" placeholder="Enter cost">
+                    </div>
+                    <div class="input-group">
+                        <label for="revenue">Revenue ($)</label>
+                        <input type="number" id="revenue" placeholder="Enter revenue">
+                    </div>
+                    <button class="btn" onclick="calculateProfitMargin()">Calculate</button>
+                    <div class="result" id="marginResult">Result will appear here</div>
+                </div>
+                
+                <div class="calculator-card">
+                    <h3><i class="fas fa-dollar-sign"></i> Markup Calculator</h3>
+                    <div class="input-group">
+                        <label for="productCost">Product Cost ($)</label>
+                        <input type="number" id="productCost" placeholder="Enter product cost">
+                    </div>
+                    <div class="input-group">
+                        <label for="markupPercent">Markup Percentage (%)</label>
+                        <input type="number" id="markupPercent" placeholder="Enter markup %">
+                    </div>
+                    <button class="btn" onclick="calculateMarkup()">Calculate</button>
+                    <div class="result" id="markupResult">Result will appear here</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Interest Calculator -->
+        <div id="interest-calc" class="calculator-section hidden">
+            <div class="calculator-grid">
+                <div class="calculator-card">
+                    <h3><i class="fas fa-coins"></i> Simple Interest Calculator</h3>
+                    <div class="input-group">
+                        <label for="principal">Principal Amount ($)</label>
+                        <input type="number" id="principal" placeholder="Enter principal">
+                    </div>
+                    <div class="input-group">
+                        <label for="interestRate">Interest Rate (%)</label>
+                        <input type="number" id="interestRate" placeholder="Enter interest rate">
+                    </div>
+                    <div class="input-group">
+                        <label for="timePeriod">Time Period (years)</label>
+                        <input type="number" id="timePeriod" placeholder="Enter time in years">
+                    </div>
+                    <button class="btn" onclick="calculateSimpleInterest()">Calculate</button>
+                    <div class="result" id="interestResult">Result will appear here</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Percentage Difference Calculator -->
+        <div id="difference-calc" class="calculator-section hidden">
+            <div class="calculator-grid">
+                <div class="calculator-card">
+                    <h3><i class="fas fa-not-equal"></i> Percentage Difference</h3>
+                    <div class="input-group">
+                        <label for="value1">First Value</label>
+                        <input type="number" id="value1" placeholder="Enter first value">
+                    </div>
+                    <div class="input-group">
+                        <label for="value2">Second Value</label>
+                        <input type="number" id="value2" placeholder="Enter second value">
+                    </div>
+                    <button class="btn" onclick="calculatePercentageDifference()">Calculate</button>
+                    <div class="result" id="differenceResult">Result will appear here</div>
+                </div>
+                
+                <div class="calculator-card">
+                    <h3><i class="fas fa-compress-alt"></i> Value After Percentage Change</h3>
+                    <div class="input-group">
+                        <label for="startValue">Starting Value</label>
+                        <input type="number" id="startValue" placeholder="Enter starting value">
+                    </div>
+                    <div class="input-group">
+                        <label for="changePercent">Percentage Change (%)</label>
+                        <input type="number" id="changePercent" placeholder="Enter % change">
+                    </div>
+                    <button class="btn" onclick="calculateValueAfterChange()">Calculate</button>
+                    <div class="result" id="changeResult">Result will appear here</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="ad-container">
+            <div class="ad-placeholder">
+                AdSense Rectangle Ad (300x250)
+            </div>
+        </div>
+        
+        <div class="info-section">
+            <h2>How to Calculate Percentages</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>What is a percentage?</h4>
+                    <p>A percentage is a way to express a number as a fraction of 100. It is denoted using the percent sign (%).</p>
+                </div>
+                <div class="faq-item">
+                    <h4>How to calculate percentage of a number?</h4>
+                    <p>To calculate X% of Y, use the formula: (X/100) * Y. For example, 20% of 50 is (20/100)*50 = 10.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>How to calculate percentage increase?</h4>
+                    <p>Percentage increase = [(New Value - Original Value) / Original Value] * 100</p>
+                </div>
+                <div class="faq-item">
+                    <h4>How to calculate percentage decrease?</h4>
+                    <p>Percentage decrease = [(Original Value - New Value) / Original Value] * 100</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="ad-container">
+            <div class="ad-placeholder">
+                AdSense In-Article Ad (300x600)
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2023 Percentage Calculator. All rights reserved.</p>
+            <p>Disclaimer: This tool provides mathematical calculations only.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
