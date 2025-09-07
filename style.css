@@ -1,0 +1,13 @@
+body {
+    background-color: burlywood;
+    text-align: center;
+}
+
+.my-list{
+    display: inline-block;
+    text-align: center;
+}
+
+a {
+    color: blue;
+}
