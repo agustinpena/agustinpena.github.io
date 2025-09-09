@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TradeMaster Pro | Advanced Trading Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <h1>Trade<span>Master</span> Pro</h1>
+            </div>
+            <div class="auth-buttons">
+                <button class="btn-premium" style="padding: 10px 20px;">Sign Up</button>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <div class="calculator-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-calculator"></i> Trading Calculator</h2>
+                </div>
+                
+                <div class="input-group">
+                    <label for="account-balance">Account Balance (USD)</label>
+                    <input type="number" id="account-balance" value="10000">
+                </div>
+                
+                <div class="input-group">
+                    <label for="risk-percentage">Risk Percentage (%)</label>
+                    <input type="number" id="risk-percentage" value="2">
+                </div>
+                
+                <div class="input-group">
+                    <label for="stop-loss">Stop Loss (Pips)</label>
+                    <input type="number" id="stop-loss" value="20">
+                </div>
+                
+                <div class="input-group">
+                    <label for="instrument">Trading Instrument</label>
+                    <select id="instrument">
+                        <option>EUR/USD</option>
+                        <option>GBP/USD</option>
+                        <option>USD/JPY</option>
+                        <option>XAU/USD (Gold)</option>
+                        <option>BTC/USD</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="leverage">Leverage</label>
+                    <select id="leverage">
+                        <option>1:10</option>
+                        <option>1:30</option>
+                        <option selected>1:50</option>
+                        <option>1:100</option>
+                        <option>1:200</option>
+                        <option>1:500</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="entry-price">Entry Price</label>
+                    <input type="number" id="entry-price" value="1.0850">
+                </div>
+                
+                <button class="btn-calculate" id="calculate-btn">Calculate Position</button>
+            </div>
+            
+            <div class="results-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-chart-pie"></i> Calculation Results</h2>
+                </div>
+                
+                <div class="results-grid">
+                    <div class="result-box">
+                        <div class="result-label">Position Size (Lots)</div>
+                        <div class="result-value" id="lot-size">0.15</div>
+                    </div>
+                    
+                    <div class="result-box">
+                        <div class="result-label">Margin Required</div>
+                        <div class="result-value" id="margin-required">$217</div>
+                    </div>
+                    
+                    <div class="result-box">
+                        <div class="result-label">Risk Amount</div>
+                        <div class="result-value" id="risk-amount">$200</div>
+                    </div>
+                    
+                    <div class="result-box">
+                        <div class="result-label">Free Margin</div>
+                        <div class="result-value" id="free-margin">$9,783</div>
+                    </div>
+                </div>
+                
+                <div class="risk-visualization">
+                    <h3>Risk Visualization</h3>
+                    <div class="risk-bar">
+                        <div class="risk-fill"></div>
+                    </div>
+                    <div class="risk-labels">
+                        <span>Low Risk</span>
+                        <span>Moderate</span>
+                        <span>High Risk</span>
+                    </div>
+                </div>
+                
+                <div class="summary">
+                    <h3><i class="fas fa-info-circle"></i> Trade Summary</h3>
+                    
+                    <div class="summary-item">
+                        <span>Pip Value:</span>
+                        <span id="pip-value">$10.00</span>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <span>Potential Loss:</span>
+                        <span id="potential-loss">$200.00</span>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <span>Potential Profit (1:2 R/R):</span>
+                        <span id="potential-profit">$400.00</span>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <span>Margin Level:</span>
+                        <span id="margin-level">4608.3%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="premium-banner">
+            <h3>Upgrade to Premium for Advanced Features</h3>
+            <p>Get access to real-time data, advanced analytics, and more precise calculations</p>
+            
+            <div class="premium-features">
+                <div class="feature">Real-time Market Data</div>
+                <div class="feature">Multiple Portfolio Tracking</div>
+                <div class="feature">Advanced Risk Analytics</div>
+                <div class="feature">Priority Support</div>
+            </div>
+            
+            <button class="btn-premium">Get Premium - $9.99/month</button>
+        </div>
+        
+        <footer>
+            <p>© 2023 TradeMaster Pro. This is a demo application. Not financial advice.</p>
+            <p>For educational purposes only. Past performance is not indicative of future results.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
