@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual del Trader | Educación Forex Profesional</title>
+    <style>
+        /* ==================== VARIABLES DE COLOR ==================== */
+        :root {
+            --obsidiana: #0a0a0f;
+            --obsidiana-claro: #151520;
+            --obsidiana-borde: #2a2a3a;
+            --azul-electrico: #00bfff;
+            --azul-electrico-oscuro: #0099cc;
+            --oro: #d4af37;
+            --oro-claro: #f4d06f;
+            --oro-oscuro: #aa8c2c;
+            --blanco: #ffffff;
+            --gris-claro: #e0e0e0;
+            --gris-texto: #b0b0c0;
+            --sombra: 0 4px 20px rgba(0, 191, 255, 0.15);
+            --sombra-oro: 0 4px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        /* ==================== RESET Y BASE ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--obsidiana);
+            color: var(--blanco);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ==================== HEADER Y NAVEGACIÓN ==================== */
+        header {
+            background: linear-gradient(135deg, var(--obsidiana) 0%, var(--obsidiana-claro) 100%);
+            border-bottom: 2px solid var(--azul-electrico);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--sombra);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--azul-electrico), var(--oro));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--obsidiana);
+            box-shadow: var(--sombra-oro);
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--blanco), var(--azul-electrico), var(--oro));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-text span {
+            color: var(--oro);
+            -webkit-text-fill-color: var(--oro);
+        }
+
+        /* Menú de navegación */
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 5px;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 12px 20px;
+            font-weight: 500;
+            color: var(--gris-claro);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-item:hover > .nav-link {
+            color: var(--azul-electrico);
+            background: rgba(0, 191, 255, 0.1);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 70%;
+            height: 2px;
+            background: var(--azul-electrico);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item:hover .nav-link::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        /* Dropdown */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--obsidiana-claro);
+            border: 1px solid var(--obsidiana-borde);
+            border-top: 3px solid var(--oro);
+            border-radius: 0 0 8px 8px;
+            min-width: 250px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            box-shadow: var(--sombra);
+            z-index: 100;
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown li a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--gris-texto);
+            border-bottom: 1px solid var(--obsidiana-borde);
+            transition: all 0.2s ease;
+        }
+
+        .dropdown li:last-child a {
+            border-bottom: none;
+        }
+
+        .dropdown li a:hover {
+            color: var(--blanco);
+            background: rgba(212, 175, 55, 0.15);
+            padding-left: 25px;
+            border-left: 3px solid var(--oro);
+        }
+
+        .dropdown-arrow {
+            margin-left: 5px;
+            font-size: 0.7em;
+        }
+
+        /* ==================== HERO SECTION ==================== */
+        .hero {
+            background: linear-gradient(135deg, 
+                rgba(10, 10, 15, 0.95) 0%, 
+                rgba(21, 21, 32, 0.9) 50%,
+                rgba(0, 30, 60, 0.8) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%230a0a0f" width="1200" height="600"/><circle cx="200" cy="100" r="80" fill="none" stroke="%2300bfff" stroke-width="1" opacity="0.3"/><circle cx="1000" cy="500" r="120" fill="none" stroke="%23d4af37" stroke-width="1" opacity="0.2"/><line x1="0" y1="300" x2="1200" y2="300" stroke="%232a2a3a" stroke-width="0.5" opacity="0.5"/></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--azul-electrico), var(--oro), var(--azul-electrico));
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--blanco), var(--azul-electrico), var(--oro), var(--azul-electrico));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient 4s ease infinite;
+            background-size: 300% 300%;
+        }
+
+        @keyframes gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--gris-claro);
+            max-width: 700px;
+            margin: 0 auto 35px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--azul-electrico), var(--azul-electrico-oscuro));
+            color: var(--obsidiana);
+            box-shadow: 0 4px 20px rgba(0, 191, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0, 191, 255, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--blanco);
+            border: 2px solid var(--oro);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(212, 175, 55, 0.15);
+            transform: translateY(-3px);
+            box-shadow: var(--sombra-oro);
+        }
+
+        /* ==================== SECCIONES DE CONTENIDO ==================== */
+        section {
+            padding: 70px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--oro);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--gris-texto);
+            margin-top: 25px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: var(--obsidiana-claro);
+            border: 1px solid var(--obsidiana-borde);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--azul-electrico);
+            box-shadow: var(--sombra);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--azul-electrico), var(--oro));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--azul-electrico), var(--oro));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 25px auto 20px;
+            font-size: 1.5rem;
+            color: var(--obsidiana);
+            font-weight: bold;
+        }
+
+        .card h3 {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .card p {
+            padding: 0 25px 25px;
+            color: var(--gris-texto);
+            text-align: center;
+        }
+
+        .card-link {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            background: rgba(0, 191, 255, 0.1);
+            color: var(--azul-electrico);
+            font-weight: 500;
+            border-top: 1px solid var(--obsidiana-borde);
+        }
+
+        .card-link:hover {
+            background: var(--azul-electrico);
+            color: var(--obsidiana);
+        }
+
+        /* Features Section */
+        .features {
+            background: var(--obsidiana-claro);
+            border-top: 1px solid var(--obsidiana-borde);
+            border-bottom: 1px solid var(--obsidiana-borde);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--oro);
+        }
+
+        .feature-item h3 {
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+        }
+
+        .feature-item p {
+            color: var(--gris-texto);
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, 
+                rgba(0, 30, 60, 0.9) 0%, 
+                rgba(10, 10, 15, 0.95) 100%);
+            text-align: center;
+            border: 1px solid var(--obsidiana-borde);
+            border-radius: 15px;
+            margin: 40px 20px;
+            padding: 50px 30px;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            color: var(--gris-claro);
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        /* ==================== RISK DISCLAIMER ==================== */
+        .risk-disclaimer {
+            background: rgba(220, 50, 50, 0.1);
+            border-left: 4px solid #dc3232;
+            padding: 20px;
+            margin: 40px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .risk-disclaimer h4 {
+            color: #ff6b6b;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .risk-disclaimer p {
+            color: var(--gris-texto);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            background: var(--obsidiana-claro);
+            border-top: 2px solid var(--azul-electrico);
+            padding: 50px 0 20px;
+            margin-top: 50px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h4 {
+            color: var(--oro);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--azul-electrico);
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: var(--gris-texto);
+            transition: all 0.2s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--azul-electrico);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--obsidiana-borde);
+            color: var(--gris-texto);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom a {
+            color: var(--azul-electrico);
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 50px 0;
+            }
+
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            section {
+                padding: 50px 0;
+            }
+        }
+
+        /* ==================== UTILITIES ==================== */
+        .text-center { text-align: center; }
+        .text-oro { color: var(--oro); }
+        .text-azul { color: var(--azul-electrico); }
+        .mt-20 { margin-top: 20px; }
+        .mb-30 { margin-bottom: 30px; }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <div class="logo-icon">MT</div>
+                    <div class="logo-text">Manual del <span>Trader</span></div>
+                </a>
+                
+                <nav>
+                    <ul class="nav-menu">
+                        <!-- Menú Educación -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Educación <span class="dropdown-arrow">▼</span></a>
+                            <ul class="dropdown">
+                                <li><a href="conceptos-forex.html">Conceptos de Forex</a></li>
+                                <li><a href="cuentas-fondeadas.html">Conceptos de cuentas fondeadas</a></li>
+                                <li><a href="binarias.html">Conceptos de binarias</a></li>
+                            </ul>
+                        </li>
+                        
+                        <!-- Menú Brokers -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Brokers <span class="dropdown-arrow">▼</span></a>
+                            <ul class="dropdown">
+                                <li><a href="forex-brokers.html">Forex brokers</a></li>
+                                <li><a href="empresas-fondeo.html">Empresas de fondeo</a></li>
+                                <li><a href="brokers-binarias.html">Brokers de opciones binarias</a></li>
+                            </ul>
+                        </li>
+                        
+                        <!-- Otros enlaces principales -->
+                        <li class="nav-item"><a href="estrategias.html" class="nav-link">Estrategias</a></li>
+                        <li class="nav-item"><a href="analisis.html" class="nav-link">Análisis</a></li>
+                        <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="hero">
+        <div class="container">
+            <h1>Domina el Mercado Forex con Conocimiento Real</h1>
+            <p>Plataforma educativa gratuita con recursos profesionales para traders principiantes y avanzados. Aprende conceptos sólidos, analiza brokers y desarrolla tu estrategia con confianza.</p>
+            <div class="hero-buttons">
+                <a href="conceptos-forex.html" class="btn btn-primary">
+                    📚 Comenzar Aprendizaje
+                </a>
+                <a href="forex-brokers.html" class="btn btn-secondary">
+                    🔍 Comparar Brokers
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CARACTERÍSTICAS ==================== -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🎓</div>
+                    <h3>Educación Gratuita</h3>
+                    <p>Contenido educativo de calidad sin costos ocultos. Aprende a tu propio ritmo con materiales actualizados.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Brokers Verificados</h3>
+                    <p>Análisis objetivos de brokers regulados. Comisiones, plataformas y seguridad evaluadas por expertos.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Estrategias Probadas</h3>
+                    <p>Métodos de trading con gestión de riesgo profesional. Adaptables a scalping, day trading y swing.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Comunidad Activa</h3>
+                    <p>Intercambia ideas con otros traders en nuestro foro. Soporte y aprendizaje colaborativo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECCIÓN EDUCACIÓN ==================== -->
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h2>📚 Educación Forex</h2>
+                <p>Construye una base sólida con nuestros recursos educativos estructurados por niveles de experiencia</p>
+            </div>
+            
+            <div class="cards-grid">
+                <article class="card">
+                    <div class="card-icon">1</div>
+                    <h3>Conceptos de Forex</h3>
+                    <p>Aprende los fundamentos: pares de divisas, pips, lotes, apalancamiento y análisis técnico básico.</p>
+                    <a href="conceptos-forex.html" class="card-link">Explorar módulo →</a>
+                </article>
+                
+                <article class="card">
+                    <div class="card-icon">2</div>
+                    <h3>Cuentas Fondeadas</h3>
+                    <p>Guía completa sobre empresas de fondeo: requisitos, evaluaciones, reglas y cómo maximizar tus oportunidades.</p>
+                    <a href="cuentas-fondeadas.html" class="card-link">Ver detalles →</a>
+                </article>
+                
+                <article class="card">
+                    <div class="card-icon">3</div>
+                    <h3>Opciones Binarias</h3>
+                    <p>Entiende el funcionamiento, riesgos y estrategias responsables para operar con opciones binarias.</p>
+                    <a href="binarias.html" class="card-link">Aprender más →</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECCIÓN BROKERS ==================== -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>🏦 Brokers y Plataformas</h2>
+                <p>Comparativas honestas y actualizadas para que elijas con confianza tu partner de trading</p>
+            </div>
+            
+            <div class="cards-grid">
+                <article class="card">
+                    <div class="card-icon">★</div>
+                    <h3>Forex Brokers</h3>
+                    <p>Ranking de brokers regulados por FCA, CySEC, ASIC. Comisiones, spreads y calidad de ejecución.</p>
+                    <a href="forex-brokers.html" class="card-link">Ver comparativa →</a>
+                </article>
+                
+                <article class="card">
+                    <div class="card-icon">💼</div>
+                    <h3>Empresas de Fondeo</h3>
+                    <p>Análisis de FTMO, The5%ers, FundedNext: costos, reglas de riesgo y procesos de evaluación.</p>
+                    <a href="empresas-fondeo.html" class="card-link">Explorar opciones →</a>
+                </article>
+                
+                <article class="card">
+                    <div class="card-icon">⚠️</div>
+                    <h3>Brokers Binarias</h3>
+                    <p>Lista actualizada de plataformas confiables para opciones binarias con licencias verificadas.</p>
+                    <a href="brokers-binarias.html" class="card-link">Consultar lista →</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CTA SECTION ==================== -->
+    <div class="container">
+        <div class="cta-section">
+            <h2>¿Listo para comenzar tu camino en el trading?</h2>
+            <p>Únete a miles de traders que ya están mejorando sus conocimientos con Manual del Trader. Acceso gratuito a todos los recursos educativos.</p>
+            <a href="registro.html" class="btn btn-primary">🚀 Crear Cuenta Gratuita</a>
+        </div>
+    </div>
+
+    <!-- ==================== DISCLAIMER DE RIESGO ==================== -->
+    <div class="container">
+        <div class="risk-disclaimer">
+            <h4>⚠️ Advertencia de Riesgo</h4>
+            <p>El trading de Forex, CFDs y opciones binarias conlleva un alto nivel de riesgo y puede no ser adecuado para todos los inversores. El alto grado de apalancamiento puede trabajar tanto en su favor como en su contra. Antes de decidir operar con estos instrumentos financieros, debe considerar cuidadosamente sus objetivos de inversión, nivel de experiencia y apetito de riesgo. Existe la posibilidad de que sufra una pérdida parcial o total de su inversión inicial. Manual del Trader proporciona contenido educativo y no constituye asesoramiento financiero, recomendación de inversión ni oferta para comprar o vender instrumentos financieros.</p>
+        </div>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>Manual del Trader</h4>
+                    <ul>
+                        <li><a href="#">Sobre Nosotros</a></li>
+                        <li><a href="#">Método Educativo</a></li>
+                        <li><a href="#">Equipo</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Educación</h4>
+                    <ul>
+                        <li><a href="conceptos-forex.html">Conceptos de Forex</a></li>
+                        <li><a href="cuentas-fondeadas.html">Cuentas Fondeadas</a></li>
+                        <li><a href="binarias.html">Opciones Binarias</a></li>
+                        <li><a href="glosario.html">Glosario de Términos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Brokers</h4>
+                    <ul>
+                        <li><a href="forex-brokers.html">Forex Brokers</a></li>
+                        <li><a href="empresas-fondeo.html">Empresas de Fondeo</a></li>
+                        <li><a href="brokers-binarias.html">Brokers Binarias</a></li>
+                        <li><a href="comparador.html">Comparador de Brokers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="terminos.html">Términos y Condiciones</a></li>
+                        <li><a href="privacidad.html">Política de Privacidad</a></li>
+                        <li><a href="cookies.html">Política de Cookies</a></li>
+                        <li><a href="descargo.html">Descargo de Responsabilidad</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Manual del Trader. Todos los derechos reservados. | 
+                <a href="aviso-legal.html">Aviso Legal</a> | 
+                <a href="riesgos.html">Gestión de Riesgos</a></p>
+                <p style="margin-top: 8px; font-size: 0.85rem; color: var(--gris-texto);">
+                    Este sitio web es únicamente educativo. No ofrecemos servicios de inversión, asesoramiento financiero ni gestión de capital.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
