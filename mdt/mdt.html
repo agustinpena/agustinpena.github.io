@@ -109,13 +109,13 @@
             margin: 0 auto 25px;
         }
         
-        /* Contenedor de la animación - sin marco, fondo transparente */
+        /* Contenedor de la animación - SIN scrollbars en escritorio */
         .candles-animation-wrapper {
-            margin: 30px auto 25px;
-            max-width: 1300px;
+            margin: 20px auto;
+            width: 100%;
             background: transparent;
-            padding: 15px 10px;
-            overflow-x: auto;
+            overflow-x: visible;
+            overflow-y: visible;
         }
         
         .hero-buttons {
@@ -206,74 +206,89 @@
         .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid var(--obsidiana-borde); color: var(--gris-texto); font-size: 0.9rem; }
         .footer-bottom a { color: var(--azul-electrico); }
 
-        /* ==================== RESPONSIVE ==================== */
+        /* ==================== RESPONSIVE GENERAL ==================== */
         @media (max-width: 768px) {
             .header-content { flex-direction: column; gap: 15px; }
             .nav-menu { flex-wrap: wrap; justify-content: center; }
-            .hero h1 { font-size: 2.2rem; }
-            .hero p { font-size: 1.05rem; }
-            .section-title h2 { font-size: 1.8rem; }
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .section-title h2 { font-size: 1.6rem; }
             .cards-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 480px) {
             .hero-buttons { flex-direction: column; align-items: center; }
             .btn { width: 100%; justify-content: center; }
             section { padding: 50px 0; }
+            .hero h1 { font-size: 1.7rem; }
         }
     </style>
     
-    <!-- Estilos de la animación de velas (separación ampliada para evitar solapamiento de etiquetas) -->
+    <!-- Estilos de la animación - CORREGIDOS: sin scrollbars, sin cortes verticales -->
     <style>
-        /* ============== JAPANESE CANDLESTICKS ANIMATION - ESPACIADO MEJORADO ============== */
+        /* ============== JAPANESE CANDLESTICKS ANIMATION - SIN SCROLLBARS EN DESKTOP ============== */
+        
         .candles-container-unique {
             display: flex;
             justify-content: center;
-            gap: 2.2rem;  /* Aumentado significativamente para evitar superposición de etiquetas */
+            align-items: flex-end;
+            gap: clamp(1.2rem, 2.5vw, 2rem);
             flex-wrap: wrap;
             transform-style: preserve-3d;
             animation: rotateRowUniq 8s ease-in-out infinite;
-            padding: 20px 5px;
+            padding: 30px 10px 20px 10px;
+            margin: 0 auto;
         }
+        
         @keyframes rotateRowUniq {
             0%, 100% { transform: rotateX(0deg) rotateY(0deg); }
             25% { transform: rotateX(5deg) rotateY(5deg); }
             75% { transform: rotateX(-3deg) rotateY(-3deg); }
         }
+        
         .candle-uniq {
             display: flex;
             flex-direction: column;
             align-items: center;
             position: relative;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             animation: floatCandleUniq 3s ease-in-out infinite;
             animation-delay: calc(var(--i) * 0.15s);
-            min-width: 55px;  /* Da espacio mínimo para cada vela + etiqueta */
+            flex-shrink: 0;
         }
-        .candle-uniq:hover {
-            transform: scale(1.1) translateY(-10px);
-            filter: brightness(1.2);
-        }
+        
         @keyframes floatCandleUniq {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
+            50% { transform: translateY(-6px); }
         }
+        
+        .candle-uniq:hover {
+            transform: scale(1.05) translateY(-5px);
+            filter: brightness(1.15);
+            z-index: 10;
+        }
+        
+        /* mechas */
         .wick-upper-uniq {
-            width: 3px;
+            width: 2px;
             background: linear-gradient(180deg, rgba(200,210,230,0.9) 0%, rgba(150,160,180,0.7) 100%);
             border-radius: 2px;
         }
+        
         .wick-lower-uniq {
-            width: 3px;
+            width: 2px;
             background: linear-gradient(0deg, rgba(200,210,230,0.9) 0%, rgba(150,160,180,0.7) 100%);
             border-radius: 2px;
         }
+        
+        /* cuerpo de la vela - tamaño fijo pero proporcionado en desktop */
         .candle-body-uniq {
-            width: 38px;  /* Ligeramente más ancho para mejor visibilidad */
+            width: 38px;
             position: relative;
-            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transition: all 0.4s ease;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
+        
         .bullish-uniq .candle-body-uniq {
             background: linear-gradient(135deg, #2ecc71 0%, #27ae60 50%, #2ecc71 100%);
             background-size: 200% 200%;
@@ -281,10 +296,12 @@
             box-shadow: 0 0 20px rgba(46, 204, 113, 0.4);
             border: 1px solid rgba(46, 204, 113, 0.8);
         }
+        
         @keyframes bullishPulseUniq {
-            0%, 100% { box-shadow: 0 0 20px rgba(46, 204, 113, 0.4); filter: brightness(1); }
-            50% { box-shadow: 0 0 35px rgba(46, 204, 113, 0.8); filter: brightness(1.1); }
+            0%, 100% { box-shadow: 0 0 15px rgba(46, 204, 113, 0.4); filter: brightness(1); }
+            50% { box-shadow: 0 0 28px rgba(46, 204, 113, 0.7); filter: brightness(1.06); }
         }
+        
         .bearish-uniq .candle-body-uniq {
             background: linear-gradient(135deg, #e74c3c 0%, #c0392b 50%, #e74c3c 100%);
             background-size: 200% 200%;
@@ -292,15 +309,18 @@
             box-shadow: 0 0 20px rgba(231, 76, 60, 0.4);
             border: 1px solid rgba(231, 76, 60, 0.8);
         }
+        
         @keyframes bearishPulseUniq {
-            0%, 100% { box-shadow: 0 0 15px rgba(231, 76, 60, 0.4); filter: brightness(1); }
-            50% { box-shadow: 0 0 30px rgba(231, 76, 60, 0.7); filter: brightness(0.9); }
+            0%, 100% { box-shadow: 0 0 12px rgba(231, 76, 60, 0.4); filter: brightness(1); }
+            50% { box-shadow: 0 0 24px rgba(231, 76, 60, 0.6); filter: brightness(0.93); }
         }
+        
         @keyframes bodyShineUniq {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
+        
         .doji-uniq .candle-body-uniq {
             height: 4px !important;
             width: 44px !important;
@@ -308,51 +328,51 @@
             animation: dojiGlowUniq 1.5s ease-in-out infinite;
             box-shadow: 0 0 20px rgba(243, 156, 18, 0.6);
         }
+        
         @keyframes dojiGlowUniq {
-            0%, 100% { box-shadow: 0 0 15px rgba(243, 156, 18, 0.4); transform: scaleX(1); }
-            50% { box-shadow: 0 0 35px rgba(243, 156, 18, 0.9); transform: scaleX(1.05); }
+            0%, 100% { box-shadow: 0 0 12px rgba(243, 156, 18, 0.4); transform: scaleX(1); }
+            50% { box-shadow: 0 0 26px rgba(243, 156, 18, 0.7); transform: scaleX(1.02); }
         }
-        /* Etiquetas de precio mejoradas: posición más alta y con mayor margen para evitar solapamiento */
+        
+        /* Etiquetas de precio bien posicionadas sin cortes */
         .price-label-uniq {
             position: absolute;
-            top: -38px;  /* Más arriba para dar espacio entre etiquetas de velas adyacentes */
+            top: -38px;
             font-size: 11px;
             font-weight: bold;
-            font-family: 'Segoe UI', 'Monaco', monospace;
+            font-family: 'Segoe UI', monospace;
             background: rgba(0, 0, 0, 0.88);
             backdrop-filter: blur(4px);
             padding: 4px 10px;
-            border-radius: 24px;
+            border-radius: 20px;
             white-space: nowrap;
             animation: priceFlashUniq 2s ease-in-out infinite;
             pointer-events: none;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
             z-index: 25;
-            border: 1px solid rgba(255,255,255,0.25);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.4);
-            transition: all 0.2s;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
-        /* Diferentes colores según bullish/bearish/doji */
+        
         .bullish-uniq .price-label-uniq { 
             color: #2ecc71; 
-            text-shadow: 0 0 4px rgba(46,204,113,0.4);
-            border-left: 3px solid #2ecc71;
+            border-left: 2px solid #2ecc71;
         }
         .bearish-uniq .price-label-uniq { 
             color: #ff8a7a; 
-            text-shadow: 0 0 3px rgba(231,76,60,0.4);
-            border-left: 3px solid #e74c3c;
+            border-left: 2px solid #e74c3c;
         }
         .doji-uniq .price-label-uniq { 
             color: #f7c873; 
-            text-shadow: 0 0 3px rgba(243,156,18,0.4);
-            border-left: 3px solid #f39c12;
+            border-left: 2px solid #f39c12;
         }
+        
         @keyframes priceFlashUniq {
             0%, 100% { opacity: 0.92; transform: translateY(0); }
-            50% { opacity: 1; transform: translateY(-4px); background: rgba(0, 0, 0, 0.94); }
+            50% { opacity: 1; transform: translateY(-2px); background: rgba(0, 0, 0, 0.95); }
         }
-        /* Partículas decorativas sutiles */
+        
+        /* Partículas decorativas */
         .particles-unique {
             position: absolute;
             top: 0;
@@ -362,71 +382,178 @@
             pointer-events: none;
             overflow: hidden;
             z-index: 0;
-            border-radius: inherit;
         }
+        
         .particle-unique {
             position: absolute;
             width: 2px;
             height: 2px;
-            background: rgba(0, 191, 255, 0.35);
+            background: rgba(0, 191, 255, 0.3);
             border-radius: 50%;
-            animation: particleFloatUniq 7s linear infinite;
+            animation: particleFloatUniq 8s linear infinite;
         }
+        
         @keyframes particleFloatUniq {
             0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
             10% { opacity: 0.5; }
             90% { opacity: 0.3; }
             100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
         }
+        
         .relative-anim-container {
             position: relative;
             background: transparent;
-            border-radius: 0;
             overflow: visible;
-            padding: 15px 0;
+            width: 100%;
         }
-        /* Responsive: en pantallas pequeñas reducimos gap pero mantenemos separación suficiente */
-        @media (max-width: 900px) {
+        
+        /* ========== MEDIA QUERIES PARA RESPONSIVIDAD SIN SCROLL HORIZONTAL ========== */
+        
+        /* Desktop grande (más de 1400px) */
+        @media (min-width: 1400px) {
             .candles-container-unique {
-                gap: 1.3rem;
+                gap: 2.2rem;
             }
             .candle-body-uniq {
-                width: 30px !important;
+                width: 42px;
+            }
+            .doji-uniq .candle-body-uniq {
+                width: 48px !important;
+            }
+            .price-label-uniq {
+                font-size: 12px;
+                top: -42px;
+                padding: 5px 12px;
+            }
+        }
+        
+        /* Desktop estándar (992px - 1399px) */
+        @media (min-width: 992px) and (max-width: 1399px) {
+            .candles-container-unique {
+                gap: 1.6rem;
+            }
+            .candle-body-uniq {
+                width: 36px;
+            }
+            .doji-uniq .candle-body-uniq {
+                width: 42px !important;
+            }
+            .price-label-uniq {
+                font-size: 10.5px;
+                top: -38px;
+                padding: 3px 9px;
+            }
+        }
+        
+        /* Tablet horizontal / desktop pequeño (768px - 991px) */
+        @media (min-width: 768px) and (max-width: 991px) {
+            .candles-container-unique {
+                gap: 1.3rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .candle-body-uniq {
+                width: 34px;
+            }
+            .doji-uniq .candle-body-uniq {
+                width: 40px !important;
+            }
+            .price-label-uniq {
+                font-size: 10px;
+                top: -36px;
+                padding: 3px 8px;
+            }
+        }
+        
+        /* Móviles grandes (550px - 767px) - aquí SÍ permitimos scroll horizontal suave para que se vean todas */
+        @media (max-width: 767px) {
+            .candles-animation-wrapper {
+                overflow-x: auto;
+                overflow-y: visible;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: thin;
+            }
+            .candles-animation-wrapper::-webkit-scrollbar {
+                height: 4px;
+            }
+            .candles-container-unique {
+                gap: 1rem;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                min-width: max-content;
+                padding: 25px 20px 20px 20px;
+            }
+            .candle-uniq {
+                min-width: 52px;
+            }
+            .candle-body-uniq {
+                width: 30px;
             }
             .doji-uniq .candle-body-uniq {
                 width: 36px !important;
             }
             .price-label-uniq {
                 font-size: 9px;
-                top: -34px;
-                padding: 3px 7px;
+                top: -32px;
+                padding: 2px 6px;
             }
+            /* Reducción proporcional de alturas para evitar cortes verticales */
+            .candle-uniq .wick-upper-uniq[style*="height: 25px"] { height: 20px !important; }
+            .candle-uniq .wick-upper-uniq[style*="height: 20px"] { height: 16px !important; }
+            .candle-uniq .wick-upper-uniq[style*="height: 30px"] { height: 24px !important; }
+            .candle-uniq .wick-upper-uniq[style*="height: 18px"] { height: 14px !important; }
+            .candle-uniq .wick-upper-uniq[style*="height: 35px"] { height: 28px !important; }
+            .candle-uniq .wick-upper-uniq[style*="height: 22px"] { height: 18px !important; }
+            .candle-uniq .wick-upper-uniq[style*="height: 28px"] { height: 22px !important; }
+            .candle-uniq .wick-upper-uniq[style*="height: 16px"] { height: 13px !important; }
+            .candle-uniq .wick-lower-uniq[style*="height: 15px"] { height: 12px !important; }
+            .candle-uniq .wick-lower-uniq[style*="height: 12px"] { height: 10px !important; }
+            .candle-uniq .wick-lower-uniq[style*="height: 20px"] { height: 16px !important; }
+            .candle-uniq .wick-lower-uniq[style*="height: 10px"] { height: 8px !important; }
+            .candle-uniq .wick-lower-uniq[style*="height: 14px"] { height: 11px !important; }
+            .candle-uniq .wick-lower-uniq[style*="height: 18px"] { height: 14px !important; }
+            .candle-uniq .wick-lower-uniq[style*="height: 8px"] { height: 6px !important; }
+            .candle-uniq .wick-lower-uniq[style*="height: 35px"] { height: 28px !important; }
+            .candle-body-uniq[style*="height: 55px"] { height: 45px !important; }
+            .candle-body-uniq[style*="height: 65px"] { height: 52px !important; }
+            .candle-body-uniq[style*="height: 40px"] { height: 32px !important; }
+            .candle-body-uniq[style*="height: 70px"] { height: 56px !important; }
+            .candle-body-uniq[style*="height: 60px"] { height: 48px !important; }
+            .candle-body-uniq[style*="height: 45px"] { height: 36px !important; }
+            .candle-body-uniq[style*="height: 80px"] { height: 64px !important; }
         }
-        @media (max-width: 650px) {
+        
+        /* Móviles pequeños (menos de 550px) */
+        @media (max-width: 550px) {
             .candles-container-unique {
-                gap: 0.9rem;
+                gap: 0.8rem;
+                min-width: 560px;
             }
             .candle-uniq {
-                min-width: 45px;
+                min-width: 48px;
+            }
+            .candle-body-uniq {
+                width: 28px;
+            }
+            .doji-uniq .candle-body-uniq {
+                width: 34px !important;
             }
             .price-label-uniq {
-                font-size: 8px;
+                font-size: 8.5px;
                 top: -30px;
                 padding: 2px 5px;
             }
-            .candle-body-uniq {
-                width: 26px !important;
-            }
         }
-        @media (max-width: 550px) {
-            .candles-animation-wrapper {
-                overflow-x: auto;
-                padding-bottom: 15px;
-            }
+        
+        /* Ajuste adicional: garantizar que nunca haya cortes verticales aumentando padding del contenedor */
+        .candles-container-unique {
+            padding-top: 35px;
+            padding-bottom: 15px;
+        }
+        
+        @media (max-width: 767px) {
             .candles-container-unique {
-                gap: 1rem;
-                min-width: 700px;
-                justify-content: flex-start;
+                padding-top: 28px;
             }
         }
     </style>
@@ -446,44 +573,43 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link">Educación <span class="dropdown-arrow">▼</span></a>
                             <ul class="dropdown">
-                                <li><a href="conceptos-forex.html">Conceptos de Forex</a></li>
-                                <li><a href="cuentas-fondeadas.html">Conceptos de cuentas fondeadas</a></li>
-                                <li><a href="binarias.html">Conceptos de binarias</a></li>
+                                <li><a href="#">Conceptos de Forex</a></li>
+                                <li><a href="#">Conceptos de cuentas fondeadas</a></li>
+                                <li><a href="#">Conceptos de binarias</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">Brokers <span class="dropdown-arrow">▼</span></a>
                             <ul class="dropdown">
-                                <li><a href="forex-brokers.html">Forex brokers</a></li>
-                                <li><a href="empresas-fondeo.html">Empresas de fondeo</a></li>
-                                <li><a href="brokers-binarias.html">Brokers de opciones binarias</a></li>
+                                <li><a href="#">Forex brokers</a></li>
+                                <li><a href="#">Empresas de fondeo</a></li>
+                                <li><a href="#">Brokers de opciones binarias</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a href="estrategias.html" class="nav-link">Estrategias</a></li>
-                        <li class="nav-item"><a href="analisis.html" class="nav-link">Análisis</a></li>
-                        <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Estrategias</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Análisis</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
                     </ul>
                 </nav>
             </div>
         </div>
     </header>
 
-    <!-- ==================== HERO (con animación de velas integrada después del título) ==================== -->
+    <!-- ==================== HERO CON ANIMACIÓN CORREGIDA ==================== -->
     <section class="hero">
         <div class="container">
             <h1>Domina el Mercado Forex con Conocimiento Real</h1>
             
-            <!-- ANIMACIÓN DE VELAS: SIN MARCO EXTERNO, FONDO TRANSPARENTE Y AMPLIA SEPARACIÓN ENTRE VELAS -->
             <div class="candles-animation-wrapper">
                 <div class="relative-anim-container">
                     <div class="particles-unique">
-                        <div class="particle-unique" style="left: 8%; animation-delay: 0s; animation-duration: 4.5s;"></div>
-                        <div class="particle-unique" style="left: 22%; animation-delay: 0.8s; animation-duration: 5.2s;"></div>
-                        <div class="particle-unique" style="left: 38%; animation-delay: 1.2s; animation-duration: 3.8s;"></div>
-                        <div class="particle-unique" style="left: 52%; animation-delay: 0.5s; animation-duration: 4.9s;"></div>
-                        <div class="particle-unique" style="left: 68%; animation-delay: 1.5s; animation-duration: 4.3s;"></div>
-                        <div class="particle-unique" style="left: 82%; animation-delay: 0.3s; animation-duration: 5.5s;"></div>
-                        <div class="particle-unique" style="left: 94%; animation-delay: 1.1s; animation-duration: 3.7s;"></div>
+                        <div class="particle-unique" style="left: 5%; animation-delay: 0s;"></div>
+                        <div class="particle-unique" style="left: 20%; animation-delay: 0.7s;"></div>
+                        <div class="particle-unique" style="left: 35%; animation-delay: 1.3s;"></div>
+                        <div class="particle-unique" style="left: 50%; animation-delay: 0.4s;"></div>
+                        <div class="particle-unique" style="left: 65%; animation-delay: 1.8s;"></div>
+                        <div class="particle-unique" style="left: 80%; animation-delay: 0.9s;"></div>
+                        <div class="particle-unique" style="left: 95%; animation-delay: 2.1s;"></div>
                     </div>
                     <div class="candles-container-unique">
                         <!-- Vela 1: alcista -->
@@ -514,7 +640,7 @@
                             <div class="candle-body-uniq" style="height: 70px;"></div>
                             <div class="wick-lower-uniq" style="height: 10px;"></div>
                         </div>
-                        <!-- Vela 5: Doji especial -->
+                        <!-- Vela 5: Doji -->
                         <div class="candle-uniq doji-uniq" style="--i: 5">
                             <div class="price-label-uniq">¥ 143.75</div>
                             <div class="wick-upper-uniq" style="height: 35px;"></div>
@@ -548,8 +674,8 @@
             
             <p>Plataforma educativa gratuita con recursos profesionales para traders principiantes y avanzados. Aprende conceptos sólidos, analiza brokers y desarrolla tu estrategia con confianza.</p>
             <div class="hero-buttons">
-                <a href="conceptos-forex.html" class="btn btn-primary">📚 Comenzar Aprendizaje</a>
-                <a href="forex-brokers.html" class="btn btn-secondary">🔍 Comparar Brokers</a>
+                <a href="#" class="btn btn-primary">📚 Comenzar Aprendizaje</a>
+                <a href="#" class="btn btn-secondary">🔍 Comparar Brokers</a>
             </div>
         </div>
     </section>
@@ -558,10 +684,10 @@
     <section class="features">
         <div class="container">
             <div class="features-grid">
-                <div class="feature-item"><div class="feature-icon">🎓</div><h3>Educación Gratuita</h3><p>Contenido educativo de calidad sin costos ocultos. Aprende a tu propio ritmo con materiales actualizados.</p></div>
-                <div class="feature-item"><div class="feature-icon">🔒</div><h3>Brokers Verificados</h3><p>Análisis de objetivos de brokers. Regulación, comisiones, plataformas, cuentas, condiciones de trading.</p></div>
-                <div class="feature-item"><div class="feature-icon">⚡</div><h3>Estrategias Probadas</h3><p>Métodos de trading. Te mostramos y explicamos las estrategias más utilizadas.</p></div>
-                <div class="feature-item"><div class="feature-icon">🤝</div><h3>Comunidad Activa</h3><p>Intercambia ideas con otros traders en nuestro foro. Soporte y aprendizaje colaborativo.</p></div>
+                <div class="feature-item"><div class="feature-icon">🎓</div><h3>Educación Gratuita</h3><p>Contenido educativo de calidad sin costos ocultos.</p></div>
+                <div class="feature-item"><div class="feature-icon">🔒</div><h3>Brokers Verificados</h3><p>Análisis objetivos de brokers regulados.</p></div>
+                <div class="feature-item"><div class="feature-icon">⚡</div><h3>Estrategias Probadas</h3><p>Métodos con gestión de riesgo profesional.</p></div>
+                <div class="feature-item"><div class="feature-icon">🤝</div><h3>Comunidad Activa</h3><p>Intercambia ideas con otros traders.</p></div>
             </div>
         </div>
     </section>
@@ -569,11 +695,11 @@
     <!-- ==================== EDUCACIÓN ==================== -->
     <section>
         <div class="container">
-            <div class="section-title"><h2>📚 Educación Forex</h2><p>Construye una base sólida con nuestros recursos educativos estructurados por niveles de experiencia</p></div>
+            <div class="section-title"><h2>📚 Educación Forex</h2><p>Construye una base sólida con recursos por niveles</p></div>
             <div class="cards-grid">
-                <article class="card"><div class="card-icon">1</div><h3>Conceptos de Forex</h3><p>Aprende los fundamentos: pares de divisas, pips, lotes, apalancamiento y análisis técnico básico.</p><a href="conceptos-forex.html" class="card-link">Explorar módulo →</a></article>
-                <article class="card"><div class="card-icon">2</div><h3>Cuentas Fondeadas</h3><p>Guía completa sobre empresas de fondeo: requisitos, evaluaciones, reglas y cómo maximizar tus oportunidades.</p><a href="cuentas-fondeadas.html" class="card-link">Ver detalles →</a></article>
-                <article class="card"><div class="card-icon">3</div><h3>Opciones Binarias</h3><p>Entiende el funcionamiento, riesgos y estrategias responsables para operar con opciones binarias.</p><a href="binarias.html" class="card-link">Aprender más →</a></article>
+                <article class="card"><div class="card-icon">1</div><h3>Conceptos de Forex</h3><p>Pares, pips, lotes, apalancamiento y análisis técnico básico.</p><a href="#" class="card-link">Explorar →</a></article>
+                <article class="card"><div class="card-icon">2</div><h3>Cuentas Fondeadas</h3><p>Guía sobre empresas de fondeo: requisitos, evaluaciones y reglas.</p><a href="#" class="card-link">Ver detalles →</a></article>
+                <article class="card"><div class="card-icon">3</div><h3>Opciones Binarias</h3><p>Funcionamiento, riesgos y estrategias responsables.</p><a href="#" class="card-link">Aprender →</a></article>
             </div>
         </div>
     </section>
@@ -581,11 +707,11 @@
     <!-- ==================== BROKERS ==================== -->
     <section class="features">
         <div class="container">
-            <div class="section-title"><h2>🏦 Brokers y Plataformas</h2><p>Comparativas honestas y actualizadas para que elijas con confianza tu partner de trading</p></div>
+            <div class="section-title"><h2>🏦 Brokers y Plataformas</h2><p>Comparativas honestas y actualizadas</p></div>
             <div class="cards-grid">
-                <article class="card"><div class="card-icon">★</div><h3>Forex Brokers</h3><p>Ranking de brokers regulados por FCA, CySEC, ASIC. Comisiones, spreads y calidad de ejecución.</p><a href="forex-brokers.html" class="card-link">Ver comparativa →</a></article>
-                <article class="card"><div class="card-icon">💼</div><h3>Empresas de Fondeo</h3><p>Análisis de FTMO, The5%ers, FundedNext: costos, reglas de riesgo y procesos de evaluación.</p><a href="empresas-fondeo.html" class="card-link">Explorar opciones →</a></article>
-                <article class="card"><div class="card-icon">⚠️</div><h3>Brokers Binarias</h3><p>Lista actualizada de plataformas confiables para opciones binarias con licencias verificadas.</p><a href="brokers-binarias.html" class="card-link">Consultar lista →</a></article>
+                <article class="card"><div class="card-icon">★</div><h3>Forex Brokers</h3><p>Ranking de brokers regulados: comisiones, spreads y ejecución.</p><a href="#" class="card-link">Comparar →</a></article>
+                <article class="card"><div class="card-icon">💼</div><h3>Empresas de Fondeo</h3><p>Análisis de FTMO, The5%ers, FundedNext.</p><a href="#" class="card-link">Explorar →</a></article>
+                <article class="card"><div class="card-icon">⚠️</div><h3>Brokers Binarias</h3><p>Plataformas confiables con licencias verificadas.</p><a href="#" class="card-link">Consultar →</a></article>
             </div>
         </div>
     </section>
@@ -593,9 +719,9 @@
     <!-- ==================== CTA ==================== -->
     <div class="container">
         <div class="cta-section">
-            <h2>¿Listo para comenzar tu camino en el trading?</h2>
-            <p>Únete a miles de traders que ya están mejorando sus conocimientos con Manual del Trader. Acceso gratuito a todos los recursos educativos.</p>
-            <a href="registro.html" class="btn btn-primary">🚀 Crear Cuenta Gratuita</a>
+            <h2>¿Listo para comenzar?</h2>
+            <p>Acceso gratuito a todos los recursos educativos. Únete a miles de traders.</p>
+            <a href="#" class="btn btn-primary">🚀 Crear Cuenta Gratuita</a>
         </div>
     </div>
 
@@ -603,7 +729,7 @@
     <div class="container">
         <div class="risk-disclaimer">
             <h4>⚠️ Advertencia de Riesgo</h4>
-            <p>El trading de Forex, CFDs y opciones binarias conlleva un alto nivel de riesgo y puede no ser adecuado para todos los inversores. El alto grado de apalancamiento puede trabajar tanto en su favor como en su contra. Antes de decidir operar con estos instrumentos financieros, debe considerar cuidadosamente sus objetivos de inversión, nivel de experiencia y apetito de riesgo. Existe la posibilidad de que sufra una pérdida parcial o total de su inversión inicial. Manual del Trader proporciona contenido educativo y no constituye asesoramiento financiero, recomendación de inversión ni oferta para comprar o vender instrumentos financieros.</p>
+            <p>El trading de Forex, CFDs y opciones binarias conlleva un alto nivel de riesgo. El alto grado de apalancamiento puede trabajar tanto en su favor como en su contra. Manual del Trader proporciona contenido educativo y no constituye asesoramiento financiero.</p>
         </div>
     </div>
 
@@ -611,15 +737,12 @@
     <footer>
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-column"><h4>Manual del Trader</h4><ul><li><a href="#">Sobre Nosotros</a></li><li><a href="#">Equipo</a></li><li><a href="#">Contacto</a></li></ul></div>
-
-                <div class="footer-column"><h4>Educación</h4><ul><li><a href="cuentas-fondeadas.html">Cuentas Fondeadas</a></li><li><a href="binarias.html">Opciones Binarias</a></li></ul></div>
-
-                <div class="footer-column"><h4>Brokers</h4><ul><li><a href="forex-brokers.html">Forex Brokers</a></li><li><a href="empresas-fondeo.html">Empresas de Fondeo</a></li><li><a href="brokers-binarias.html">Brokers Binarias</a></li><li><a href="comparador.html">Comparador de Brokers</a></li></ul></div>
-
-                <div class="footer-column"><h4>Legal</h4><ul><li><a href="terminos.html">Términos y Condiciones</a></li><li><a href="privacidad.html">Política de Privacidad</a></li><li><a href="cookies.html">Política de Cookies</a></li><li><a href="descargo.html">Descargo de Responsabilidad</a></li></ul></div>
+                <div class="footer-column"><h4>Manual del Trader</h4><ul><li><a href="#">Sobre Nosotros</a></li><li><a href="#">Contacto</a></li></ul></div>
+                <div class="footer-column"><h4>Educación</h4><ul><li><a href="#">Conceptos Forex</a></li><li><a href="#">Cuentas Fondeadas</a></li><li><a href="#">Opciones Binarias</a></li></ul></div>
+                <div class="footer-column"><h4>Brokers</h4><ul><li><a href="#">Forex Brokers</a></li><li><a href="#">Empresas de Fondeo</a></li><li><a href="#">Brokers Binarias</a></li></ul></div>
+                <div class="footer-column"><h4>Legal</h4><ul><li><a href="#">Términos</a></li><li><a href="#">Privacidad</a></li><li><a href="#">Cookies</a></li></ul></div>
             </div>
-            <div class="footer-bottom"><p>&copy; 2026 Manual del Trader. Todos los derechos reservados. | <a href="aviso-legal.html">Aviso Legal</a> | <a href="riesgos.html">Gestión de Riesgos</a></p><p style="margin-top: 8px; font-size: 0.85rem; color: var(--gris-texto);">Este sitio web es únicamente educativo. No ofrecemos servicios de inversión, asesoramiento financiero ni gestión de capital.</p></div>
+            <div class="footer-bottom"><p>&copy; 2026 Manual del Trader. Educación financiera.</p></div>
         </div>
     </footer>
 
