@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Manual del Trader</title>
+    <style>
+        /* ==================== VARIABLES ==================== */
+        :root {
+            --obsidiana: #0a0a0f;
+            --obsidiana-claro: #151520;
+            --obsidiana-borde: #2a2a3a;
+            --azul-electrico: #00bfff;
+            --azul-electrico-oscuro: #0088cc;
+            --oro: #d4af37;
+            --oro-oscuro: #aa8c2c;
+            --blanco: #ffffff;
+            --gris-claro: #e0e0e0;
+            --gris-texto: #b0b0c0;
+        }
+
+        /* ==================== RESET Y BASE ==================== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--obsidiana);
+            color: var(--blanco);
+            line-height: 1.6;
+        }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* ==================== HEADER ==================== */
+        header {
+            background: linear-gradient(135deg, var(--obsidiana) 0%, var(--obsidiana-claro) 100%);
+            border-bottom: 2px solid var(--azul-electrico);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 191, 255, 0.15);
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon {
+            width: 45px; height: 45px;
+            background: linear-gradient(135deg, var(--azul-electrico), var(--oro));
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; font-size: 1.2rem; color: var(--obsidiana);
+        }
+        .logo-text {
+            font-size: 1.5rem; font-weight: 700;
+            background: linear-gradient(90deg, var(--blanco), var(--azul-electrico), var(--oro));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .logo-text span { color: var(--oro); -webkit-text-fill-color: var(--oro); }
+
+        nav { display: flex; align-items: center; }
+        .nav-menu { display: flex; gap: 5px; }
+        .nav-item { position: relative; }
+        .nav-link {
+            display: block; padding: 12px 20px; font-weight: 500; color: var(--gris-claro);
+            border-radius: 5px; position: relative;
+        }
+        .nav-link:hover { color: var(--azul-electrico); background: rgba(0, 191, 255, 0.1); }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%) scaleX(0);
+            width: 70%; height: 2px; background: var(--azul-electrico);
+        }
+        .nav-item:hover .nav-link::after { transform: translateX(-50%) scaleX(1); }
+
+        .dropdown {
+            position: absolute; top: 100%; left: 0; background: var(--obsidiana-claro);
+            border: 1px solid var(--obsidiana-borde); border-top: 3px solid var(--oro);
+            border-radius: 0 0 8px 8px; min-width: 250px; opacity: 0; visibility: hidden;
+            box-shadow: 0 4px 15px rgba(0, 191, 255, 0.15); z-index: 100;
+        }
+        .nav-item:hover .dropdown { opacity: 1; visibility: visible; }
+        .dropdown li a {
+            display: block; padding: 12px 20px; color: var(--gris-texto);
+            border-bottom: 1px solid var(--obsidiana-borde);
+        }
+        .dropdown li:last-child a { border-bottom: none; }
+        .dropdown li a:hover { color: var(--blanco); background: rgba(212, 175, 55, 0.15); padding-left: 25px; border-left: 3px solid var(--oro); }
+        .dropdown-arrow { margin-left: 5px; font-size: 0.7em; }
+
+        /* ==================== HERO ==================== */
+        .hero {
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.8rem; margin-bottom: 15px;
+            background: linear-gradient(90deg, var(--blanco), var(--azul-electrico), var(--oro));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--gris-claro);
+            max-width: 700px;
+            margin: 0 auto 25px;
+        }
+        
+        /* Contenedor de la animación - SIN scrollbars en escritorio */
+        .candles-animation-wrapper {
+            margin: 20px auto;
+            width: 100%;
+            background: transparent;
+            overflow-x: visible;
+            overflow-y: visible;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 14px 32px; border-radius: 50px; font-weight: 600; font-size: 1rem;
+            cursor: pointer; border: none; display: inline-flex; align-items: center; gap: 8px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--azul-electrico), var(--azul-electrico-oscuro));
+            color: var(--obsidiana); box-shadow: 0 4px 20px rgba(0, 191, 255, 0.4);
+        }
+        .btn-primary:hover { background: var(--azul-electrico-oscuro); box-shadow: 0 6px 25px rgba(0, 191, 255, 0.6); }
+        .btn-secondary {
+            background: transparent; color: var(--blanco); border: 2px solid var(--oro);
+        }
+        .btn-secondary:hover { background: rgba(212, 175, 55, 0.15); box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2); }
+
+        /* ==================== SECCIONES ==================== */
+        section { padding: 70px 0; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-size: 2.2rem; margin-bottom: 15px; display: inline-block; position: relative; }
+        .section-title h2::after {
+            content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
+            width: 60px; height: 3px; background: var(--oro);
+        }
+        .section-title p { color: var(--gris-texto); margin-top: 20px; max-width: 600px; margin: 20px auto 0; }
+
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
+        .card {
+            background: var(--obsidiana-claro); border: 1px solid var(--obsidiana-borde);
+            border-radius: 12px; overflow: hidden; position: relative;
+        }
+        .card:hover { border-color: var(--azul-electrico); box-shadow: 0 4px 20px rgba(0, 191, 255, 0.15); }
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, var(--azul-electrico), var(--oro));
+        }
+        .card-icon {
+            width: 60px; height: 60px; background: linear-gradient(135deg, var(--azul-electrico), var(--oro));
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 25px auto 20px; font-size: 1.5rem; color: var(--obsidiana); font-weight: bold;
+        }
+        .card h3 { text-align: center; margin-bottom: 12px; font-size: 1.4rem; }
+        .card p { padding: 0 20px 20px; color: var(--gris-texto); text-align: center; }
+        .card-link {
+            display: block; text-align: center; padding: 12px; background: rgba(0, 191, 255, 0.1);
+            color: var(--azul-electrico); font-weight: 500; border-top: 1px solid var(--obsidiana-borde);
+        }
+        .card-link:hover { background: var(--azul-electrico); color: var(--obsidiana); }
+
+        .features { background: var(--obsidiana-claro); border-top: 1px solid var(--obsidiana-borde); border-bottom: 1px solid var(--obsidiana-borde); }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; }
+        .feature-item { text-align: center; padding: 20px; }
+        .feature-icon { font-size: 2.5rem; margin-bottom: 15px; color: var(--oro); }
+        .feature-item h3 { margin-bottom: 12px; font-size: 1.2rem; }
+        .feature-item p { color: var(--gris-texto); font-size: 0.95rem; }
+
+        .cta-section {
+            background: linear-gradient(135deg, rgba(0, 30, 60, 0.9) 0%, rgba(10, 10, 15, 0.95) 100%);
+            text-align: center; border: 1px solid var(--obsidiana-borde); border-radius: 15px;
+            margin: 40px 20px; padding: 50px 30px;
+        }
+        .cta-section h2 { font-size: 2rem; margin-bottom: 18px; }
+        .cta-section p { color: var(--gris-claro); max-width: 600px; margin: 0 auto 25px; }
+
+        .risk-disclaimer {
+            background: rgba(220, 50, 50, 0.1); border-left: 4px solid #dc3232;
+            padding: 18px; margin: 40px 0; border-radius: 0 8px 8px 0;
+        }
+        .risk-disclaimer h4 { color: #ff6b6b; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .risk-disclaimer p { color: var(--gris-texto); font-size: 0.9rem; line-height: 1.5; }
+
+        /* ==================== FOOTER ==================== */
+        footer { background: var(--obsidiana-claro); border-top: 2px solid var(--azul-electrico); padding: 50px 0 20px; margin-top: 50px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; margin-bottom: 30px; }
+        .footer-column h4 { color: var(--oro); margin-bottom: 20px; font-size: 1.2rem; position: relative; padding-bottom: 10px; }
+        .footer-column h4::after { content: ''; position: absolute; bottom: 0; left: 0; width: 40px; height: 2px; background: var(--azul-electrico); }
+        .footer-column ul li { margin-bottom: 10px; }
+        .footer-column ul li a { color: var(--gris-texto); }
+        .footer-column ul li a:hover { color: var(--azul-electrico); }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid var(--obsidiana-borde); color: var(--gris-texto); font-size: 0.9rem; }
+        .footer-bottom a { color: var(--azul-electrico); }
+
+        /* ==================== RESPONSIVE GENERAL ==================== */
+        @media (max-width: 768px) {
+            .header-content { flex-direction: column; gap: 15px; }
+            .nav-menu { flex-wrap: wrap; justify-content: center; }
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .section-title h2 { font-size: 1.6rem; }
+            .cards-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .btn { width: 100%; justify-content: center; }
+            section { padding: 50px 0; }
+            .hero h1 { font-size: 1.7rem; }
+        }
+    </style>
+    
+    <!-- Estilos de la animación - CORREGIDOS: sin scrollbars, sin cortes verticales -->
+    <style>
+        /* ============== JAPANESE CANDLESTICKS ANIMATION - SIN SCROLLBARS EN DESKTOP ============== */
+        
+        .candles-container-unique {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: clamp(1.2rem, 2.5vw, 2rem);
+            flex-wrap: wrap;
+            transform-style: preserve-3d;
+            animation: rotateRowUniq 8s ease-in-out infinite;
+            padding: 30px 10px 20px 10px;
+            margin: 0 auto;
+        }
+        
+        @keyframes rotateRowUniq {
+            0%, 100% { transform: rotateX(0deg) rotateY(0deg); }
+            25% { transform: rotateX(5deg) rotateY(5deg); }
+            75% { transform: rotateX(-3deg) rotateY(-3deg); }
+        }
+        
+        .candle-uniq {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            animation: floatCandleUniq 3s ease-in-out infinite;
+            animation-delay: calc(var(--i) * 0.15s);
+            flex-shrink: 0;
+        }
+        
+        @keyframes floatCandleUniq {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+        
+        .candle-uniq:hover {
+            transform: scale(1.05) translateY(-5px);
+            filter: brightness(1.15);
+            z-index: 10;
+        }
+        
+        /* mechas */
+        .wick-upper-uniq {
+            width: 2px;
+            background: linear-gradient(180deg, rgba(200,210,230,0.9) 0%, rgba(150,160,180,0.7) 100%);
+            border-radius: 2px;
+        }
+        
+        .wick-lower-uniq {
+            width: 2px;
+            background: linear-gradient(0deg, rgba(200,210,230,0.9) 0%, rgba(150,160,180,0.7) 100%);
+            border-radius: 2px;
+        }
+        
+        /* cuerpo de la vela - tamaño fijo pero proporcionado en desktop */
+        .candle-body-uniq {
+            width: 38px;
+            position: relative;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .bullish-uniq .candle-body-uniq {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 50%, #2ecc71 100%);
+            background-size: 200% 200%;
+            animation: bodyShineUniq 3s ease-in-out infinite, bullishPulseUniq 2s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(46, 204, 113, 0.4);
+            border: 1px solid rgba(46, 204, 113, 0.8);
+        }
+        
+        @keyframes bullishPulseUniq {
+            0%, 100% { box-shadow: 0 0 15px rgba(46, 204, 113, 0.4); filter: brightness(1); }
+            50% { box-shadow: 0 0 28px rgba(46, 204, 113, 0.7); filter: brightness(1.06); }
+        }
+        
+        .bearish-uniq .candle-body-uniq {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 50%, #e74c3c 100%);
+            background-size: 200% 200%;
+            animation: bodyShineUniq 3s ease-in-out infinite, bearishPulseUniq 2.5s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(231, 76, 60, 0.4);
+            border: 1px solid rgba(231, 76, 60, 0.8);
+        }
+        
+        @keyframes bearishPulseUniq {
+            0%, 100% { box-shadow: 0 0 12px rgba(231, 76, 60, 0.4); filter: brightness(1); }
+            50% { box-shadow: 0 0 24px rgba(231, 76, 60, 0.6); filter: brightness(0.93); }
+        }
+        
+        @keyframes bodyShineUniq {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .doji-uniq .candle-body-uniq {
+            height: 4px !important;
+            width: 44px !important;
+            background: linear-gradient(90deg, #f39c12 0%, #e67e22 50%, #f39c12 100%);
+            animation: dojiGlowUniq 1.5s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(243, 156, 18, 0.6);
+        }
+        
+        @keyframes dojiGlowUniq {
+            0%, 100% { box-shadow: 0 0 12px rgba(243, 156, 18, 0.4); transform: scaleX(1); }
+            50% { box-shadow: 0 0 26px rgba(243, 156, 18, 0.7); transform: scaleX(1.02); }
+        }
+        
+        /* Etiquetas de precio bien posicionadas sin cortes */
+        .price-label-uniq {
+            position: absolute;
+            top: -38px;
+            font-size: 11px;
+            font-weight: bold;
+            font-family: 'Segoe UI', monospace;
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(4px);
+            padding: 4px 10px;
+            border-radius: 20px;
+            white-space: nowrap;
+            animation: priceFlashUniq 2s ease-in-out infinite;
+            pointer-events: none;
+            letter-spacing: 0.3px;
+            z-index: 25;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        
+        .bullish-uniq .price-label-uniq { 
+            color: #2ecc71; 
+            border-left: 2px solid #2ecc71;
+        }
+        .bearish-uniq .price-label-uniq { 
+            color: #ff8a7a; 
+            border-left: 2px solid #e74c3c;
+        }
+        .doji-uniq .price-label-uniq { 
+            color: #f7c873; 
+            border-left: 2px solid #f39c12;
+        }
+        
+        @keyframes priceFlashUniq {
+            0%, 100% { opacity: 0.92; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(-2px); background: rgba(0, 0, 0, 0.95); }
+        }
+        
+        /* Partículas decorativas */
+        .particles-unique {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .particle-unique {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(0, 191, 255, 0.3);
+            border-radius: 50%;
+            animation: particleFloatUniq 8s linear infinite;
+        }
+        
+        @keyframes particleFloatUniq {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .relative-anim-container {
+            position: relative;
+            background: transparent;
+            overflow: visible;
+            width: 100%;
+        }
+        
+        /* ========== MEDIA QUERIES PARA RESPONSIVIDAD SIN SCROLL HORIZONTAL ========== */
+        
+        /* Desktop grande (más de 1400px) */
+        @media (min-width: 1400px) {
+            .candles-container-unique {
+                gap: 2.2rem;
+            }
+            .candle-body-uniq {
+                width: 42px;
+            }
+            .doji-uniq .candle-body-uniq {
+                width: 48px !important;
+            }
+            .price-label-uniq {
+                font-size: 12px;
+                top: -42px;
+                padding: 5px 12px;
+            }
+        }
+        
+        /* Desktop estándar (992px - 1399px) */
+        @media (min-width: 992px) and (max-width: 1399px) {
+            .candles-container-unique {
+                gap: 1.6rem;
+            }
+            .candle-body-uniq {
+                width: 36px;
+            }
+            .doji-uniq .candle-body-uniq {
+                width: 42px !important;
+            }
+            .price-label-uniq {
+                font-size: 10.5px;
+                top: -38px;
+                padding: 3px 9px;
+            }
+        }
+        
+        /* Tablet horizontal / desktop pequeño (768px - 991px) */
+        @media (min-width: 768px) and (max-width: 991px) {
+            .candles-container-unique {
+                gap: 1.3rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .candle-body-uniq {
+                width: 34px;
+            }
+            .doji-uniq .candle-body-uniq {
+                width: 40px !important;
+            }
+            .price-label-uniq {
+                font-size: 10px;
+                top: -36px;
+                padding: 3px 8px;
+            }
+        }
+        
+        /* Móviles grandes (550px - 767px) - aquí SÍ permitimos scroll horizontal suave para que se vean todas */
+        @media (max-width: 767px) {
+            .candles-animation-wrapper {
+                overflow-x: auto;
+                overflow-y: visible;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: thin;
+            }
+            .candles-animation-wrapper::-webkit-scrollbar {
+                height: 4px;
+            }
+            .candles-container-unique {
+                gap: 1rem;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                min-width: max-content;
+                padding: 25px 20px 20px 20px;
+            }
+            .candle-uniq {
+                min-width: 52px;
+            }
+            .candle-body-uniq {
+                width: 30px;
+            }
+            .doji-uniq .candle-body-uniq {
+                width: 36px !important;
+            }
+            .price-label-uniq {
+                font-size: 9px;
+                top: -32px;
+                padding: 2px 6px;
+            }
+            /* Reducción proporcional de alturas para evitar cortes verticales */
+            .candle-uniq .wick-upper-uniq[style*="height: 25px"] { height: 20px !important; }
+            .candle-uniq .wick-upper-uniq[style*="height: 20px"] { height: 16px !important; }
+            .candle-uniq .wick-upper-uniq[style*="height: 30px"] { height: 24px !important; }
+            .candle-uniq .wick-upper-uniq[style*="height: 18px"] { height: 14px !important; }
+            .candle-uniq .wick-upper-uniq[style*="height: 35px"] { height: 28px !important; }
+            .candle-uniq .wick-upper-uniq[style*="height: 22px"] { height: 18px !important; }
+            .candle-uniq .wick-upper-uniq[style*="height: 28px"] { height: 22px !important; }
+            .candle-uniq .wick-upper-uniq[style*="height: 16px"] { height: 13px !important; }
+            .candle-uniq .wick-lower-uniq[style*="height: 15px"] { height: 12px !important; }
+            .candle-uniq .wick-lower-uniq[style*="height: 12px"] { height: 10px !important; }
+            .candle-uniq .wick-lower-uniq[style*="height: 20px"] { height: 16px !important; }
+            .candle-uniq .wick-lower-uniq[style*="height: 10px"] { height: 8px !important; }
+            .candle-uniq .wick-lower-uniq[style*="height: 14px"] { height: 11px !important; }
+            .candle-uniq .wick-lower-uniq[style*="height: 18px"] { height: 14px !important; }
+            .candle-uniq .wick-lower-uniq[style*="height: 8px"] { height: 6px !important; }
+            .candle-uniq .wick-lower-uniq[style*="height: 35px"] { height: 28px !important; }
+            .candle-body-uniq[style*="height: 55px"] { height: 45px !important; }
+            .candle-body-uniq[style*="height: 65px"] { height: 52px !important; }
+            .candle-body-uniq[style*="height: 40px"] { height: 32px !important; }
+            .candle-body-uniq[style*="height: 70px"] { height: 56px !important; }
+            .candle-body-uniq[style*="height: 60px"] { height: 48px !important; }
+            .candle-body-uniq[style*="height: 45px"] { height: 36px !important; }
+            .candle-body-uniq[style*="height: 80px"] { height: 64px !important; }
+        }
+        
+        /* Móviles pequeños (menos de 550px) */
+        @media (max-width: 550px) {
+            .candles-container-unique {
+                gap: 0.8rem;
+                min-width: 560px;
+            }
+            .candle-uniq {
+                min-width: 48px;
+            }
+            .candle-body-uniq {
+                width: 28px;
+            }
+            .doji-uniq .candle-body-uniq {
+                width: 34px !important;
+            }
+            .price-label-uniq {
+                font-size: 8.5px;
+                top: -30px;
+                padding: 2px 5px;
+            }
+        }
+        
+        /* Ajuste adicional: garantizar que nunca haya cortes verticales aumentando padding del contenedor */
+        .candles-container-unique {
+            padding-top: 35px;
+            padding-bottom: 15px;
+        }
+        
+        @media (max-width: 767px) {
+            .candles-container-unique {
+                padding-top: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <div class="logo-icon">MT</div>
+                    <div class="logo-text">Manual del <span>Trader</span></div>
+                </a>
+                <nav>
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Educación <span class="dropdown-arrow">▼</span></a>
+                            <ul class="dropdown">
+                                <li><a href="conceptos-forex.html">Conceptos de Forex</a></li>
+                                <li><a href="#">Conceptos de cuentas fondeadas</a></li>
+                                <li><a href="#">Conceptos de binarias</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Brokers <span class="dropdown-arrow">▼</span></a>
+                            <ul class="dropdown">
+                                <li><a href="#">Forex brokers</a></li>
+                                <li><a href="#">Empresas de fondeo</a></li>
+                                <li><a href="#">Brokers de opciones binarias</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a href="#" class="nav-link">Estrategias</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Análisis</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== HERO CON ANIMACIÓN CORREGIDA ==================== -->
+    <section class="hero">
+        <div class="container">
+            <h1>Domina el Mercado Forex con Conocimiento Real</h1>
+            
+            <div class="candles-animation-wrapper">
+                <div class="relative-anim-container">
+                    <div class="particles-unique">
+                        <div class="particle-unique" style="left: 5%; animation-delay: 0s;"></div>
+                        <div class="particle-unique" style="left: 20%; animation-delay: 0.7s;"></div>
+                        <div class="particle-unique" style="left: 35%; animation-delay: 1.3s;"></div>
+                        <div class="particle-unique" style="left: 50%; animation-delay: 0.4s;"></div>
+                        <div class="particle-unique" style="left: 65%; animation-delay: 1.8s;"></div>
+                        <div class="particle-unique" style="left: 80%; animation-delay: 0.9s;"></div>
+                        <div class="particle-unique" style="left: 95%; animation-delay: 2.1s;"></div>
+                    </div>
+                    <div class="candles-container-unique">
+                        <!-- Vela 1: alcista -->
+                        <div class="candle-uniq bullish-uniq" style="--i: 1">
+                            <div class="price-label-uniq">¥ 142.85</div>
+                            <div class="wick-upper-uniq" style="height: 25px;"></div>
+                            <div class="candle-body-uniq" style="height: 55px;"></div>
+                            <div class="wick-lower-uniq" style="height: 15px;"></div>
+                        </div>
+                        <!-- Vela 2: alcista -->
+                        <div class="candle-uniq bullish-uniq" style="--i: 2">
+                            <div class="price-label-uniq">¥ 143.20</div>
+                            <div class="wick-upper-uniq" style="height: 20px;"></div>
+                            <div class="candle-body-uniq" style="height: 65px;"></div>
+                            <div class="wick-lower-uniq" style="height: 12px;"></div>
+                        </div>
+                        <!-- Vela 3: bajista -->
+                        <div class="candle-uniq bearish-uniq" style="--i: 3">
+                            <div class="price-label-uniq">¥ 142.50</div>
+                            <div class="wick-upper-uniq" style="height: 30px;"></div>
+                            <div class="candle-body-uniq" style="height: 40px;"></div>
+                            <div class="wick-lower-uniq" style="height: 20px;"></div>
+                        </div>
+                        <!-- Vela 4: alcista fuerte -->
+                        <div class="candle-uniq bullish-uniq" style="--i: 4">
+                            <div class="price-label-uniq">¥ 144.10</div>
+                            <div class="wick-upper-uniq" style="height: 18px;"></div>
+                            <div class="candle-body-uniq" style="height: 70px;"></div>
+                            <div class="wick-lower-uniq" style="height: 10px;"></div>
+                        </div>
+                        <!-- Vela 5: Doji -->
+                        <div class="candle-uniq doji-uniq" style="--i: 5">
+                            <div class="price-label-uniq">¥ 143.75</div>
+                            <div class="wick-upper-uniq" style="height: 35px;"></div>
+                            <div class="candle-body-uniq" style="height: 4px; width: 44px;"></div>
+                            <div class="wick-lower-uniq" style="height: 35px;"></div>
+                        </div>
+                        <!-- Vela 6: alcista -->
+                        <div class="candle-uniq bullish-uniq" style="--i: 6">
+                            <div class="price-label-uniq">¥ 144.55</div>
+                            <div class="wick-upper-uniq" style="height: 22px;"></div>
+                            <div class="candle-body-uniq" style="height: 60px;"></div>
+                            <div class="wick-lower-uniq" style="height: 14px;"></div>
+                        </div>
+                        <!-- Vela 7: bajista -->
+                        <div class="candle-uniq bearish-uniq" style="--i: 7">
+                            <div class="price-label-uniq">¥ 143.90</div>
+                            <div class="wick-upper-uniq" style="height: 28px;"></div>
+                            <div class="candle-body-uniq" style="height: 45px;"></div>
+                            <div class="wick-lower-uniq" style="height: 18px;"></div>
+                        </div>
+                        <!-- Vela 8: alcista gran cuerpo -->
+                        <div class="candle-uniq bullish-uniq" style="--i: 8">
+                            <div class="price-label-uniq">¥ 145.30</div>
+                            <div class="wick-upper-uniq" style="height: 16px;"></div>
+                            <div class="candle-body-uniq" style="height: 80px;"></div>
+                            <div class="wick-lower-uniq" style="height: 8px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <p>Plataforma educativa gratuita con recursos profesionales para traders principiantes y avanzados. Aprende conceptos sólidos, analiza brokers y desarrolla tu estrategia con confianza.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary">📚 Comenzar Aprendizaje</a>
+                <a href="#" class="btn btn-secondary">🔍 Comparar Brokers</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CARACTERÍSTICAS ==================== -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-item"><div class="feature-icon">🎓</div><h3>Educación Gratuita</h3><p>Contenido educativo de calidad sin costos ocultos. Aprende a tu propio ritmo con materiales actualizados.</p></div>
+                <div class="feature-item"><div class="feature-icon">🔒</div><h3>Brokers Verificados</h3><p>Análisis objetivos de brokers regulados. Comisiones, plataformas y seguridad evaluadas por expertos.</p></div>
+                <div class="feature-item"><div class="feature-icon">⚡</div><h3>Estrategias Probadas</h3><p>Métodos de trading con gestión de riesgo profesional. Adaptables a scalping, day trading y swing.</p></div>
+                <div class="feature-item"><div class="feature-icon">🤝</div><h3>Comunidad Activa</h3><p>Intercambia ideas con otros traders en nuestro foro. Soporte y aprendizaje colaborativo.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== EDUCACIÓN ==================== -->
+    <section>
+        <div class="container">
+            <div class="section-title"><h2>📚 Educación Forex</h2><p>Construye una base sólida con recursos por niveles</p></div>
+            <div class="cards-grid">
+                <article class="card"><div class="card-icon">1</div><h3>Conceptos de Forex</h3><p>Pares, pips, lotes, apalancamiento y análisis técnico básico.</p><a href="#" class="card-link">Explorar →</a></article>
+                <article class="card"><div class="card-icon">2</div><h3>Cuentas Fondeadas</h3><p>Guía sobre empresas de fondeo: requisitos, evaluaciones y reglas.</p><a href="#" class="card-link">Ver detalles →</a></article>
+                <article class="card"><div class="card-icon">3</div><h3>Opciones Binarias</h3><p>Funcionamiento, riesgos y estrategias responsables.</p><a href="#" class="card-link">Aprender →</a></article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== BROKERS ==================== -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title"><h2>🏦 Brokers y Plataformas</h2><p>Comparativas honestas y actualizadas</p></div>
+            <div class="cards-grid">
+                <article class="card"><div class="card-icon">★</div><h3>Forex Brokers</h3><p>Ranking de brokers regulados por FCA, CySEC, ASIC. Comisiones, spreads y calidad de ejecución.</p><a href="#" class="card-link">Comparar →</a></article>
+                <article class="card"><div class="card-icon">💼</div><h3>Empresas de Fondeo</h3><p>Análisis de FTMO, The5%ers, FundedNext: costos, reglas de riesgo y procesos de evaluación.</p><a href="#" class="card-link">Explorar →</a></article>
+                <article class="card"><div class="card-icon">⚠️</div><h3>Brokers Binarias</h3><p>Lista actualizada de plataformas confiables para opciones binarias con licencias verificadas.</p><a href="#" class="card-link">Consultar →</a></article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CTA ==================== -->
+    <div class="container">
+        <div class="cta-section">
+            <h2>¿Listo para comenzar?</h2>
+            <p>Únete a miles de traders que ya están mejorando sus conocimientos con Manual del Trader. Acceso gratuito a todos los recursos educativos.</p>
+            <a href="#" class="btn btn-primary">🚀 Crear Cuenta Gratuita</a>
+        </div>
+    </div>
+
+    <!-- ==================== DISCLAIMER ==================== -->
+    <div class="container">
+        <div class="risk-disclaimer">
+            <h4>⚠️ Advertencia de Riesgo</h4>
+            <p>El trading de Forex, CFDs y opciones binarias conlleva un alto nivel de riesgo. El alto grado de apalancamiento puede trabajar tanto en su favor como en su contra. Manual del Trader proporciona contenido educativo y no constituye asesoramiento financiero.</p>
+        </div>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column"><h4>Manual del Trader</h4><ul><li><a href="#">Sobre Nosotros</a></li><li><a href="#">Equipo</a></li><li><a href="#">Contacto</a></li></ul></div>
+                <div class="footer-column"><h4>Educación</h4><ul><li><a href="#">Cuentas Fondeadas</a></li><li><a href="#">Opciones Binarias</a></li></ul></div>
+                <div class="footer-column"><h4>Brokers</h4><ul><li><a href="#">Forex Brokers</a></li><li><a href="#">Empresas de Fondeo</a></li><li><a href="#">Brokers Binarias</a></li></ul></div>
+                <div class="footer-column"><h4>Legal</h4><ul><li><a href="#">Términos</a></li><li><a href="#">Privacidad</a></li><li><a href="#">Cookies</a></li></ul></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 Manual del Trader. Educación financiera.</p></div>
+        </div>
+    </footer>
+
+</body>
+</html>
