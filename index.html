@@ -1,31 +1,468 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>General Index</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Agustín Peña | Futuristic Dev Card</title>
+  <!-- OSWALD FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(ellipse at 30% 40%, #0a0718 0%, #02010a 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'Oswald', sans-serif;
+      padding: 2rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .cyber-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(0, 255, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.08) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .glow-orb-1 {
+      position: fixed;
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, #ff00cc70, #7000ff30, transparent);
+      border-radius: 50%;
+      filter: blur(120px);
+      top: -180px;
+      left: -180px;
+      z-index: 0;
+      opacity: 0.45;
+    }
+
+    .glow-orb-2 {
+      position: fixed;
+      width: 650px;
+      height: 650px;
+      background: radial-gradient(circle, #00e0ff60, #0055ff20, transparent);
+      border-radius: 50%;
+      filter: blur(140px);
+      bottom: -220px;
+      right: -180px;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    .nova-card {
+      width: 880px;
+      max-width: 92vw;
+      min-height: 520px;
+      background: rgba(8, 12, 25, 0.48);
+      backdrop-filter: blur(24px) saturate(220%);
+      -webkit-backdrop-filter: blur(24px) saturate(220%);
+      border-radius: 54px;
+      border: 1.5px solid rgba(0, 255, 255, 0.5);
+      box-shadow: 0 30px 55px -12px rgba(0, 0, 0, 0.9), 0 0 0 1.5px rgba(0, 255, 255, 0.3), inset 0 1px 2px rgba(255,255,255,0.1);
+      padding: 2.5rem 2.8rem;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      transition: none;
+      position: relative;
+    }
+
+    .nova-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 54px;
+      padding: 2.5px;
+      background: linear-gradient(125deg, rgba(0,255,255,0.7), rgba(255,0,204,0.5), rgba(0, 255, 200, 0.3));
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .identity {
+      flex: 1;
+    }
+
+    /* NEW: wrapper for extra padding and protection */
+    .name-wrapper {
+      margin-bottom: 8px;
+      padding: 4px 0;
+    }
+
+    .name {
+      font-size: 64px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(145deg, #FFFFFF, #5effe6, #e084fc, #aa6eff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 12px rgba(0,255,255,0.4);
+      font-family: 'Oswald', sans-serif;
+      line-height: 1.4;        /* More breathing room vertically */
+      text-transform: none;
+      padding: 8px 0;          /* Extra padding top/bottom inside the text */
+      display: block;
+      width: 100%;
+    }
+
+    .title-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-top: 12px;        /* Increased separation from name */
+    }
+
+    .role {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #abfff6;
+      background: rgba(0, 255, 255, 0.12);
+      padding: 10px 24px;
+      border-radius: 60px;
+      backdrop-filter: blur(6px);
+      border-left: 3px solid #0ff;
+      font-family: 'Oswald', sans-serif;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 700px) {
+      .role {
+        white-space: normal;
+        font-size: 16px;
+        padding: 6px 16px;
+      }
+      .name {
+        font-size: 48px;
+        line-height: 1.35;
+      }
+      .title-wrapper {
+        margin-top: 8px;
+      }
+    }
+
+    .icon-badge {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .icon-svg {
+      width: 68px;
+      height: 68px;
+      filter: drop-shadow(0 0 6px cyan);
+    }
+
+    .contact-grid {
+      margin-top: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      border-top: 1.5px solid rgba(0, 255, 255, 0.4);
+      padding-top: 2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 18px;
+      font-weight: 500;
+      color: #eef5ff;
+      letter-spacing: 0.5px;
+      font-family: 'Oswald', sans-serif;
+      backdrop-filter: blur(4px);
+      transition: none;
+    }
+
+    .contact-icon {
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 4px #0ff);
+    }
+
+    .contact-text {
+      word-break: break-word;
+      background: linear-gradient(125deg, #fff, #c0f2ff, #b4f0ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 500;
+      font-size: 18px;
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 0.3px;
+    }
+
+    .meta-section {
+      margin-top: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 18px;
+      background: rgba(0, 20, 30, 0.6);
+      border-radius: 100px;
+      padding: 14px 28px;
+      border: 0.8px solid rgba(0, 255, 255, 0.5);
+    }
+
+    .meta-data {
+      font-family: 'Oswald', monospace;
+      font-size: 15px;
+      font-weight: 600;
+      color: #0ff;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .fingerprint-icon {
+      width: 30px;
+      height: 30px;
+      filter: drop-shadow(0 0 5px cyan);
+    }
+
+    .quantum-chip {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      background: rgba(0,0,0,0.55);
+      padding: 8px 20px;
+      border-radius: 50px;
+      border-right: 2.5px solid #0ff;
+      border-left: 1px solid rgba(0,255,255,0.3);
+      font-family: 'Oswald', sans-serif;
+      font-weight: 500;
+    }
+
+    .nova-card:hover, .nova-card:active {
+      transform: none;
+      border-color: rgba(0, 255, 255, 0.6);
+    }
+
+    @media (max-width: 950px) {
+      .nova-card {
+        width: 85vw;
+        padding: 1.8rem;
+      }
+      .name {
+        font-size: 52px;
+      }
+      .role {
+        font-size: 18px;
+      }
+      .icon-svg {
+        width: 52px;
+        height: 52px;
+      }
+      .contact-item {
+        font-size: 15px;
+        gap: 16px;
+      }
+      .contact-icon {
+        width: 34px;
+        height: 34px;
+      }
+      .contact-text {
+        font-size: 15px;
+      }
+      .meta-data {
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .nova-card {
+        padding: 1.4rem;
+      }
+      .name {
+        font-size: 40px;
+        line-height: 1.3;
+      }
+      .role {
+        font-size: 14px;
+        padding: 6px 14px;
+      }
+      .icon-svg {
+        width: 42px;
+        height: 42px;
+      }
+      .contact-item {
+        font-size: 13px;
+        gap: 12px;
+      }
+      .contact-icon {
+        width: 28px;
+        height: 28px;
+      }
+      .contact-text {
+        font-size: 13px;
+      }
+      .meta-section {
+        padding: 10px 16px;
+      }
+      .meta-data {
+        font-size: 10px;
+        gap: 8px;
+      }
+      .fingerprint-icon {
+        width: 22px;
+        height: 22px;
+      }
+      .quantum-chip {
+        font-size: 10px;
+        padding: 4px 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .name {
+        font-size: 32px;
+        line-height: 1.25;
+      }
+      .role {
+        font-size: 11px;
+        letter-spacing: 1.5px;
+      }
+      .icon-svg {
+        width: 34px;
+        height: 34px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <br>
+  <div class="cyber-grid"></div>
+  <div class="glow-orb-1"></div>
+  <div class="glow-orb-2"></div>
 
-    <h2>My Pages General Index</h2>
+  <div class="nova-card">
+    <div class="card-header">
+      <div class="identity">
+        <!-- Added wrapper for extra padding around name -->
+        <div class="name-wrapper">
+          <div class="name">Agustín Peña</div>
+        </div>
+        <div class="title-wrapper">
+          <span class="role">⚡ COOL FREELANCE DEVELOPER ⚡</span>
+        </div>
+      </div>
+      <div class="icon-badge">
+        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#0ff" stroke-width="1.2" stroke-linejoin="round" fill="url(#gradHex)"/>
+          <path d="M2 17L12 22L22 17" stroke="#0ff" stroke-width="1.2" stroke-linejoin="round" fill="none"/>
+          <path d="M2 12L12 17L22 12" stroke="#0ff" stroke-width="1.2" stroke-linejoin="round" fill="none"/>
+          <defs>
+            <linearGradient id="gradHex" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#0ff" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#f0f" stop-opacity="0.3"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="9" stroke="#f0f" stroke-width="1.2" stroke-dasharray="2.5 2.5"/>
+          <circle cx="12" cy="12" r="5" fill="#0ff" fill-opacity="0.3" stroke="#0ff" stroke-width="1.2"/>
+          <path d="M12 3L12 7M12 17L12 21M3 12L7 12M17 12L21 12" stroke="#0ff" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M5 5L8 8M16 16L19 19M19 5L16 8M8 16L5 19" stroke="#0ff" stroke-width="1" opacity="0.7"/>
+        </svg>
+      </div>
+    </div>
 
-    <ul class="my-list">
-        <li>
-            <a href="percentage-calculator/index.html">
-                Percentages Calculator
-            </a>
-        </li>
-        <br>
-        <li>
-            <a href="trading-calculator/index.html">
-                Trading Calculator
-            </a>
-        </li>
-        
-    </ul>
-    
+    <div class="contact-grid">
+      <div class="contact-item">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="4" width="20" height="16" rx="3" stroke="#5effe6" stroke-width="1.3" fill="none"/>
+          <path d="M22 7L12 13L2 7" stroke="#5effe6" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 11L2 15.5" stroke="#0ff" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M18 11L22 15.5" stroke="#0ff" stroke-width="1.2" stroke-linecap="round"/>
+          <circle cx="12" cy="20" r="1" fill="#0ff" fill-opacity="0.6"/>
+        </svg>
+        <span class="contact-text">j.agustin.pena.a@gmail.com</span>
+      </div>
+      <div class="contact-item">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7.5L12 13L22 7.5L12 2Z" stroke="#0ff" stroke-width="1.2" fill="url(#cubeGrad)"/>
+          <path d="M2 16.5L12 22L22 16.5" stroke="#0ff" stroke-width="1.2" fill="none"/>
+          <path d="M2 12L12 17.5L22 12" stroke="#0ff" stroke-width="1.2" fill="none"/>
+          <path d="M12 13L12 22" stroke="#f0f" stroke-width="1" stroke-dasharray="1.5 1.5"/>
+          <defs><linearGradient id="cubeGrad"><stop offset="0%" stop-color="#0ff" stop-opacity="0.3"/><stop offset="100%" stop-color="#f0f" stop-opacity="0.15"/></linearGradient></defs>
+        </svg>
+        <span class="contact-text">+7 (981) 863 55 25</span>
+      </div>
+      <div class="contact-item">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.5 4.5L2.5 12L8.5 14.5L11.5 20L15.5 15.5L20.5 4.5Z" stroke="#0ff" stroke-width="1.3" stroke-linejoin="round" fill="url(#telegramGrad)"/>
+          <path d="M8.5 14.5L12.5 12" stroke="#0ff" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M8.5 14.5L2.5 12L20.5 4.5L15.5 15.5L11.5 20L8.5 14.5Z" stroke="#f0f" stroke-width="0.8" stroke-linejoin="round" fill="none" stroke-dasharray="2 2" opacity="0.6"/>
+          <circle cx="16" cy="8" r="0.8" fill="#0ff" fill-opacity="0.9"/>
+          <defs>
+            <linearGradient id="telegramGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#0ff" stop-opacity="0.25"/>
+              <stop offset="100%" stop-color="#f0f" stop-opacity="0.15"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="contact-text">@agustinpena</span>
+      </div>
+    </div>
+
+    <div class="meta-section">
+      <div class="meta-data">
+        <svg class="fingerprint-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12V16" stroke="#0ff" stroke-width="1.3" stroke-linecap="round"/>
+          <path d="M7 12C7 9.24 9.24 7 12 7C14.76 7 17 9.24 17 12V17" stroke="#0ff" stroke-width="1.3" stroke-linecap="round"/>
+          <path d="M10 12C10 10.34 11.34 9 13 9" stroke="#0ff" stroke-width="1.3" stroke-linecap="round"/>
+          <path d="M12 12V21" stroke="#0ff" stroke-width="1.3" stroke-linecap="round"/>
+          <path d="M8 19C8 15.69 10.69 13 14 13" stroke="#0ff" stroke-width="1.3"/>
+          <circle cx="12" cy="11" r="1.5" fill="#0ff" fill-opacity="0.6"/>
+        </svg>
+        <span>Доступные: ИМО • МАКС • ВАЦАП</span>
+      </div>
+      <div class="quantum-chip">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#0ff" stroke-width="1.2"/>
+          <path d="M2 17L12 22L22 17" stroke="#0ff" stroke-width="1.2"/>
+          <path d="M5 12L9 14M19 12L15 14" stroke="#0ff" stroke-width="1"/>
+        </svg>
+        <span style="color:#0ff; font-weight:600;">QUANTUM ID: 8829-X•NOVA</span>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
