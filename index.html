@@ -20,13 +20,15 @@
       background: radial-gradient(circle at 50% 50%, #0d1527 0%, #05070f 100%);
       font-family: 'Courier New', Courier, monospace;
       padding: 20px;
-      overflow-x: hidden; /* Prevents mobile scrollbars */
+      overflow-x: hidden;
     }
 
     /* Ambient Background Grid Pattern */
     body::before {
       content: "";
-      position: absolute;
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       background-image: 
@@ -34,26 +36,18 @@
         linear-gradient(90deg, rgba(0, 242, 254, 0.03) 1px, transparent 1px);
       background-size: 20px 20px;
       z-index: 0;
+      pointer-events: none;
     }
 
-    /* Responsive Scaler Wrapper Container */
-    .responsive-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      max-width: 1000px; /* Matches card size */
-    }
-
-    /* Outer Card Framework */
+    /* Card Container */
     .futuristic-card {
       position: relative;
-      width: 1000px;
-      height: 560px;
+      width: 100%;
+      max-width: 1000px;
       background: rgba(10, 20, 38, 0.7);
       border: 2px solid rgba(0, 242, 254, 0.25);
       border-radius: 24px;
-      padding: 60px 45px; 
+      padding: 40px 30px;
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       box-shadow: 
@@ -61,9 +55,8 @@
         inset 0 0 30px rgba(0, 242, 254, 0.05);
       z-index: 1;
       display: grid;
-      grid-template-columns: 0.7fr 2.3fr; 
+      grid-template-columns: 1fr 2fr;
       gap: 40px;
-      transform-origin: center center; /* Anchors the card layout when scaling */
     }
 
     /* Technical Corner Bracket Elements */
@@ -76,7 +69,7 @@
       border-style: solid;
       pointer-events: none;
     }
-    
+
     /* Top-Left Bracket */
     .futuristic-card::before {
       top: -4px;
@@ -96,7 +89,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding-right: 30px;
+      gap: 30px;
     }
 
     .status-indicator {
@@ -111,12 +104,8 @@
       color: #4facfe;
     }
 
-    .node-id {
-      margin-top: 30px;
-    }
-
     .node-id h1 {
-      font-size: 2.6rem; 
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
       color: #ffffff;
       font-weight: bold;
       letter-spacing: 2px;
@@ -126,7 +115,7 @@
     }
 
     .node-id p {
-      font-size: 1.4rem;
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
       color: #4facfe;
       margin-top: 8px;
       letter-spacing: 6px;
@@ -143,24 +132,14 @@
     .data-panel {
       display: flex;
       flex-direction: column;
-      justify-content: flex-start; 
-      padding-right: 20px; 
-      height: 100%;
-      margin-top: 180px; 
+      justify-content: center;
+      gap: 24px;
     }
 
     .data-row {
       display: flex;
       flex-direction: column;
       width: 100%;
-      margin-top: 18px; 
-    }
-
-    /* The alignment setup you loved */
-    .data-label, .data-value {
-      margin-left: -550px; 
-      position: relative;  
-      z-index: 10;        
     }
 
     .data-label {
@@ -172,9 +151,9 @@
     }
 
     .data-value {
-      font-size: 1.35rem; 
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
       color: #ffffff;
-      letter-spacing: 0.5px; 
+      letter-spacing: 0.5px;
       word-wrap: break-word;
       word-break: break-all;
       overflow-wrap: break-word;
@@ -185,57 +164,103 @@
       color: #00f2fe;
     }
 
-    /* FLUID RESPONSIVE ENGINE (Locks layout architecture using aspect ratio container calculations) */
-    @media (max-width: 1040px) {
-      .responsive-wrapper {
-        width: 90vw;
-        height: calc(90vw * (560 / 1000)); /* Dynamically calculates layout aspect heights */
-      }
+    /* Tablet breakpoint */
+    @media (max-width: 768px) {
       .futuristic-card {
-        transform: scale(calc(90vw / 1000)); /* Math function to safely scale down elements */
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 30px 20px;
+      }
+
+      .identity-panel {
+        gap: 20px;
+      }
+
+      .data-panel {
+        gap: 18px;
+      }
+
+      .tech-spec {
+        font-size: 1rem;
+      }
+    }
+
+    /* Small mobile breakpoint */
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+
+      .futuristic-card {
+        padding: 24px 16px;
+        border-radius: 16px;
+      }
+
+      .futuristic-card::before, .futuristic-card::after {
+        width: 20px;
+        height: 20px;
+      }
+
+      .status-indicator {
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+      }
+
+      .node-id p {
+        letter-spacing: 3px;
+      }
+
+      .data-label {
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+      }
+
+      .tech-spec {
+        font-size: 0.9rem;
       }
     }
   </style>
+<base target="_blank">
 </head>
 <body>
 
-  <!-- Wrapped card element inside the fluid viewport scaling system -->
-  <div class="responsive-wrapper">
-    <div class="futuristic-card">
-            
-        <div class="status-indicator">SYS_ACTIVE // IND_86</div>
-        
-        <div class="node-id">
-          <h1>Agustín Peña</h1>
-          <p>Cool Freelance Developer</p>
-        </div>
-        
-        <div class="tech-spec">
-          LOC: ST_PETERSBURG<br>
-          NET: SECURE_LINK_v9<br>
-          SIG: STABLE_NODE
-        </div>
+  <div class="futuristic-card">
+
+    <!-- Left Identity Panel -->
+    <div class="identity-panel">
+
+      <div class="status-indicator">SYS_ACTIVE // IND_86</div>
+
+      <div class="node-id">
+        <h1>Agustín Peña</h1>
+        <p>Cool Freelance Developer</p>
       </div>
 
-      <!-- Right Data Links Panel -->
-      <div class="data-panel">
-        <div class="data-row">
-          <span class="data-label">COMMLINK // EMAIL</span>
-          <span class="data-value">j.agustin.pena.a<span>@</span>gmail.com</span>
-        </div>
-        
-        <div class="data-row">
-          <span class="data-label">QUANTUM ID // PHONE</span>
-          <span class="data-value">+7 (981) 863 55 25</span>
-        </div>
-        
-        <div class="data-row">
-          <span class="data-label">TELEGRAM // ID</span>
-          <span class="data-value"><span>@</span>agustinpena</span>
-        </div>
+      <div class="tech-spec">
+        LOC: ST_PETERSBURG<br>
+        NET: SECURE_LINK_v9<br>
+        SIG: STABLE_NODE
       </div>
-
     </div>
+
+    <!-- Right Data Links Panel -->
+    <div class="data-panel">
+      <div class="data-row">
+        <span class="data-label">COMMLINK // EMAIL</span>
+        <span class="data-value">j.agustin.pena.a<span>@</span>gmail.com</span>
+      </div>
+
+      <div class="data-row">
+        <span class="data-label">QUANTUM ID // PHONE</span>
+        <span class="data-value">+7 (981) 863 55 25</span>
+      </div>
+
+      <div class="data-row">
+        <span class="data-label">TELEGRAM // ID</span>
+        <span class="data-value"><span>@</span>agustinpena</span>
+      </div>
+    </div>
+
   </div>
 
 </body>
