@@ -2,749 +2,851 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Manual del Trader</title>
-    <style>
-        /* ==================== VARIABLES ==================== */
-        :root {
-            --obsidiana: #0a0a0f;
-            --obsidiana-claro: #151520;
-            --obsidiana-borde: #2a2a3a;
-            --azul-electrico: #00bfff;
-            --azul-electrico-oscuro: #0088cc;
-            --oro: #d4af37;
-            --oro-oscuro: #aa8c2c;
-            --blanco: #ffffff;
-            --gris-claro: #e0e0e0;
-            --gris-texto: #b0b0c0;
-        }
-
-        /* ==================== RESET Y BASE ==================== */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--obsidiana);
-            color: var(--blanco);
-            line-height: 1.6;
-        }
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-        /* ==================== HEADER ==================== */
-        header {
-            background: linear-gradient(135deg, var(--obsidiana) 0%, var(--obsidiana-claro) 100%);
-            border-bottom: 2px solid var(--azul-electrico);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0, 191, 255, 0.15);
-        }
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-        .logo { display: flex; align-items: center; gap: 12px; }
-        .logo-icon {
-            width: 45px; height: 45px;
-            background: linear-gradient(135deg, var(--azul-electrico), var(--oro));
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: bold; font-size: 1.2rem; color: var(--obsidiana);
-        }
-        .logo-text {
-            font-size: 1.5rem; font-weight: 700;
-            background: linear-gradient(90deg, var(--blanco), var(--azul-electrico), var(--oro));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .logo-text span { color: var(--oro); -webkit-text-fill-color: var(--oro); }
-
-        nav { display: flex; align-items: center; }
-        .nav-menu { display: flex; gap: 5px; }
-        .nav-item { position: relative; }
-        .nav-link {
-            display: block; padding: 12px 20px; font-weight: 500; color: var(--gris-claro);
-            border-radius: 5px; position: relative;
-        }
-        .nav-link:hover { color: var(--azul-electrico); background: rgba(0, 191, 255, 0.1); }
-        .nav-link::after {
-            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%) scaleX(0);
-            width: 70%; height: 2px; background: var(--azul-electrico);
-        }
-        .nav-item:hover .nav-link::after { transform: translateX(-50%) scaleX(1); }
-
-        .dropdown {
-            position: absolute; top: 100%; left: 0; background: var(--obsidiana-claro);
-            border: 1px solid var(--obsidiana-borde); border-top: 3px solid var(--oro);
-            border-radius: 0 0 8px 8px; min-width: 250px; opacity: 0; visibility: hidden;
-            box-shadow: 0 4px 15px rgba(0, 191, 255, 0.15); z-index: 100;
-        }
-        .nav-item:hover .dropdown { opacity: 1; visibility: visible; }
-        .dropdown li a {
-            display: block; padding: 12px 20px; color: var(--gris-texto);
-            border-bottom: 1px solid var(--obsidiana-borde);
-        }
-        .dropdown li:last-child a { border-bottom: none; }
-        .dropdown li a:hover { color: var(--blanco); background: rgba(212, 175, 55, 0.15); padding-left: 25px; border-left: 3px solid var(--oro); }
-        .dropdown-arrow { margin-left: 5px; font-size: 0.7em; }
-
-        /* ==================== HERO ==================== */
-        .hero {
-            padding: 60px 0 40px;
-            text-align: center;
-        }
-        .hero h1 {
-            font-size: 2.8rem; margin-bottom: 15px;
-            background: linear-gradient(90deg, var(--blanco), var(--azul-electrico), var(--oro));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--gris-claro);
-            max-width: 700px;
-            margin: 0 auto 25px;
-        }
-        
-        /* Contenedor de la animación - SIN scrollbars en escritorio */
-        .candles-animation-wrapper {
-            margin: 20px auto;
-            width: 100%;
-            background: transparent;
-            overflow-x: visible;
-            overflow-y: visible;
-        }
-        
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-
-        .btn {
-            padding: 14px 32px; border-radius: 50px; font-weight: 600; font-size: 1rem;
-            cursor: pointer; border: none; display: inline-flex; align-items: center; gap: 8px;
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, var(--azul-electrico), var(--azul-electrico-oscuro));
-            color: var(--obsidiana); box-shadow: 0 4px 20px rgba(0, 191, 255, 0.4);
-        }
-        .btn-primary:hover { background: var(--azul-electrico-oscuro); box-shadow: 0 6px 25px rgba(0, 191, 255, 0.6); }
-        .btn-secondary {
-            background: transparent; color: var(--blanco); border: 2px solid var(--oro);
-        }
-        .btn-secondary:hover { background: rgba(212, 175, 55, 0.15); box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2); }
-
-        /* ==================== SECCIONES ==================== */
-        section { padding: 70px 0; }
-        .section-title { text-align: center; margin-bottom: 50px; }
-        .section-title h2 { font-size: 2.2rem; margin-bottom: 15px; display: inline-block; position: relative; }
-        .section-title h2::after {
-            content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
-            width: 60px; height: 3px; background: var(--oro);
-        }
-        .section-title p { color: var(--gris-texto); margin-top: 20px; max-width: 600px; margin: 20px auto 0; }
-
-        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
-        .card {
-            background: var(--obsidiana-claro); border: 1px solid var(--obsidiana-borde);
-            border-radius: 12px; overflow: hidden; position: relative;
-        }
-        .card:hover { border-color: var(--azul-electrico); box-shadow: 0 4px 20px rgba(0, 191, 255, 0.15); }
-        .card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-            background: linear-gradient(90deg, var(--azul-electrico), var(--oro));
-        }
-        .card-icon {
-            width: 60px; height: 60px; background: linear-gradient(135deg, var(--azul-electrico), var(--oro));
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            margin: 25px auto 20px; font-size: 1.5rem; color: var(--obsidiana); font-weight: bold;
-        }
-        .card h3 { text-align: center; margin-bottom: 12px; font-size: 1.4rem; }
-        .card p { padding: 0 20px 20px; color: var(--gris-texto); text-align: center; }
-        .card-link {
-            display: block; text-align: center; padding: 12px; background: rgba(0, 191, 255, 0.1);
-            color: var(--azul-electrico); font-weight: 500; border-top: 1px solid var(--obsidiana-borde);
-        }
-        .card-link:hover { background: var(--azul-electrico); color: var(--obsidiana); }
-
-        .features { background: var(--obsidiana-claro); border-top: 1px solid var(--obsidiana-borde); border-bottom: 1px solid var(--obsidiana-borde); }
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; }
-        .feature-item { text-align: center; padding: 20px; }
-        .feature-icon { font-size: 2.5rem; margin-bottom: 15px; color: var(--oro); }
-        .feature-item h3 { margin-bottom: 12px; font-size: 1.2rem; }
-        .feature-item p { color: var(--gris-texto); font-size: 0.95rem; }
-
-        .cta-section {
-            background: linear-gradient(135deg, rgba(0, 30, 60, 0.9) 0%, rgba(10, 10, 15, 0.95) 100%);
-            text-align: center; border: 1px solid var(--obsidiana-borde); border-radius: 15px;
-            margin: 40px 20px; padding: 50px 30px;
-        }
-        .cta-section h2 { font-size: 2rem; margin-bottom: 18px; }
-        .cta-section p { color: var(--gris-claro); max-width: 600px; margin: 0 auto 25px; }
-
-        .risk-disclaimer {
-            background: rgba(220, 50, 50, 0.1); border-left: 4px solid #dc3232;
-            padding: 18px; margin: 40px 0; border-radius: 0 8px 8px 0;
-        }
-        .risk-disclaimer h4 { color: #ff6b6b; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-        .risk-disclaimer p { color: var(--gris-texto); font-size: 0.9rem; line-height: 1.5; }
-
-        /* ==================== FOOTER ==================== */
-        footer { background: var(--obsidiana-claro); border-top: 2px solid var(--azul-electrico); padding: 50px 0 20px; margin-top: 50px; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; margin-bottom: 30px; }
-        .footer-column h4 { color: var(--oro); margin-bottom: 20px; font-size: 1.2rem; position: relative; padding-bottom: 10px; }
-        .footer-column h4::after { content: ''; position: absolute; bottom: 0; left: 0; width: 40px; height: 2px; background: var(--azul-electrico); }
-        .footer-column ul li { margin-bottom: 10px; }
-        .footer-column ul li a { color: var(--gris-texto); }
-        .footer-column ul li a:hover { color: var(--azul-electrico); }
-        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid var(--obsidiana-borde); color: var(--gris-texto); font-size: 0.9rem; }
-        .footer-bottom a { color: var(--azul-electrico); }
-
-        /* ==================== RESPONSIVE GENERAL ==================== */
-        @media (max-width: 768px) {
-            .header-content { flex-direction: column; gap: 15px; }
-            .nav-menu { flex-wrap: wrap; justify-content: center; }
-            .hero h1 { font-size: 2rem; }
-            .hero p { font-size: 1rem; }
-            .section-title h2 { font-size: 1.6rem; }
-            .cards-grid { grid-template-columns: 1fr; }
-        }
-        @media (max-width: 480px) {
-            .hero-buttons { flex-direction: column; align-items: center; }
-            .btn { width: 100%; justify-content: center; }
-            section { padding: 50px 0; }
-            .hero h1 { font-size: 1.7rem; }
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual del Trader | La Primera Fuente para Forex y Opciones Binarias</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     
-    <!-- Estilos de la animación - CORREGIDOS: sin scrollbars, sin cortes verticales -->
-    <style>
-        /* ============== JAPANESE CANDLESTICKS ANIMATION - SIN SCROLLBARS EN DESKTOP ============== */
-        
-        .candles-container-unique {
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            gap: clamp(1.2rem, 2.5vw, 2rem);
-            flex-wrap: wrap;
-            transform-style: preserve-3d;
-            animation: rotateRowUniq 8s ease-in-out infinite;
-            padding: 30px 10px 20px 10px;
-            margin: 0 auto;
+    <!-- Linked external CSS file -->
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: {
+                            950: '#06060B',
+                            900: '#0B0B14',
+                            800: '#111120',
+                            700: '#1A1A2E',
+                            600: '#252540',
+                        },
+                        electric: {
+                            500: '#0066FF',
+                            400: '#3385FF',
+                            300: '#66A3FF',
+                            200: '#99C2FF',
+                            100: '#CCE0FF',
+                        },
+                        gold: {
+                            500: '#D4A843',
+                            400: '#E0BC6A',
+                            300: '#ECD091',
+                            200: '#F5E2B8',
+                            100: '#FAF0DB',
+                        },
+                    },
+                    fontFamily: {
+                        display: ['Orbitron', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
         }
-        
-        @keyframes rotateRowUniq {
-            0%, 100% { transform: rotateX(0deg) rotateY(0deg); }
-            25% { transform: rotateX(5deg) rotateY(5deg); }
-            75% { transform: rotateX(-3deg) rotateY(-3deg); }
-        }
-        
-        .candle-uniq {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            animation: floatCandleUniq 3s ease-in-out infinite;
-            animation-delay: calc(var(--i) * 0.15s);
-            flex-shrink: 0;
-        }
-        
-        @keyframes floatCandleUniq {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-6px); }
-        }
-        
-        .candle-uniq:hover {
-            transform: scale(1.05) translateY(-5px);
-            filter: brightness(1.15);
-            z-index: 10;
-        }
-        
-        /* mechas */
-        .wick-upper-uniq {
-            width: 2px;
-            background: linear-gradient(180deg, rgba(200,210,230,0.9) 0%, rgba(150,160,180,0.7) 100%);
-            border-radius: 2px;
-        }
-        
-        .wick-lower-uniq {
-            width: 2px;
-            background: linear-gradient(0deg, rgba(200,210,230,0.9) 0%, rgba(150,160,180,0.7) 100%);
-            border-radius: 2px;
-        }
-        
-        /* cuerpo de la vela - tamaño fijo pero proporcionado en desktop */
-        .candle-body-uniq {
-            width: 38px;
-            position: relative;
-            transition: all 0.4s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .bullish-uniq .candle-body-uniq {
-            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 50%, #2ecc71 100%);
-            background-size: 200% 200%;
-            animation: bodyShineUniq 3s ease-in-out infinite, bullishPulseUniq 2s ease-in-out infinite;
-            box-shadow: 0 0 20px rgba(46, 204, 113, 0.4);
-            border: 1px solid rgba(46, 204, 113, 0.8);
-        }
-        
-        @keyframes bullishPulseUniq {
-            0%, 100% { box-shadow: 0 0 15px rgba(46, 204, 113, 0.4); filter: brightness(1); }
-            50% { box-shadow: 0 0 28px rgba(46, 204, 113, 0.7); filter: brightness(1.06); }
-        }
-        
-        .bearish-uniq .candle-body-uniq {
-            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 50%, #e74c3c 100%);
-            background-size: 200% 200%;
-            animation: bodyShineUniq 3s ease-in-out infinite, bearishPulseUniq 2.5s ease-in-out infinite;
-            box-shadow: 0 0 20px rgba(231, 76, 60, 0.4);
-            border: 1px solid rgba(231, 76, 60, 0.8);
-        }
-        
-        @keyframes bearishPulseUniq {
-            0%, 100% { box-shadow: 0 0 12px rgba(231, 76, 60, 0.4); filter: brightness(1); }
-            50% { box-shadow: 0 0 24px rgba(231, 76, 60, 0.6); filter: brightness(0.93); }
-        }
-        
-        @keyframes bodyShineUniq {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        .doji-uniq .candle-body-uniq {
-            height: 4px !important;
-            width: 44px !important;
-            background: linear-gradient(90deg, #f39c12 0%, #e67e22 50%, #f39c12 100%);
-            animation: dojiGlowUniq 1.5s ease-in-out infinite;
-            box-shadow: 0 0 20px rgba(243, 156, 18, 0.6);
-        }
-        
-        @keyframes dojiGlowUniq {
-            0%, 100% { box-shadow: 0 0 12px rgba(243, 156, 18, 0.4); transform: scaleX(1); }
-            50% { box-shadow: 0 0 26px rgba(243, 156, 18, 0.7); transform: scaleX(1.02); }
-        }
-        
-        /* Etiquetas de precio bien posicionadas sin cortes */
-        .price-label-uniq {
-            position: absolute;
-            top: -38px;
-            font-size: 11px;
-            font-weight: bold;
-            font-family: 'Segoe UI', monospace;
-            background: rgba(0, 0, 0, 0.88);
-            backdrop-filter: blur(4px);
-            padding: 4px 10px;
-            border-radius: 20px;
-            white-space: nowrap;
-            animation: priceFlashUniq 2s ease-in-out infinite;
-            pointer-events: none;
-            letter-spacing: 0.3px;
-            z-index: 25;
-            border: 1px solid rgba(255,255,255,0.2);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-        }
-        
-        .bullish-uniq .price-label-uniq { 
-            color: #2ecc71; 
-            border-left: 2px solid #2ecc71;
-        }
-        .bearish-uniq .price-label-uniq { 
-            color: #ff8a7a; 
-            border-left: 2px solid #e74c3c;
-        }
-        .doji-uniq .price-label-uniq { 
-            color: #f7c873; 
-            border-left: 2px solid #f39c12;
-        }
-        
-        @keyframes priceFlashUniq {
-            0%, 100% { opacity: 0.92; transform: translateY(0); }
-            50% { opacity: 1; transform: translateY(-2px); background: rgba(0, 0, 0, 0.95); }
-        }
-        
-        /* Partículas decorativas */
-        .particles-unique {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 0;
-        }
-        
-        .particle-unique {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: rgba(0, 191, 255, 0.3);
-            border-radius: 50%;
-            animation: particleFloatUniq 8s linear infinite;
-        }
-        
-        @keyframes particleFloatUniq {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.5; }
-            90% { opacity: 0.3; }
-            100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
-        }
-        
-        .relative-anim-container {
-            position: relative;
-            background: transparent;
-            overflow: visible;
-            width: 100%;
-        }
-        
-        /* ========== MEDIA QUERIES PARA RESPONSIVIDAD SIN SCROLL HORIZONTAL ========== */
-        
-        /* Desktop grande (más de 1400px) */
-        @media (min-width: 1400px) {
-            .candles-container-unique {
-                gap: 2.2rem;
-            }
-            .candle-body-uniq {
-                width: 42px;
-            }
-            .doji-uniq .candle-body-uniq {
-                width: 48px !important;
-            }
-            .price-label-uniq {
-                font-size: 12px;
-                top: -42px;
-                padding: 5px 12px;
-            }
-        }
-        
-        /* Desktop estándar (992px - 1399px) */
-        @media (min-width: 992px) and (max-width: 1399px) {
-            .candles-container-unique {
-                gap: 1.6rem;
-            }
-            .candle-body-uniq {
-                width: 36px;
-            }
-            .doji-uniq .candle-body-uniq {
-                width: 42px !important;
-            }
-            .price-label-uniq {
-                font-size: 10.5px;
-                top: -38px;
-                padding: 3px 9px;
-            }
-        }
-        
-        /* Tablet horizontal / desktop pequeño (768px - 991px) */
-        @media (min-width: 768px) and (max-width: 991px) {
-            .candles-container-unique {
-                gap: 1.3rem;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .candle-body-uniq {
-                width: 34px;
-            }
-            .doji-uniq .candle-body-uniq {
-                width: 40px !important;
-            }
-            .price-label-uniq {
-                font-size: 10px;
-                top: -36px;
-                padding: 3px 8px;
-            }
-        }
-        
-        /* Móviles grandes (550px - 767px) - aquí SÍ permitimos scroll horizontal suave para que se vean todas */
-        @media (max-width: 767px) {
-            .candles-animation-wrapper {
-                overflow-x: auto;
-                overflow-y: visible;
-                -webkit-overflow-scrolling: touch;
-                scrollbar-width: thin;
-            }
-            .candles-animation-wrapper::-webkit-scrollbar {
-                height: 4px;
-            }
-            .candles-container-unique {
-                gap: 1rem;
-                flex-wrap: nowrap;
-                justify-content: flex-start;
-                min-width: max-content;
-                padding: 25px 20px 20px 20px;
-            }
-            .candle-uniq {
-                min-width: 52px;
-            }
-            .candle-body-uniq {
-                width: 30px;
-            }
-            .doji-uniq .candle-body-uniq {
-                width: 36px !important;
-            }
-            .price-label-uniq {
-                font-size: 9px;
-                top: -32px;
-                padding: 2px 6px;
-            }
-            /* Reducción proporcional de alturas para evitar cortes verticales */
-            .candle-uniq .wick-upper-uniq[style*="height: 25px"] { height: 20px !important; }
-            .candle-uniq .wick-upper-uniq[style*="height: 20px"] { height: 16px !important; }
-            .candle-uniq .wick-upper-uniq[style*="height: 30px"] { height: 24px !important; }
-            .candle-uniq .wick-upper-uniq[style*="height: 18px"] { height: 14px !important; }
-            .candle-uniq .wick-upper-uniq[style*="height: 35px"] { height: 28px !important; }
-            .candle-uniq .wick-upper-uniq[style*="height: 22px"] { height: 18px !important; }
-            .candle-uniq .wick-upper-uniq[style*="height: 28px"] { height: 22px !important; }
-            .candle-uniq .wick-upper-uniq[style*="height: 16px"] { height: 13px !important; }
-            .candle-uniq .wick-lower-uniq[style*="height: 15px"] { height: 12px !important; }
-            .candle-uniq .wick-lower-uniq[style*="height: 12px"] { height: 10px !important; }
-            .candle-uniq .wick-lower-uniq[style*="height: 20px"] { height: 16px !important; }
-            .candle-uniq .wick-lower-uniq[style*="height: 10px"] { height: 8px !important; }
-            .candle-uniq .wick-lower-uniq[style*="height: 14px"] { height: 11px !important; }
-            .candle-uniq .wick-lower-uniq[style*="height: 18px"] { height: 14px !important; }
-            .candle-uniq .wick-lower-uniq[style*="height: 8px"] { height: 6px !important; }
-            .candle-uniq .wick-lower-uniq[style*="height: 35px"] { height: 28px !important; }
-            .candle-body-uniq[style*="height: 55px"] { height: 45px !important; }
-            .candle-body-uniq[style*="height: 65px"] { height: 52px !important; }
-            .candle-body-uniq[style*="height: 40px"] { height: 32px !important; }
-            .candle-body-uniq[style*="height: 70px"] { height: 56px !important; }
-            .candle-body-uniq[style*="height: 60px"] { height: 48px !important; }
-            .candle-body-uniq[style*="height: 45px"] { height: 36px !important; }
-            .candle-body-uniq[style*="height: 80px"] { height: 64px !important; }
-        }
-        
-        /* Móviles pequeños (menos de 550px) */
-        @media (max-width: 550px) {
-            .candles-container-unique {
-                gap: 0.8rem;
-                min-width: 560px;
-            }
-            .candle-uniq {
-                min-width: 48px;
-            }
-            .candle-body-uniq {
-                width: 28px;
-            }
-            .doji-uniq .candle-body-uniq {
-                width: 34px !important;
-            }
-            .price-label-uniq {
-                font-size: 8.5px;
-                top: -30px;
-                padding: 2px 5px;
-            }
-        }
-        
-        /* Ajuste adicional: garantizar que nunca haya cortes verticales aumentando padding del contenedor */
-        .candles-container-unique {
-            padding-top: 35px;
-            padding-bottom: 15px;
-        }
-        
-        @media (max-width: 767px) {
-            .candles-container-unique {
-                padding-top: 28px;
-            }
-        }
-    </style>
+    </script>
 </head>
 <body>
 
-    <!-- ==================== HEADER ==================== -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <a href="#" class="logo">
-                    <div class="logo-icon">MT</div>
-                    <div class="logo-text">Manual del <span>Trader</span></div>
-                </a>
-                <nav>
-                    <ul class="nav-menu">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Educación <span class="dropdown-arrow">▼</span></a>
-                            <ul class="dropdown">
-                                <li><a href="conceptos-forex.html">Conceptos de Forex</a></li>
-                                <li><a href="#">Conceptos de cuentas fondeadas</a></li>
-                                <li><a href="#">Conceptos de binarias</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Brokers <span class="dropdown-arrow">▼</span></a>
-                            <ul class="dropdown">
-                                <li><a href="#">Forex brokers</a></li>
-                                <li><a href="#">Empresas de fondeo</a></li>
-                                <li><a href="#">Brokers de opciones binarias</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item"><a href="#" class="nav-link">Estrategias</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Análisis</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
-                    </ul>
-                </nav>
+    <!-- ============================================ -->
+    <!-- NAVIGATION -->
+    <!-- ============================================ -->
+    <header class="fixed top-0 left-0 right-0 z-50">
+        <nav class="relative">
+            <!-- Background blur layer -->
+            <div class="absolute inset-0 bg-obsidian-950/80 backdrop-blur-xl border-b border-gold-500/10"></div>
+
+            <!-- WIDTH PARAMETER: max-w-7xl controls the maximum horizontal width of the navigation bar content. -->
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16 lg:h-20">
+
+                    <!-- Logo -->
+                    <a href="index.html" class="flex items-center gap-3 group">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-gold-500 to-electric-500 flex items-center justify-center pulse-ring">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#06060B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                                <polyline points="16 7 22 7 22 13"></polyline>
+                            </svg>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-display font-bold text-lg leading-tight text-white group-hover:text-gold-400 transition-colors">MANUAL</span>
+                            <span class="font-display font-bold text-[10px] tracking-[0.35em] text-gold-500 leading-none">DEL TRADER</span>
+                        </div>
+                    </a>
+
+                    <!-- Desktop Navigation -->
+                    <div class="desktop-nav hidden lg:flex items-center gap-1">
+
+                        <!-- Educación Dropdown -->
+                        <div class="nav-dropdown">
+                            <button class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors rounded-lg hover:bg-white/5">
+                                <i data-lucide="graduation-cap" class="w-4 h-4 text-gold-500"></i>
+                                Educación
+                                <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-500 transition-transform"></i>
+                            </button>
+                            <div class="nav-dropdown-menu">
+                                <a href="conceptos-forex.html" class="nav-dropdown-item">
+                                    <div class="item-icon">
+                                        <i data-lucide="trending-up" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-white">Conceptos de Forex</div>
+                                        <div class="text-xs text-gray-500 mt-0.5">Pares, pips, lotes y más</div>
+                                    </div>
+                                </a>
+                                <a href="conceptos-fondeadas.html" class="nav-dropdown-item">
+                                    <div class="item-icon">
+                                        <i data-lucide="landmark" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-white">Cuentas Fondeadas</div>
+                                        <div class="text-xs text-gray-500 mt-0.5">Reglas, evaluación y gestión</div>
+                                    </div>
+                                </a>
+                                <a href="conceptos-binarias.html" class="nav-dropdown-item">
+                                    <div class="item-icon">
+                                        <i data-lucide="binary" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-white">Conceptos de Binarias</div>
+                                        <div class="text-xs text-gray-500 mt-0.5">Calls, puts y estrategias</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Brokers Dropdown -->
+                        <div class="nav-dropdown">
+                            <button class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors rounded-lg hover:bg-white/5">
+                                <i data-lucide="building-2" class="w-4 h-4 text-electric-400"></i>
+                                Brokers
+                                <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-500 transition-transform"></i>
+                            </button>
+                            <div class="nav-dropdown-menu">
+                                <a href="brokers-forex.html" class="nav-dropdown-item">
+                                    <div class="item-icon">
+                                        <i data-lucide="line-chart" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-white">Brokers de Forex</div>
+                                        <div class="text-xs text-gray-500 mt-0.5">Los mejores para trading FX</div>
+                                    </div>
+                                </a>
+                                <a href="empresas-fondeo.html" class="nav-dropdown-item">
+                                    <div class="item-icon">
+                                        <i data-lucide="wallet" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-white">Empresas de Fondeo</div>
+                                        <div class="text-xs text-gray-500 mt-0.5">Capital para traders</div>
+                                    </div>
+                                </a>
+                                <a href="brokers-binarias.html" class="nav-dropdown-item">
+                                    <div class="item-icon">
+                                        <i data-lucide="toggle-right" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-white">Brokers de Binarias</div>
+                                        <div class="text-xs text-gray-500 mt-0.5">Plataformas de opciones</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- New Simple Links -->
+                        <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors rounded-lg hover:bg-white/5">
+                            <i data-lucide="trophy" class="w-4 h-4 text-gold-500"></i>
+                            Torneos de Activos
+                        </a>
+                        <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors rounded-lg hover:bg-white/5">
+                            <i data-lucide="gift" class="w-4 h-4 text-electric-400"></i>
+                            Promociones Activas
+                        </a>
+
+                        <!-- Existing Simple Links -->
+                        <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors rounded-lg hover:bg-white/5">
+                            <i data-lucide="newspaper" class="w-4 h-4 text-gray-500"></i>
+                            Blog
+                        </a>
+                        <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors rounded-lg hover:bg-white/5">
+                            <i data-lucide="phone" class="w-4 h-4 text-gray-500"></i>
+                            Contacto
+                        </a>
+                    </div>
+
+                    <!-- Mobile Toggle -->
+                    <div class="flex items-center gap-3">
+                        <button class="mobile-menu-btn items-center justify-center w-10 h-10 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors" onclick="document.getElementById('mobileMenu').classList.toggle('active')">
+                            <i data-lucide="menu" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="mobile-menu relative bg-obsidian-900/98 backdrop-blur-xl border-t border-gold-500/10">
+                <!-- WIDTH PARAMETER: max-w-7xl controls the maximum horizontal width of the mobile menu content. -->
+                <div class="max-w-7xl mx-auto px-4 py-4 space-y-2">
+                    <!-- Educación Section -->
+                    <div class="px-3 pt-3 pb-1">
+                        <span class="text-[11px] font-bold tracking-widest text-gold-500 uppercase">Educación</span>
+                    </div>
+                    <a href="conceptos-forex.html" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors">
+                        <i data-lucide="trending-up" class="w-4 h-4 text-electric-400"></i>
+                        Conceptos de Forex
+                    </a>
+                    <a href="conceptos-fondeadas.html" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors">
+                        <i data-lucide="landmark" class="w-4 h-4 text-electric-400"></i>
+                        Conceptos de Cuentas Fondeadas
+                    </a>
+                    <a href="conceptos-binarias.html" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors">
+                        <i data-lucide="binary" class="w-4 h-4 text-electric-400"></i>
+                        Conceptos de Binarias
+                    </a>
+
+                    <div class="gold-divider my-2"></div>
+
+                    <!-- Brokers Section -->
+                    <div class="px-3 pt-2 pb-1">
+                        <span class="text-[11px] font-bold tracking-widest text-electric-400 uppercase">Brokers</span>
+                    </div>
+                    <a href="brokers-forex.html" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors">
+                        <i data-lucide="line-chart" class="w-4 h-4 text-gold-500"></i>
+                        Brokers de Forex
+                    </a>
+                    <a href="empresas-fondeo.html" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors">
+                        <i data-lucide="wallet" class="w-4 h-4 text-gold-500"></i>
+                        Empresas de Fondeo
+                    </a>
+                    <a href="brokers-binarias.html" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors">
+                        <i data-lucide="toggle-right" class="w-4 h-4 text-gold-500"></i>
+                        Brokers de Opciones Binarias
+                    </a>
+
+                    <div class="gold-divider my-2"></div>
+
+                    <!-- New Mobile Links -->
+                    <a href="#" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors">
+                        <i data-lucide="trophy" class="w-4 h-4 text-gold-500"></i>
+                        Torneos de Activos
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors">
+                        <i data-lucide="gift" class="w-4 h-4 text-electric-400"></i>
+                        Promociones Activas
+                    </a>
+
+                    <div class="gold-divider my-2"></div>
+
+                    <a href="#" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors">
+                        <i data-lucide="newspaper" class="w-4 h-4 text-gray-500"></i>
+                        Blog
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors">
+                        <i data-lucide="phone" class="w-4 h-4 text-gray-500"></i>
+                        Contacto
+                    </a>
+                </div>
+            </div>
+        </nav>
     </header>
 
-    <!-- ==================== HERO CON ANIMACIÓN CORREGIDA ==================== -->
-    <section class="hero">
-        <div class="container">
-            <h1>Domina el Mercado Forex con Conocimiento Real</h1>
-            
-            <div class="candles-animation-wrapper">
-                <div class="relative-anim-container">
-                    <div class="particles-unique">
-                        <div class="particle-unique" style="left: 5%; animation-delay: 0s;"></div>
-                        <div class="particle-unique" style="left: 20%; animation-delay: 0.7s;"></div>
-                        <div class="particle-unique" style="left: 35%; animation-delay: 1.3s;"></div>
-                        <div class="particle-unique" style="left: 50%; animation-delay: 0.4s;"></div>
-                        <div class="particle-unique" style="left: 65%; animation-delay: 1.8s;"></div>
-                        <div class="particle-unique" style="left: 80%; animation-delay: 0.9s;"></div>
-                        <div class="particle-unique" style="left: 95%; animation-delay: 2.1s;"></div>
+    <!-- ============================================ -->
+    <!-- TICKER TAPE -->
+    <!-- ============================================ -->
+    <div class="fixed top-16 lg:top-20 left-0 right-0 z-40 bg-obsidian-950/90 backdrop-blur-sm border-b border-gold-500/5 overflow-hidden py-1.5">
+        <div class="ticker-track">
+            <div class="flex items-center gap-8 px-4 whitespace-nowrap text-xs font-medium">
+                <span class="text-electric-400">EUR/USD <span class="text-green-400">1.0847 ↑0.12%</span></span>
+                <span class="text-gray-600">|</span>
+                <span class="text-electric-400">GBP/USD <span class="text-red-400">1.2634 ↓0.08%</span></span>
+                <span class="text-gray-600">|</span>
+                <span class="text-electric-400">USD/JPY <span class="text-green-400">154.82 ↑0.25%</span></span>
+                <span class="text-gray-600">|</span>
+                <span class="text-electric-400">XAU/USD <span class="text-green-400">2,438.50 ↑0.67%</span></span>
+                <span class="text-gray-600">|</span>
+                <span class="text-electric-400">BTC/USD <span class="text-green-400">67,842 ↑1.24%</span></span>
+                <span class="text-gray-600">|</span>
+                <span class="text-electric-400">USD/MXN <span class="text-red-400">18.42 ↓0.15%</span></span>
+                <span class="text-gray-600">|</span>
+                <span class="text-electric-400">EUR/GBP <span class="text-green-400">0.8589 ↑0.04%</span></span>
+                <span class="text-gray-600">|</span>
+                <span class="text-electric-400">NAS100 <span class="text-green-400">19,842 ↑0.82%</span></span>
+                <span class="text-gray-600">|</span>
+                <span class="text-gold-500">★ Formación es poder ★</span>
+                <span class="text-gray-600">|</span>
+            </div>
+            <div class="flex items-center gap-8 px-4 whitespace-nowrap text-xs font-medium">
+                <span class="text-electric-400">EUR/USD <span class="text-green-400">1.0847 ↑0.12%</span></span>
+                <span class="text-gray-600">|</span>
+                <span class="text-electric-400">GBP/USD <span class="text-red-400">1.2634 ↓0.08%</span></span>
+                <span class="text-gray-600">|</span>
+                <span class="text-electric-400">USD/JPY <span class="text-green-400">154.82 ↑0.25%</span></span>
+                <span class="text-gray-600">|</span>
+                <span class="text-electric-400">XAU/USD <span class="text-green-400">2,438.50 ↑0.67%</span></span>
+                <span class="text-gray-600">|</span>
+                <span class="text-electric-400">BTC/USD <span class="text-green-400">67,842 ↑1.24%</span></span>
+                <span class="text-gray-600">|</span>
+                <span class="text-electric-400">USD/MXN <span class="text-red-400">18.42 ↓0.15%</span></span>
+                <span class="text-gray-600">|</span>
+                <span class="text-electric-400">EUR/GBP <span class="text-green-400">0.8589 ↑0.04%</span></span>
+                <span class="text-gray-600">|</span>
+                <span class="text-electric-400">NAS100 <span class="text-green-400">19,842 ↑0.82%</span></span>
+                <span class="text-gray-600">|</span>
+                <span class="text-gold-500">★ Formación es poder ★</span>
+                <span class="text-gray-600">|</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- HERO SECTION -->
+    <!-- ============================================ -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-28 lg:pt-32">
+
+        <!-- Uniform Dark Background -->
+        <div class="absolute inset-0 bg-obsidian-950"></div>
+
+        <!-- Hero Content -->
+        <!-- WIDTH PARAMETER: max-w-5xl controls the maximum horizontal width of the hero content. Increase (e.g., max-w-7xl) for wider, decrease (e.g., max-w-3xl) for narrower. -->
+        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center">
+
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full broker-badge mb-8">
+                <span class="w-2 h-2 rounded-full bg-gold-500 animate-pulse"></span>
+                <span class="text-xs font-medium text-gold-400 tracking-wide">Tu guía definitiva de trading</span>
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="font-display font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight mb-6">
+                <span class="text-white">DOMINA LOS</span><br>
+                <span class="bg-gradient-to-r from-gold-500 via-gold-300 to-gold-500 bg-clip-text text-transparent glow-text">MERCADOS</span>
+                <span class="text-white"> FINANCIEROS</span>
+            </h1>
+
+            <!-- Subheading -->
+            <p class="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+                Aprende <span class="text-electric-400 font-semibold">Forex</span>, domina las <span class="text-gold-400 font-semibold">cuentas fondeadas</span> y descubre el mundo de las <span class="text-electric-300 font-semibold">opciones binarias</span>. Todo en un solo lugar.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+                <a href="#" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-gold-500 to-gold-400 text-obsidian-950 font-bold text-base rounded-xl hover:from-gold-400 hover:to-gold-300 transition-all btn-shimmer shadow-lg shadow-gold-500/20">
+                    <i data-lucide="rocket" class="w-5 h-5"></i>
+                    Comenzar a Aprender
+                </a>
+            </div>
+
+            <!-- Trust Indicators -->
+            <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-sm text-gray-500">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="users" class="w-4 h-4 text-gold-500"></i>
+                    <span><span class="text-white font-semibold">15K+</span> Traders Formados</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i data-lucide="book-open" class="w-4 h-4 text-electric-400"></i>
+                    <span><span class="text-white font-semibold">200+</span> Lecciones</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i data-lucide="star" class="w-4 h-4 text-gold-500"></i>
+                    <span><span class="text-white font-semibold">4.9</span> Operaciones Exitosas</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i data-lucide="globe" class="w-4 h-4 text-electric-400"></i>
+                    <span><span class="text-white font-semibold">30+</span> Países</span>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ============================================ -->
+    <!-- FEATURES SECTION -->
+    <!-- ============================================ -->
+    <section class="relative py-16 lg:py-20">
+        <!-- WIDTH PARAMETER: max-w-7xl controls the maximum horizontal width of this section. Increase (e.g., max-w-screen-2xl) for wider, decrease (e.g., max-w-5xl) for narrower. -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Section Header -->
+            <div class="text-center mb-12">
+                <div class="section-decorator justify-center mb-4">
+                    <i data-lucide="compass" class="w-5 h-5 text-gold-500"></i>
+                </div>
+                <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-white mb-4">
+                    ¿Qué <span class="text-gold-500">Aprenderás</span>?
+                </h2>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+                    Tres pilares fundamentales para convertirte en un trader profesional y rentable
+                </p>
+            </div>
+
+            <!-- Feature Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+
+                <!-- Card 1: Forex -->
+                <a href="conceptos-forex.html" class="feature-card block rounded-2xl bg-gradient-to-b from-obsidian-700/50 to-obsidian-900/50 p-8 lg:p-10 border border-white/5 group">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-electric-500/20 to-electric-500/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="trending-up" class="w-7 h-7 text-electric-400"></i>
                     </div>
-                    <div class="candles-container-unique">
-                        <!-- Vela 1: alcista -->
-                        <div class="candle-uniq bullish-uniq" style="--i: 1">
-                            <div class="price-label-uniq">¥ 142.85</div>
-                            <div class="wick-upper-uniq" style="height: 25px;"></div>
-                            <div class="candle-body-uniq" style="height: 55px;"></div>
-                            <div class="wick-lower-uniq" style="height: 15px;"></div>
+                    <h3 class="font-display font-bold text-xl text-white mb-3 group-hover:text-electric-300 transition-colors">
+                        Conceptos de Forex
+                    </h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Domina el mercado de divisas: pares de monedas, análisis técnico y fundamental, gestión de riesgo y psicología del trading.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 text-xs rounded-full bg-electric-500/10 text-electric-300 border border-electric-500/20">Pips & Lotes</span>
+                        <span class="px-3 py-1 text-xs rounded-full bg-electric-500/10 text-electric-300 border border-electric-500/20">Análisis</span>
+                        <span class="px-3 py-1 text-xs rounded-full bg-electric-500/10 text-electric-300 border border-electric-500/20">Risk Mgmt</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-electric-400 text-sm font-medium group-hover:gap-3 transition-all">
+                        Explorar Forex <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </div>
+                </a>
+
+                <!-- Card 2: Cuentas Fondeadas -->
+                <a href="conceptos-fondeadas.html" class="feature-card block rounded-2xl bg-gradient-to-b from-obsidian-700/50 to-obsidian-900/50 p-8 lg:p-10 border border-white/5 group relative">
+                    <!-- Popular badge -->
+                    <div class="absolute top-4 right-4 px-3 py-1 text-[10px] font-bold tracking-wider uppercase bg-gradient-to-r from-gold-500 to-gold-400 text-obsidian-950 rounded-full">
+                        Popular
+                    </div>
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-gold-500/20 to-gold-500/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="landmark" class="w-7 h-7 text-gold-400"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-white mb-3 group-hover:text-gold-300 transition-colors">
+                        Cuentas Fondeadas
+                    </h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Consigue capital para operar: conoce las reglas, supera las evaluaciones y gestiona cuentas de hasta $400K con disciplina.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 text-xs rounded-full bg-gold-500/10 text-gold-300 border border-gold-500/20">Evaluación</span>
+                        <span class="px-3 py-1 text-xs rounded-full bg-gold-500/10 text-gold-300 border border-gold-500/20">Drawdown</span>
+                        <span class="px-3 py-1 text-xs rounded-full bg-gold-500/10 text-gold-300 border border-gold-500/20">Reglas</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-gold-400 text-sm font-medium group-hover:gap-3 transition-all">
+                        Explorar Fondeo <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </div>
+                </a>
+
+                <!-- Card 3: Binarias -->
+                <a href="conceptos-binarias.html" class="feature-card block rounded-2xl bg-gradient-to-b from-obsidian-700/50 to-obsidian-900/50 p-8 lg:p-10 border border-white/5 group">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-electric-500/20 to-gold-500/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <!-- Updated Icon -->
+                        <i data-lucide="arrow-up-down" class="w-7 h-7 text-electric-300"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-white mb-3 group-hover:text-electric-200 transition-colors">
+                        Opciones Binarias
+                    </h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Comprende el mundo del trading al instante. Aprende que es un call y un put, los tiempos de
+expiración y algunas estrategias de gestión de riesgo.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 text-xs rounded-full bg-electric-500/10 text-electric-200 border border-electric-500/20">Calls/Puts</span>
+                        <span class="px-3 py-1 text-xs rounded-full bg-electric-500/10 text-electric-200 border border-electric-500/20">Estrategias</span>
+                        <span class="px-3 py-1 text-xs rounded-full bg-electric-500/10 text-electric-200 border border-electric-500/20">Probabilidad</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-electric-300 text-sm font-medium group-hover:gap-3 transition-all">
+                        Explorar Binarias <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- BROKERS SECTION -->
+    <!-- ============================================ -->
+    <section class="relative py-16 lg:py-20 bg-obsidian-900/30">
+        <!-- WIDTH PARAMETER: max-w-7xl controls the maximum horizontal width of this section. Increase (e.g., max-w-screen-2xl) for wider, decrease (e.g., max-w-5xl) for narrower. -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Section Header -->
+            <div class="text-center mb-12">
+                <div class="section-decorator justify-center mb-4">
+                    <i data-lucide="building-2" class="w-5 h-5 text-electric-400"></i>
+                </div>
+                <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-white mb-4">
+                    Encuentra tu <span class="text-electric-400">Broker</span> Ideal
+                </h2>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+                    Comparativas honestas y actualizadas de los mejores brokers del mercado
+                </p>
+            </div>
+
+            <!-- Broker Categories -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+
+                <!-- Broker Forex -->
+                <a href="brokers-forex.html" class="feature-card block rounded-2xl bg-gradient-to-b from-obsidian-700/50 to-obsidian-900/50 p-8 border border-white/5 group">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-electric-500/20 to-electric-500/5 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="line-chart" class="w-6 h-6 text-electric-400"></i>
                         </div>
-                        <!-- Vela 2: alcista -->
-                        <div class="candle-uniq bullish-uniq" style="--i: 2">
-                            <div class="price-label-uniq">¥ 143.20</div>
-                            <div class="wick-upper-uniq" style="height: 20px;"></div>
-                            <div class="candle-body-uniq" style="height: 65px;"></div>
-                            <div class="wick-lower-uniq" style="height: 12px;"></div>
+                        <div>
+                            <h3 class="font-display font-bold text-lg text-white">Brokers de Forex</h3>
+                            <p class="text-xs text-gray-500">Spreads bajos · Ejecución rápida</p>
                         </div>
-                        <!-- Vela 3: bajista -->
-                        <div class="candle-uniq bearish-uniq" style="--i: 3">
-                            <div class="price-label-uniq">¥ 142.50</div>
-                            <div class="wick-upper-uniq" style="height: 30px;"></div>
-                            <div class="candle-body-uniq" style="height: 40px;"></div>
-                            <div class="wick-lower-uniq" style="height: 20px;"></div>
+                    </div>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-electric-400 flex-shrink-0"></i>
+                            Regulación y seguridad verificada
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-electric-400 flex-shrink-0"></i>
+                            Comparativa de spreads y comisiones
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-electric-400 flex-shrink-0"></i>
+                            Plataformas: MT4, MT5, cTrader
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-electric-400 flex-shrink-0"></i>
+                            Opiniones reales de traders
+                        </li>
+                    </ul>
+                    <div class="flex items-center gap-2 text-electric-400 text-sm font-medium group-hover:gap-3 transition-all">
+                        Ver Brokers <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </div>
+                </a>
+
+                <!-- Empresas de Fondeo -->
+                <a href="empresas-fondeo.html" class="feature-card block rounded-2xl bg-gradient-to-b from-obsidian-700/50 to-obsidian-900/50 p-8 border border-white/5 group relative">
+                    <div class="absolute top-4 right-4 px-3 py-1 text-[10px] font-bold tracking-wider uppercase bg-gradient-to-r from-gold-500 to-gold-400 text-obsidian-950 rounded-full">
+                        Destacado
+                    </div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-gold-500/20 to-gold-500/5 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="wallet" class="w-6 h-6 text-gold-400"></i>
                         </div>
-                        <!-- Vela 4: alcista fuerte -->
-                        <div class="candle-uniq bullish-uniq" style="--i: 4">
-                            <div class="price-label-uniq">¥ 144.10</div>
-                            <div class="wick-upper-uniq" style="height: 18px;"></div>
-                            <div class="candle-body-uniq" style="height: 70px;"></div>
-                            <div class="wick-lower-uniq" style="height: 10px;"></div>
+                        <div>
+                            <h3 class="font-display font-bold text-lg text-white">Empresas de Fondeo</h3>
+                            <p class="text-xs text-gray-500">Capital real · Sin riesgo propio</p>
                         </div>
-                        <!-- Vela 5: Doji -->
-                        <div class="candle-uniq doji-uniq" style="--i: 5">
-                            <div class="price-label-uniq">¥ 143.75</div>
-                            <div class="wick-upper-uniq" style="height: 35px;"></div>
-                            <div class="candle-body-uniq" style="height: 4px; width: 44px;"></div>
-                            <div class="wick-lower-uniq" style="height: 35px;"></div>
+                    </div>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-gold-400 flex-shrink-0"></i>
+                            Top firms: FTMO, MyForexFunds, etc.
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-gold-400 flex-shrink-0"></i>
+                            Reglas y requisitos detallados
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-gold-400 flex-shrink-0"></i>
+                            Comparativa de precios y planes
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-gold-400 flex-shrink-0"></i>
+                            Guía paso a paso para aprobar
+                        </li>
+                    </ul>
+                    <div class="flex items-center gap-2 text-gold-400 text-sm font-medium group-hover:gap-3 transition-all">
+                        Ver Empresas <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </div>
+                </a>
+
+                <!-- Brokers Binarias -->
+                <a href="brokers-binarias.html" class="feature-card block rounded-2xl bg-gradient-to-b from-obsidian-700/50 to-obsidian-900/50 p-8 border border-white/5 group">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-electric-500/20 to-gold-500/5 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="toggle-right" class="w-6 h-6 text-electric-300"></i>
                         </div>
-                        <!-- Vela 6: alcista -->
-                        <div class="candle-uniq bullish-uniq" style="--i: 6">
-                            <div class="price-label-uniq">¥ 144.55</div>
-                            <div class="wick-upper-uniq" style="height: 22px;"></div>
-                            <div class="candle-body-uniq" style="height: 60px;"></div>
-                            <div class="wick-lower-uniq" style="height: 14px;"></div>
+                        <div>
+                            <h3 class="font-display font-bold text-lg text-white">Brokers de Binarias</h3>
+                            <p class="text-xs text-gray-500">Opciones · Rendimientos altos</p>
                         </div>
-                        <!-- Vela 7: bajista -->
-                        <div class="candle-uniq bearish-uniq" style="--i: 7">
-                            <div class="price-label-uniq">¥ 143.90</div>
-                            <div class="wick-upper-uniq" style="height: 28px;"></div>
-                            <div class="candle-body-uniq" style="height: 45px;"></div>
-                            <div class="wick-lower-uniq" style="height: 18px;"></div>
+                    </div>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-electric-300 flex-shrink-0"></i>
+                            Plataformas seguras y reguladas
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-electric-300 flex-shrink-0"></i>
+                            Rendimientos y tiempos de expiración
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-electric-300 flex-shrink-0"></i>
+                            Demo accounts disponibles
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-gray-400">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-electric-300 flex-shrink-0"></i>
+                            Alertas de estafas y fraudes
+                        </li>
+                    </ul>
+                    <div class="flex items-center gap-2 text-electric-300 text-sm font-medium group-hover:gap-3 transition-all">
+                        Ver Brokers <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- STATS SECTION -->
+    <!-- ============================================ -->
+    <section class="relative py-12 lg:py-16">
+        <!-- WIDTH PARAMETER: max-w-7xl controls the maximum horizontal width of this section. Increase (e.g., max-w-screen-2xl) for wider, decrease (e.g., max-w-5xl) for narrower. -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+                <div class="stat-card rounded-xl p-6 lg:p-8 text-center">
+                    <div class="font-display font-black text-3xl lg:text-4xl bg-gradient-to-r from-gold-500 to-gold-300 bg-clip-text text-transparent mb-2">15K+</div>
+                    <div class="text-sm text-gray-400">Traders Educados</div>
+                </div>
+                <div class="stat-card rounded-xl p-6 lg:p-8 text-center">
+                    <div class="font-display font-black text-3xl lg:text-4xl bg-gradient-to-r from-electric-400 to-electric-300 bg-clip-text text-transparent mb-2">200+</div>
+                    <div class="text-sm text-gray-400">Lecciones Disponibles</div>
+                </div>
+                <div class="stat-card rounded-xl p-6 lg:p-8 text-center">
+                    <div class="font-display font-black text-3xl lg:text-4xl bg-gradient-to-r from-gold-500 to-gold-300 bg-clip-text text-transparent mb-2">50+</div>
+                    <div class="text-sm text-gray-400">Brokers Analizados</div>
+                </div>
+                <div class="stat-card rounded-xl p-6 lg:p-8 text-center">
+                    <div class="font-display font-black text-3xl lg:text-4xl bg-gradient-to-r from-electric-400 to-electric-300 bg-clip-text text-transparent mb-2">30+</div>
+                    <div class="text-sm text-gray-400">Países Alcanzados</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- WHY CHOOSE US SECTION -->
+    <!-- ============================================ -->
+    <section class="relative py-16 lg:py-20 bg-obsidian-900/30">
+        <!-- WIDTH PARAMETER: max-w-7xl controls the maximum horizontal width of this section. Increase (e.g., max-w-screen-2xl) for wider, decrease (e.g., max-w-5xl) for narrower. -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+                <!-- Left: Image / Visual -->
+                <div class="relative">
+                    <div class="aspect-square rounded-2xl overflow-hidden border border-gold-500/10 bg-obsidian-800">
+                        <!-- Updated Image Source - removed mix-blend-luminosity and adjusted opacity -->
+                        <img src="chart.jpg" alt="Trading workspace" class="w-full h-full object-cover opacity-90">
+                        <!-- Overlay gradient -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-transparent to-transparent"></div>
+                        <div class="absolute inset-0 bg-gradient-to-r from-electric-500/5 to-gold-500/5"></div>
+                    </div>
+                    <!-- Floating Card -->
+                    <div class="absolute -bottom-4 -right-4 sm:bottom-4 sm:right-4 bg-obsidian-800/90 backdrop-blur-xl border border-gold-500/20 rounded-xl p-4 shadow-2xl">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-gold-500 to-gold-400 flex items-center justify-center">
+                                <i data-lucide="trophy" class="w-5 h-5 text-obsidian-950"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm font-bold text-white">Trader Certificado</div>
+                                <div class="text-xs text-gold-400">+2,500 aprobados</div>
+                            </div>
                         </div>
-                        <!-- Vela 8: alcista gran cuerpo -->
-                        <div class="candle-uniq bullish-uniq" style="--i: 8">
-                            <div class="price-label-uniq">¥ 145.30</div>
-                            <div class="wick-upper-uniq" style="height: 16px;"></div>
-                            <div class="candle-body-uniq" style="height: 80px;"></div>
-                            <div class="wick-lower-uniq" style="height: 8px;"></div>
+                    </div>
+                </div>
+
+                <!-- Right: Content -->
+                <div>
+                    <div class="section-decorator mb-4">
+                        <i data-lucide="shield-check" class="w-5 h-5 text-gold-500"></i>
+                    </div>
+                    <h2 class="font-display font-bold text-3xl sm:text-4xl text-white mb-6">
+                        ¿Por Qué <span class="text-gold-500">Elegirnos</span>?
+                    </h2>
+                    <p class="text-gray-400 text-base leading-relaxed mb-8">
+                        No somos solo otro sitio de trading. Somos una comunidad de traders reales que comparten conocimiento verificado y estrategias probadas.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-electric-500/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="brain" class="w-5 h-5 text-electric-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-1">Contenido Verificado</h4>
+                                <p class="text-sm text-gray-400">Cada lección es revisada por traders profesionales con años de experiencia real en los mercados.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-gold-500/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="target" class="w-5 h-5 text-gold-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-1">Enfoque Práctico</h4>
+                                <p class="text-sm text-gray-400">Sin teoría inútil. Aprende estrategias que puedes aplicar desde el primer día en tu cuenta real o demo.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-electric-500/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="refresh-cw" class="w-5 h-5 text-electric-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-1">Actualización Continua</h4>
+                                <p class="text-sm text-gray-400">El mercado cambia y nosotros también. Contenido actualizado con las últimas tendencias y regulaciones.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-gold-500/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="heart-handshake" class="w-5 h-5 text-gold-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-1">Miembros Insiders</h4>
+                                <p class="text-sm text-gray-400">Únete a miles de traders que comparten ideas, análisis y señales en nuestra comunidad.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <p>Plataforma educativa gratuita con recursos profesionales para traders principiantes y avanzados. Aprende conceptos sólidos, analiza brokers y desarrolla tu estrategia con confianza.</p>
-            <div class="hero-buttons">
-                <a href="#" class="btn btn-primary">📚 Comenzar Aprendizaje</a>
-                <a href="#" class="btn btn-secondary">🔍 Comparar Brokers</a>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- CTA SECTION -->
+    <!-- ============================================ -->
+    <section class="relative py-16 lg:py-20 overflow-hidden">
+        <!-- Background Glow -->
+        <div class="absolute inset-0">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gold-500/5 rounded-full blur-3xl"></div>
+            <div class="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-electric-500/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <!-- WIDTH PARAMETER: max-w-4xl controls the maximum horizontal width of this section. Increase (e.g., max-w-6xl) for wider, decrease (e.g., max-w-2xl) for narrower. -->
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
+            <div class="section-decorator justify-center mb-4">
+                <i data-lucide="zap" class="w-5 h-5 text-gold-500"></i>
+            </div>
+            <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-white mb-6">
+                Tu Viaje Como Trader<br>
+                <span class="bg-gradient-to-r from-gold-500 to-electric-400 bg-clip-text text-transparent">Empieza Aquí</span>
+            </h2>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-10">
+                No importa si eres principiante o avanzado. Tenemos el contenido perfecto para llevar tu trading al siguiente nivel.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-4 bg-gradient-to-r from-gold-500 to-gold-400 text-obsidian-950 font-bold text-base rounded-xl hover:from-gold-400 hover:to-gold-300 transition-all btn-shimmer shadow-lg shadow-gold-500/25">
+                    <i data-lucide="rocket" class="w-5 h-5"></i>
+                    Obtén tu primera estrategia
+                </a>
+                <a href="#" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-4 border border-gold-500/30 text-gold-400 font-semibold text-base rounded-xl hover:bg-gold-500/10 hover:border-gold-500/50 transition-all">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    Hablar con Nosotros
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- ==================== CARACTERÍSTICAS ==================== -->
-    <section class="features">
-        <div class="container">
-            <div class="features-grid">
-                <div class="feature-item"><div class="feature-icon">🎓</div><h3>Educación Gratuita</h3><p>Contenido educativo de calidad sin costos ocultos. Aprende a tu propio ritmo con materiales actualizados.</p></div>
-                <div class="feature-item"><div class="feature-icon">🔒</div><h3>Brokers Verificados</h3><p>Análisis objetivos de brokers regulados. Comisiones, plataformas y seguridad evaluadas por expertos.</p></div>
-                <div class="feature-item"><div class="feature-icon">⚡</div><h3>Estrategias Probadas</h3><p>Métodos de trading con gestión de riesgo profesional. Adaptables a scalping, day trading y swing.</p></div>
-                <div class="feature-item"><div class="feature-icon">🤝</div><h3>Comunidad Activa</h3><p>Intercambia ideas con otros traders en nuestro foro. Soporte y aprendizaje colaborativo.</p></div>
+    <!-- ============================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================ -->
+    <footer class="relative bg-obsidian-950 border-t border-gold-500/10">
+        <!-- WIDTH PARAMETER: max-w-7xl controls the maximum horizontal width of this section. Increase (e.g., max-w-screen-2xl) for wider, decrease (e.g., max-w-5xl) for narrower. -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Main Footer Content -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 py-12 lg:py-16">
+
+                <!-- Column 1: Brand -->
+                <div class="sm:col-span-2 lg:col-span-1">
+                    <a href="index.html" class="flex items-center gap-3 mb-4">
+                        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-gold-500 to-electric-500 flex items-center justify-center">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#06060B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                                <polyline points="16 7 22 7 22 13"></polyline>
+                            </svg>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-display font-bold text-base leading-tight text-white">MANUAL</span>
+                            <span class="font-display font-bold text-[9px] tracking-[0.3em] text-gold-500 leading-none">DEL TRADER</span>
+                        </div>
+                    </a>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-6">
+                        Tu guía completa para dominar los mercados financieros. Educación, brokers y comunidad en un solo lugar.
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <a href="#" class="w-9 h-9 rounded-lg bg-obsidian-700 flex items-center justify-center text-gray-500 hover:text-electric-400 hover:bg-electric-500/10 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-lg bg-obsidian-700 flex items-center justify-center text-gray-500 hover:text-electric-400 hover:bg-electric-500/10 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-lg bg-obsidian-700 flex items-center justify-center text-gray-500 hover:text-electric-400 hover:bg-electric-500/10 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-lg bg-obsidian-700 flex items-center justify-center text-gray-500 hover:text-electric-400 hover:bg-electric-500/10 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" x2="11" y1="2" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Educación -->
+                <div>
+                    <h4 class="font-display font-bold text-sm text-white mb-4 tracking-wider uppercase">Educación</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="conceptos-forex.html" class="footer-link text-sm">Conceptos de Forex</a></li>
+                        <li><a href="conceptos-fondeadas.html" class="footer-link text-sm">Cuentas Fondeadas</a></li>
+                        <li><a href="conceptos-binarias.html" class="footer-link text-sm">Opciones Binarias</a></li>
+                        <li><a href="#" class="footer-link text-sm">Análisis Técnico</a></li>
+                        <li><a href="#" class="footer-link text-sm">Gestión de Riesgo</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Brokers -->
+                <div>
+                    <h4 class="font-display font-bold text-sm text-white mb-4 tracking-wider uppercase">Brokers</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="brokers-forex.html" class="footer-link text-sm">Brokers de Forex</a></li>
+                        <li><a href="empresas-fondeo.html" class="footer-link text-sm">Empresas de Fondeo</a></li>
+                        <li><a href="brokers-binarias.html" class="footer-link text-sm">Brokers de Binarias</a></li>
+                        <li><a href="#" class="footer-link text-sm">Comparativa de Brokers</a></li>
+                        <li><a href="#" class="footer-link text-sm">Alertas de Estafas</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Legal -->
+                <div>
+                    <h4 class="font-display font-bold text-sm text-white mb-4 tracking-wider uppercase">Legal</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="#" class="footer-link text-sm">Aviso Legal</a></li>
+                        <li><a href="#" class="footer-link text-sm">Política de Privacidad</a></li>
+                        <li><a href="#" class="footer-link text-sm">Términos de Uso</a></li>
+                        <li><a href="#" class="footer-link text-sm">Política de Cookies</a></li>
+                        <li><a href="#" class="footer-link text-sm">Contacto</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </section>
 
-    <!-- ==================== EDUCACIÓN ==================== -->
-    <section>
-        <div class="container">
-            <div class="section-title"><h2>📚 Educación Forex</h2><p>Construye una base sólida con recursos por niveles</p></div>
-            <div class="cards-grid">
-                <article class="card"><div class="card-icon">1</div><h3>Conceptos de Forex</h3><p>Pares, pips, lotes, apalancamiento y análisis técnico básico.</p><a href="#" class="card-link">Explorar →</a></article>
-                <article class="card"><div class="card-icon">2</div><h3>Cuentas Fondeadas</h3><p>Guía sobre empresas de fondeo: requisitos, evaluaciones y reglas.</p><a href="#" class="card-link">Ver detalles →</a></article>
-                <article class="card"><div class="card-icon">3</div><h3>Opciones Binarias</h3><p>Funcionamiento, riesgos y estrategias responsables.</p><a href="#" class="card-link">Aprender →</a></article>
+            <!-- Bottom Bar -->
+            <div class="gold-divider"></div>
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 py-6">
+                <p class="text-xs text-gray-600 text-center sm:text-left">
+                    © 2026 Manual del Trader. Todos los derechos reservados. El trading conlleva riesgo de pérdida.
+                </p>
+                <p class="text-xs text-gray-700 text-center sm:text-right">
+                    Hecho con <span class="text-gold-500">♥</span> para toda la comunidad Trader Hispanohablante.
+                </p>
             </div>
-        </div>
-    </section>
-
-    <!-- ==================== BROKERS ==================== -->
-    <section class="features">
-        <div class="container">
-            <div class="section-title"><h2>🏦 Brokers y Plataformas</h2><p>Comparativas honestas y actualizadas</p></div>
-            <div class="cards-grid">
-                <article class="card"><div class="card-icon">★</div><h3>Forex Brokers</h3><p>Ranking de brokers regulados por FCA, CySEC, ASIC. Comisiones, spreads y calidad de ejecución.</p><a href="#" class="card-link">Comparar →</a></article>
-                <article class="card"><div class="card-icon">💼</div><h3>Empresas de Fondeo</h3><p>Análisis de FTMO, The5%ers, FundedNext: costos, reglas de riesgo y procesos de evaluación.</p><a href="#" class="card-link">Explorar →</a></article>
-                <article class="card"><div class="card-icon">⚠️</div><h3>Brokers Binarias</h3><p>Lista actualizada de plataformas confiables para opciones binarias con licencias verificadas.</p><a href="#" class="card-link">Consultar →</a></article>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== CTA ==================== -->
-    <div class="container">
-        <div class="cta-section">
-            <h2>¿Listo para comenzar?</h2>
-            <p>Únete a miles de traders que ya están mejorando sus conocimientos con Manual del Trader. Acceso gratuito a todos los recursos educativos.</p>
-            <a href="#" class="btn btn-primary">🚀 Crear Cuenta Gratuita</a>
-        </div>
-    </div>
-
-    <!-- ==================== DISCLAIMER ==================== -->
-    <div class="container">
-        <div class="risk-disclaimer">
-            <h4>⚠️ Advertencia de Riesgo</h4>
-            <p>El trading de Forex, CFDs y opciones binarias conlleva un alto nivel de riesgo. El alto grado de apalancamiento puede trabajar tanto en su favor como en su contra. Manual del Trader proporciona contenido educativo y no constituye asesoramiento financiero.</p>
-        </div>
-    </div>
-
-    <!-- ==================== FOOTER ==================== -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-column"><h4>Manual del Trader</h4><ul><li><a href="#">Sobre Nosotros</a></li><li><a href="#">Equipo</a></li><li><a href="#">Contacto</a></li></ul></div>
-                <div class="footer-column"><h4>Educación</h4><ul><li><a href="#">Cuentas Fondeadas</a></li><li><a href="#">Opciones Binarias</a></li></ul></div>
-                <div class="footer-column"><h4>Brokers</h4><ul><li><a href="#">Forex Brokers</a></li><li><a href="#">Empresas de Fondeo</a></li><li><a href="#">Brokers Binarias</a></li></ul></div>
-                <div class="footer-column"><h4>Legal</h4><ul><li><a href="#">Términos</a></li><li><a href="#">Privacidad</a></li><li><a href="#">Cookies</a></li></ul></div>
-            </div>
-            <div class="footer-bottom"><p>&copy; 2026 Manual del Trader. Educación financiera.</p></div>
         </div>
     </footer>
 
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+
+        // Mobile menu toggle (minimal JS for navigation)
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
