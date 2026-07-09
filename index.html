@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agustín Peña — Web Solutions for Small Business</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0ea5e9',
+            accent: '#38bdf8',
+            dark: {
+              900: '#0a0e1a',
+              800: '#0f1629',
+              700: '#151d35',
+              600: '#1c2744',
+              500: '#243052',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom CSS beyond Tailwind */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background-color: #0a0e1a; color: #e2e8f0; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0a0e1a; }
+    ::-webkit-scrollbar-thumb { background: #243052; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #0ea5e9; }
+
+    /* Grid background pattern */
+    .grid-bg {
+      background-image: 
+        linear-gradient(rgba(14, 165, 233, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(14, 165, 233, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* Dot grid pattern */
+    .dot-bg {
+      background-image: radial-gradient(rgba(14, 165, 233, 0.12) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    /* Glow effects */
+    .glow-blue { box-shadow: 0 0 30px rgba(14, 165, 233, 0.15), 0 0 60px rgba(14, 165, 233, 0.05); }
+    .glow-blue-strong { box-shadow: 0 0 40px rgba(14, 165, 233, 0.25), 0 0 80px rgba(14, 165, 233, 0.1); }
+    .text-glow { text-shadow: 0 0 40px rgba(14, 165, 233, 0.5); }
+
+    /* Glass morphism */
+    .glass {
+      background: rgba(15, 22, 41, 0.6);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(14, 165, 233, 0.08);
+    }
+    .glass-card {
+      background: rgba(15, 22, 41, 0.5);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(14, 165, 233, 0.1);
+      transition: all 0.3s ease;
+    }
+    .glass-card:hover {
+      background: rgba(15, 22, 41, 0.7);
+      border-color: rgba(14, 165, 233, 0.25);
+      box-shadow: 0 0 30px rgba(14, 165, 233, 0.08);
+      transform: translateY(-4px);
+    }
+
+    /* Gradient borders */
+    .gradient-border {
+      position: relative;
+      background: #0f1629;
+      border-radius: 16px;
+    }
+    .gradient-border::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.3), transparent 50%, rgba(56, 189, 248, 0.1));
+      z-index: -1;
+    }
+
+    /* Animated gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #0ea5e9, #38bdf8, #7dd3fc, #0ea5e9);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradient-shift 6s ease infinite;
+    }
+    @keyframes gradient-shift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Typing cursor */
+    .typing-cursor::after {
+      content: '|';
+      animation: blink 1s step-end infinite;
+      color: #0ea5e9;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    /* Fade in animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Floating animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+    .float-anim { animation: float 4s ease-in-out infinite; }
+    .float-anim-delay { animation: float 4s ease-in-out 1s infinite; }
+    .float-anim-delay2 { animation: float 4s ease-in-out 2s infinite; }
+
+    /* Pulse ring */
+    @keyframes pulse-ring {
+      0% { transform: scale(1); opacity: 0.5; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+    .pulse-ring::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid #0ea5e9;
+      animation: pulse-ring 2s ease-out infinite;
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+
+    /* Nav active state */
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #0ea5e9, #38bdf8);
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    /* Process line */
+    .process-line {
+      position: absolute;
+      left: 24px;
+      top: 48px;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, #0ea5e9, transparent);
+    }
+
+    /* FAQ */
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+    }
+    .faq-answer.open {
+      max-height: 300px;
+      padding-top: 12px;
+    }
+    .faq-icon {
+      transition: transform 0.3s ease;
+    }
+    .faq-icon.rotated {
+      transform: rotate(45deg);
+    }
+
+    /* Button hover effect */
+    .btn-primary {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.5s ease;
+    }
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+
+    /* Pricing card highlight */
+    .pricing-highlight {
+      position: relative;
+    }
+    .pricing-highlight::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #0ea5e9, #7dd3fc);
+      z-index: -1;
+    }
+
+    /* Stat counter */
+    .stat-number {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Portfolio overlay */
+    .portfolio-overlay {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .portfolio-card:hover .portfolio-overlay {
+      opacity: 1;
+    }
+
+    /* Testimonial card */
+    .testimonial-card {
+      transition: all 0.3s ease;
+    }
+    .testimonial-card:hover {
+      transform: scale(1.02);
+    }
+
+    /* Hero orb */
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    /* Code block styling */
+    .code-block {
+      background: rgba(15, 22, 41, 0.8);
+      border: 1px solid rgba(14, 165, 233, 0.15);
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
+</head>
+<body class="grid-bg">
+
+  <!-- ==================== NAVIGATION ==================== -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 lg:h-20">
+        <!-- Logo -->
+        <a href="#hero" class="flex items-center gap-2 group">
+          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-dark-900 font-bold text-lg group-hover:shadow-lg group-hover:shadow-primary/30 transition-shadow">
+            &lt;/&gt;
+          </div>
+          <span class="text-xl font-bold tracking-tight">Dev<span class="text-primary">Forge</span></span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="#services" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Services</a>
+          <a href="#about" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">About</a>
+          <a href="#process" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Process</a>
+          <a href="#portfolio" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Portfolio</a>
+          <a href="#pricing" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Pricing</a>
+          <a href="#faq" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">FAQ</a>
+          <a href="#contact" class="inline-flex items-center gap-2 px-5 py-2.5 bg-primary hover:bg-accent text-dark-900 font-semibold rounded-lg transition-all hover:shadow-lg hover:shadow-primary/30 text-sm">
+            Get Started
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-btn" class="lg:hidden text-gray-300 hover:text-white p-2" aria-label="Open menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="menu-overlay" class="fixed inset-0 bg-dark-900/80 backdrop-blur-sm z-50 hidden" onclick="closeMobileMenu()"></div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 bottom-0 w-72 bg-dark-800 z-50 shadow-2xl">
+    <div class="flex items-center justify-between p-4 border-b border-dark-600">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-dark-900 font-bold text-sm">&lt;/&gt;</div>
+        <span class="text-lg font-bold">Dev<span class="text-primary">Forge</span></span>
+      </div>
+      <button onclick="closeMobileMenu()" class="text-gray-400 hover:text-white p-1" aria-label="Close menu">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+    </div>
+    <div class="p-4 flex flex-col gap-1">
+      <a href="#services" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-dark-600 transition-all">
+        <i data-lucide="layout-grid" class="w-5 h-5 text-primary"></i> Services
+      </a>
+      <a href="#about" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-dark-600 transition-all">
+        <i data-lucide="user" class="w-5 h-5 text-primary"></i> About
+      </a>
+      <a href="#process" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-dark-600 transition-all">
+        <i data-lucide="git-branch" class="w-5 h-5 text-primary"></i> Process
+      </a>
+      <a href="#portfolio" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-dark-600 transition-all">
+        <i data-lucide="folder-open" class="w-5 h-5 text-primary"></i> Portfolio
+      </a>
+      <a href="#pricing" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-dark-600 transition-all">
+        <i data-lucide="tag" class="w-5 h-5 text-primary"></i> Pricing
+      </a>
+      <a href="#faq" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-dark-600 transition-all">
+        <i data-lucide="help-circle" class="w-5 h-5 text-primary"></i> FAQ
+      </a>
+      <div class="mt-4 pt-4 border-t border-dark-600">
+        <a href="#contact" onclick="closeMobileMenu()" class="flex items-center justify-center gap-2 px-5 py-3 bg-primary hover:bg-accent text-dark-900 font-semibold rounded-lg transition-all w-full">
+          Get Started <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section id="hero" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+    <!-- Background orbs -->
+    <div class="hero-orb w-96 h-96 bg-primary top-20 -left-48 float-anim"></div>
+    <div class="hero-orb w-72 h-72 bg-accent top-40 right-10 float-anim-delay"></div>
+    <div class="hero-orb w-64 h-64 bg-cyan-400 bottom-20 left-1/3 float-anim-delay2"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Left: Text -->
+        <div class="fade-in">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6 text-sm">
+            <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+            <span class="text-gray-300">Available for new projects</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+            I build websites<br>
+            <span class="gradient-text">that grow your business</span>
+          </h1>
+
+          <p class="text-lg text-gray-400 mb-8 max-w-xl leading-relaxed">
+            Professional, fast, and affordable web solutions crafted specifically for small businesses. From landing pages to full websites — let's get your business online and thriving.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 mb-12">
+            <a href="#contact" class="btn-primary inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-accent text-dark-900 font-bold rounded-xl text-lg hover:shadow-lg hover:shadow-primary/30 transition-all">
+              Start Your Project
+              <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </a>
+            <a href="#portfolio" class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-dark-500 hover:border-primary/50 text-gray-300 hover:text-white rounded-xl transition-all hover:bg-dark-700">
+              <i data-lucide="eye" class="w-5 h-5"></i>
+              View My Work
+            </a>
+          </div>
+
+          <!-- Stats -->
+          <div class="flex flex-wrap gap-8 sm:gap-12">
+            <div>
+              <div class="text-3xl font-bold text-white stat-number" data-target="50">0</div>
+              <div class="text-sm text-gray-500 mt-1">Projects Delivered</div>
+            </div>
+            <div>
+              <div class="text-3xl font-bold text-white stat-number" data-target="100">0</div>
+              <div class="text-sm text-gray-500 mt-1 flex items-center gap-1">% Satisfaction</div>
+            </div>
+            <div>
+              <div class="text-3xl font-bold text-white stat-number" data-target="5">0</div>
+              <div class="text-sm text-gray-500 mt-1">Years Experience</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Code visual -->
+        <div class="hidden lg:block fade-in">
+          <div class="relative">
+            <!-- Floating code window -->
+            <div class="glass rounded-2xl p-6 glow-blue float-anim">
+              <div class="flex items-center gap-2 mb-4">
+                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                <span class="ml-2 text-xs text-gray-500 font-mono">index.html</span>
+              </div>
+              <div class="code-block p-4 text-sm leading-relaxed overflow-hidden">
+                <div><span class="text-gray-500">&lt;</span><span class="text-pink-400">div</span> <span class="text-yellow-300">class</span><span class="text-gray-500">=</span><span class="text-green-400">"business"</span><span class="text-gray-500">&gt;</span></div>
+                <div class="ml-4"><span class="text-gray-500">&lt;</span><span class="text-pink-400">h1</span><span class="text-gray-500">&gt;</span><span class="text-white">Your Brand Online</span><span class="text-gray-500">&lt;/</span><span class="text-pink-400">h1</span><span class="text-gray-500">&gt;</span></div>
+                <div class="ml-4"><span class="text-gray-500">&lt;</span><span class="text-pink-400">p</span><span class="text-gray-500">&gt;</span><span class="text-cyan-300">Beautiful & Fast</span><span class="text-gray-500">&lt;/</span><span class="text-pink-400">p</span><span class="text-gray-500">&gt;</span></div>
+                <div><span class="text-gray-500">&lt;/</span><span class="text-pink-400">div</span><span class="text-gray-500">&gt;</span></div>
+                <div class="mt-2"><span class="text-gray-500">✓</span> <span class="text-gray-400">Responsive Design</span></div>
+                <div><span class="text-gray-500">✓</span> <span class="text-gray-400">SEO Optimized</span></div>
+                <div><span class="text-gray-500">✓</span> <span class="text-gray-400">Lightning Fast</span></div>
+                <div><span class="text-primary typing-cursor">→ deployed</span></div>
+              </div>
+            </div>
+
+            <!-- Floating badges -->
+            <div class="absolute -top-4 -right-4 glass rounded-xl px-4 py-2 flex items-center gap-2 text-sm float-anim-delay">
+              <i data-lucide="zap" class="w-4 h-4 text-yellow-400"></i>
+              <span class="font-medium">Fast Delivery</span>
+            </div>
+            <div class="absolute -bottom-4 -left-4 glass rounded-xl px-4 py-2 flex items-center gap-2 text-sm float-anim-delay2">
+              <i data-lucide="shield-check" class="w-4 h-4 text-green-400"></i>
+              <span class="font-medium">Secure & Reliable</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TRUSTED BY / SOCIAL PROOF ==================== -->
+  <section class="py-16 border-y border-dark-600/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-center text-sm text-gray-500 mb-8 uppercase tracking-widest">Trusted by businesses across industries</p>
+      <div class="flex flex-wrap justify-center items-center gap-8 sm:gap-16">
+        <div class="text-2xl font-bold text-gray-600 hover:text-gray-400 transition-colors">
+          <i data-lucide="coffee" class="w-6 h-6 inline mr-1"></i> CaféLuxe
+        </div>
+        <div class="text-2xl font-bold text-gray-600 hover:text-gray-400 transition-colors">
+          <i data-lucide="scissors" class="w-6 h-6 inline mr-1"></i> StyleStudio
+        </div>
+        <div class="text-2xl font-bold text-gray-600 hover:text-gray-400 transition-colors">
+          <i data-lucide="wrench" class="w-6 h-6 inline mr-1"></i> FixIt Pro
+        </div>
+        <div class="text-2xl font-bold text-gray-600 hover:text-gray-400 transition-colors">
+          <i data-lucide="heart-pulse" class="w-6 h-6 inline mr-1"></i> VitalCare
+        </div>
+        <div class="text-2xl font-bold text-gray-600 hover:text-gray-400 transition-colors">
+          <i data-lucide="trees" class="w-6 h-6 inline mr-1"></i> GreenGrow
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SERVICES SECTION ==================== -->
+  <section id="services" class="py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 fade-in">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-primary mb-4">
+          <i data-lucide="layout-grid" class="w-4 h-4"></i> What I Offer
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+          Services tailored for <span class="gradient-text">small business</span>
+        </h2>
+        <p class="text-gray-400 max-w-2xl mx-auto text-lg">
+          Every small business deserves a powerful online presence. Here's how I can help you stand out.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Service 1 -->
+        <div class="glass-card rounded-2xl p-8 fade-in">
+          <div class="w-14 h-14 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-6">
+            <i data-lucide="layout" class="w-7 h-7 text-primary"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Landing Pages</h3>
+          <p class="text-gray-400 leading-relaxed mb-4">High-converting, beautiful landing pages that turn visitors into customers. Perfect for single-product businesses or campaigns.</p>
+          <div class="flex items-center gap-2 text-primary text-sm font-medium">
+            <span>Learn more</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </div>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="glass-card rounded-2xl p-8 fade-in">
+          <div class="w-14 h-14 rounded-xl bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center mb-6">
+            <i data-lucide="globe" class="w-7 h-7 text-cyan-400"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Business Websites</h3>
+          <p class="text-gray-400 leading-relaxed mb-4">Multi-page websites that showcase your services, team, and expertise. Fully responsive and optimized for search engines.</p>
+          <div class="flex items-center gap-2 text-cyan-400 text-sm font-medium">
+            <span>Learn more</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </div>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="glass-card rounded-2xl p-8 fade-in">
+          <div class="w-14 h-14 rounded-xl bg-violet-400/10 border border-violet-400/20 flex items-center justify-center mb-6">
+            <i data-lucide="shopping-cart" class="w-7 h-7 text-violet-400"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">E-Commerce Setup</h3>
+          <p class="text-gray-400 leading-relaxed mb-4">Simple online stores that make selling easy. Product listings, payment integration, and inventory management included.</p>
+          <div class="flex items-center gap-2 text-violet-400 text-sm font-medium">
+            <span>Learn more</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </div>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="glass-card rounded-2xl p-8 fade-in">
+          <div class="w-14 h-14 rounded-xl bg-green-400/10 border border-green-400/20 flex items-center justify-center mb-6">
+            <i data-lucide="search" class="w-7 h-7 text-green-400"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">SEO Optimization</h3>
+          <p class="text-gray-400 leading-relaxed mb-4">Get found on Google. I optimize every page for search engines so your customers can find you when they need you most.</p>
+          <div class="flex items-center gap-2 text-green-400 text-sm font-medium">
+            <span>Learn more</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </div>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="glass-card rounded-2xl p-8 fade-in">
+          <div class="w-14 h-14 rounded-xl bg-orange-400/10 border border-orange-400/20 flex items-center justify-center mb-6">
+            <i data-lucide="palette" class="w-7 h-7 text-orange-400"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Website Redesign</h3>
+          <p class="text-gray-400 leading-relaxed mb-4">Breathe new life into your outdated website. Modern design, better performance, and improved user experience guaranteed.</p>
+          <div class="flex items-center gap-2 text-orange-400 text-sm font-medium">
+            <span>Learn more</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </div>
+        </div>
+
+        <!-- Service 6 -->
+        <div class="glass-card rounded-2xl p-8 fade-in">
+          <div class="w-14 h-14 rounded-xl bg-pink-400/10 border border-pink-400/20 flex items-center justify-center mb-6">
+            <i data-lucide="maintenance" class="w-7 h-7 text-pink-400"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Ongoing Support</h3>
+          <p class="text-gray-400 leading-relaxed mb-4">Website maintenance, updates, and tech support so you can focus on running your business, not worrying about your website.</p>
+          <div class="flex items-center gap-2 text-pink-400 text-sm font-medium">
+            <span>Learn more</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ABOUT SECTION ==================== -->
+  <section id="about" class="py-20 lg:py-28 dot-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <!-- Left: Visual -->
+        <div class="relative fade-in">
+          <div class="glass rounded-2xl p-1 glow-blue">
+            <img src="http://static.photos/workspace/640x360/88" alt="Developer workspace" class="rounded-xl w-full object-cover">
+          </div>
+          <!-- Floating card: Experience -->
+          <div class="absolute -bottom-6 -right-4 sm:-right-6 glass rounded-2xl p-4 glow-blue float-anim-delay">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
+                <i data-lucide="code-2" class="w-6 h-6 text-primary"></i>
+              </div>
+              <div>
+                <div class="text-2xl font-bold">5+</div>
+                <div class="text-sm text-gray-400">Years Coding</div>
+              </div>
+            </div>
+          </div>
+          <!-- Floating card: Projects -->
+          <div class="absolute -top-6 -left-4 sm:-left-6 glass rounded-2xl p-4 glow-blue float-anim">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-green-400/20 flex items-center justify-center">
+                <i data-lucide="check-circle" class="w-6 h-6 text-green-400"></i>
+              </div>
+              <div>
+                <div class="text-2xl font-bold">50+</div>
+                <div class="text-sm text-gray-400">Projects Done</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Text -->
+        <div class="fade-in">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-primary mb-4">
+            <i data-lucide="user" class="w-4 h-4"></i> About Me
+          </div>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+            Your dedicated <span class="gradient-text">web partner</span>
+          </h2>
+          <p class="text-gray-400 text-lg leading-relaxed mb-6">
+            I'm a solo web developer passionate about helping small businesses succeed online. No big agency overhead, no runaround — just direct communication and quality work from start to finish.
+          </p>
+          <p class="text-gray-400 leading-relaxed mb-8">
+            With expertise in modern web technologies and a deep understanding of what makes small businesses tick, I create websites that aren't just pretty — they're strategic tools that drive real results. Every line of code is written with your goals in mind.
+          </p>
+
+          <!-- Skills -->
+          <div class="grid grid-cols-2 gap-4 mb-8">
+            <div class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-primary"></i>
+              <span class="text-gray-300">HTML & CSS</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-primary"></i>
+              <span class="text-gray-300">JavaScript</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-primary"></i>
+              <span class="text-gray-300">Responsive Design</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-primary"></i>
+              <span class="text-gray-300">SEO & Performance</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-primary"></i>
+              <span class="text-gray-300">UI/UX Design</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-primary"></i>
+              <span class="text-gray-300">CMS Integration</span>
+            </div>
+          </div>
+
+          <a href="#contact" class="btn-primary inline-flex items-center gap-2 px-7 py-3.5 bg-primary hover:bg-accent text-dark-900 font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-primary/30">
+            Let's Work Together
+            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PROCESS SECTION ==================== -->
+  <section id="process" class="py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 fade-in">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-primary mb-4">
+          <i data-lucide="git-branch" class="w-4 h-4"></i> How It Works
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+          From idea to <span class="gradient-text">launch in 4 steps</span>
+        </h2>
+        <p class="text-gray-400 max-w-2xl mx-auto text-lg">
+          A simple, transparent process that keeps you informed and in control every step of the way.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Step 1 -->
+        <div class="relative fade-in">
+          <div class="glass-card rounded-2xl p-8 text-center relative h-full">
+            <div class="w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto mb-6 relative">
+              <i data-lucide="message-circle" class="w-8 h-8 text-primary"></i>
+              <span class="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-primary text-dark-900 text-xs font-bold flex items-center justify-center">1</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Discovery Call</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">We chat about your business, goals, target audience, and what you need your website to achieve.</p>
+          </div>
+          <div class="hidden lg:block absolute top-1/2 -right-4 text-dark-500">
+            <i data-lucide="arrow-right" class="w-6 h-6"></i>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="relative fade-in">
+          <div class="glass-card rounded-2xl p-8 text-center h-full">
+            <div class="w-16 h-16 rounded-2xl bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center mx-auto mb-6 relative">
+              <i data-lucide="pencil-ruler" class="w-8 h-8 text-cyan-400"></i>
+              <span class="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-cyan-400 text-dark-900 text-xs font-bold flex items-center justify-center">2</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Design & Prototype</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">I create a custom design mockup tailored to your brand. You review it and we refine until it's perfect.</p>
+          </div>
+          <div class="hidden lg:block absolute top-1/2 -right-4 text-dark-500">
+            <i data-lucide="arrow-right" class="w-6 h-6"></i>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="relative fade-in">
+          <div class="glass-card rounded-2xl p-8 text-center h-full">
+            <div class="w-16 h-16 rounded-2xl bg-violet-400/10 border border-violet-400/20 flex items-center justify-center mx-auto mb-6 relative">
+              <i data-lucide="code" class="w-8 h-8 text-violet-400"></i>
+              <span class="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-violet-400 text-dark-900 text-xs font-bold flex items-center justify-center">3</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Development</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">I build your site with clean, fast code. You get regular progress updates and can see the site come to life.</p>
+          </div>
+          <div class="hidden lg:block absolute top-1/2 -right-4 text-dark-500">
+            <i data-lucide="arrow-right" class="w-6 h-6"></i>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="relative fade-in">
+          <div class="glass-card rounded-2xl p-8 text-center h-full">
+            <div class="w-16 h-16 rounded-2xl bg-green-400/10 border border-green-400/20 flex items-center justify-center mx-auto mb-6 relative">
+              <i data-lucide="rocket" class="w-8 h-8 text-green-400"></i>
+              <span class="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-green-400 text-dark-900 text-xs font-bold flex items-center justify-center">4</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Launch & Support</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">We go live! I handle deployment, SEO setup, and provide ongoing support to keep your site running smoothly.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PORTFOLIO SECTION ==================== -->
+  <section id="portfolio" class="py-20 lg:py-28 dot-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 fade-in">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-primary mb-4">
+          <i data-lucide="folder-open" class="w-4 h-4"></i> Portfolio
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+          Recent <span class="gradient-text">projects</span>
+        </h2>
+        <p class="text-gray-400 max-w-2xl mx-auto text-lg">
+          A selection of websites I've built for businesses just like yours.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Project 1 -->
+        <div class="portfolio-card glass-card rounded-2xl overflow-hidden group fade-in">
+          <div class="relative overflow-hidden">
+            <img src="http://static.photos/restaurant/640x360/10" alt="Restaurant website" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="portfolio-overlay absolute inset-0 bg-dark-900/80 flex items-center justify-center">
+              <div class="flex gap-3">
+                <span class="px-3 py-1 rounded-full glass text-xs text-primary">HTML</span>
+                <span class="px-3 py-1 rounded-full glass text-xs text-primary">CSS</span>
+                <span class="px-3 py-1 rounded-full glass text-xs text-primary">JS</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-lg font-bold mb-2">Bella Cucina Restaurant</h3>
+            <p class="text-gray-400 text-sm mb-4">Elegant restaurant site with online menu, reservations system, and stunning food photography gallery.</p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-primary font-mono uppercase tracking-wider">Restaurant</span>
+              <i data-lucide="external-link" class="w-4 h-4 text-gray-500 group-hover:text-primary transition-colors"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="portfolio-card glass-card rounded-2xl overflow-hidden group fade-in">
+          <div class="relative overflow-hidden">
+            <img src="http://static.photos/wellness/640x360/22" alt="Spa website" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="portfolio-overlay absolute inset-0 bg-dark-900/80 flex items-center justify-center">
+              <div class="flex gap-3">
+                <span class="px-3 py-1 rounded-full glass text-xs text-primary">HTML</span>
+                <span class="px-3 py-1 rounded-full glass text-xs text-primary">CSS</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-lg font-bold mb-2">Serenity Wellness Spa</h3>
+            <p class="text-gray-400 text-sm mb-4">Calming spa website with booking integration, service listings, and a tranquil visual experience.</p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-primary font-mono uppercase tracking-wider">Wellness</span>
+              <i data-lucide="external-link" class="w-4 h-4 text-gray-500 group-hover:text-primary transition-colors"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="portfolio-card glass-card rounded-2xl overflow-hidden group fade-in">
+          <div class="relative overflow-hidden">
+            <img src="http://static.photos/construction/640x360/35" alt="Construction website" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="portfolio-overlay absolute inset-0 bg-dark-900/80 flex items-center justify-center">
+              <div class="flex gap-3">
+                <span class="px-3 py-1 rounded-full glass text-xs text-primary">HTML</span>
+                <span class="px-3 py-1 rounded-full glass text-xs text-primary">CSS</span>
+                <span class="px-3 py-1 rounded-full glass text-xs text-primary">JS</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-lg font-bold mb-2">BuildRight Construction</h3>
+            <p class="text-gray-400 text-sm mb-4">Professional construction company site with project gallery, services breakdown, and quote request form.</p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-primary font-mono uppercase tracking-wider">Construction</span>
+              <i data-lucide="external-link" class="w-4 h-4 text-gray-500 group-hover:text-primary transition-colors"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="portfolio-card glass-card rounded-2xl overflow-hidden group fade-in">
+          <div class="relative overflow-hidden">
+            <img src="http://static.photos/education/640x360/47" alt="Education website" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="portfolio-overlay absolute inset-0 bg-dark-900/80 flex items-center justify-center">
+              <div class="flex gap-3">
+                <span class="px-3 py-1 rounded-full glass text-xs text-primary">HTML</span>
+                <span class="px-3 py-1 rounded-full glass text-xs text-primary">CSS</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-lg font-bold mb-2">BrightPath Tutoring</h3>
+            <p class="text-gray-400 text-sm mb-4">Approachable tutoring site with subject listings, tutor bios, scheduling tools, and parent resources.</p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-primary font-mono uppercase tracking-wider">Education</span>
+              <i data-lucide="external-link" class="w-4 h-4 text-gray-500 group-hover:text-primary transition-colors"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="portfolio-card glass-card rounded-2xl overflow-hidden group fade-in">
+          <div class="relative overflow-hidden">
+            <img src="http://static.photos/nature/640x360/59" alt="Landscaping website" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="portfolio-overlay absolute inset-0 bg-dark-900/80 flex items-center justify-center">
+              <div class="flex gap-3">
+                <span class="px-3 py-1 rounded-full glass text-xs text-primary">HTML</span>
+                <span class="px-3 py-1 rounded-full glass text-xs text-primary">CSS</span>
+                <span class="px-3 py-1 rounded-full glass text-xs text-primary">JS</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-lg font-bold mb-2">GreenEdge Landscaping</h3>
+            <p class="text-gray-400 text-sm mb-4">Nature-inspired landscaping site with seasonal service menus, portfolio gallery, and free estimate form.</p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-primary font-mono uppercase tracking-wider">Landscaping</span>
+              <i data-lucide="external-link" class="w-4 h-4 text-gray-500 group-hover:text-primary transition-colors"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="portfolio-card glass-card rounded-2xl overflow-hidden group fade-in">
+          <div class="relative overflow-hidden">
+            <img src="http://static.photos/finance/640x360/71" alt="Finance website" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="portfolio-overlay absolute inset-0 bg-dark-900/80 flex items-center justify-center">
+              <div class="flex gap-3">
+                <span class="px-3 py-1 rounded-full glass text-xs text-primary">HTML</span>
+                <span class="px-3 py-1 rounded-full glass text-xs text-primary">CSS</span>
+                <span class="px-3 py-1 rounded-full glass text-xs text-primary">JS</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-lg font-bold mb-2">TrueNorth Financial</h3>
+            <p class="text-gray-400 text-sm mb-4">Trustworthy financial advisory site with service descriptions, client testimonials, and consultation booking.</p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-primary font-mono uppercase tracking-wider">Finance</span>
+              <i data-lucide="external-link" class="w-4 h-4 text-gray-500 group-hover:text-primary transition-colors"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PRICING SECTION ==================== -->
+  <section id="pricing" class="py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 fade-in">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-primary mb-4">
+          <i data-lucide="tag" class="w-4 h-4"></i> Pricing
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+          Simple, honest <span class="gradient-text">pricing</span>
+        </h2>
+        <p class="text-gray-400 max-w-2xl mx-auto text-lg">
+          No hidden fees, no surprises. Pick a package that fits your needs, or let's create a custom solution.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <!-- Starter -->
+        <div class="glass-card rounded-2xl p-8 fade-in relative">
+          <div class="mb-6">
+            <h3 class="text-xl font-bold mb-2">Starter</h3>
+            <p class="text-gray-400 text-sm">Perfect for getting online quickly</p>
+          </div>
+          <div class="mb-6">
+            <div class="flex items-baseline gap-1">
+              <span class="text-4xl font-bold">$499</span>
+              <span class="text-gray-500 text-sm">one-time</span>
+            </div>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0"></i> 1-page landing site
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0"></i> Mobile responsive
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0"></i> SEO basics
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0"></i> Contact form
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0"></i> 1 revision round
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-500">
+              <i data-lucide="x" class="w-4 h-4 text-gray-600 flex-shrink-0"></i> CMS integration
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-500">
+              <i data-lucide="x" class="w-4 h-4 text-gray-600 flex-shrink-0"></i> E-commerce
+            </li>
+          </ul>
+          <a href="#contact" class="block w-full text-center px-6 py-3 border border-dark-500 hover:border-primary/50 text-gray-300 hover:text-white rounded-xl transition-all hover:bg-dark-700 font-medium">
+            Get Started
+          </a>
+        </div>
+
+        <!-- Professional (Popular) -->
+        <div class="pricing-highlight rounded-2xl fade-in">
+          <div class="glass-card rounded-2xl p-8 h-full border-primary/30" style="background: rgba(14, 165, 233, 0.03);">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-primary to-accent text-dark-900 text-xs font-bold rounded-full uppercase tracking-wider">
+              Most Popular
+            </div>
+            <div class="mb-6">
+              <h3 class="text-xl font-bold mb-2">Professional</h3>
+              <p class="text-gray-400 text-sm">The complete business website</p>
+            </div>
+            <div class="mb-6">
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl font-bold text-primary">$1,499</span>
+                <span class="text-gray-500 text-sm">one-time</span>
+              </div>
+            </div>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center gap-3 text-sm text-gray-300">
+                <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0"></i> Up to 5 pages
+              </li>
+              <li class="flex items-center gap-3 text-sm text-gray-300">
+                <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0"></i> Mobile responsive
+              </li>
+              <li class="flex items-center gap-3 text-sm text-gray-300">
+                <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0"></i> Full SEO optimization
+              </li>
+              <li class="flex items-center gap-3 text-sm text-gray-300">
+                <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0"></i> CMS integration
+              </li>
+              <li class="flex items-center gap-3 text-sm text-gray-300">
+                <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0"></i> Contact & booking forms
+              </li>
+              <li class="flex items-center gap-3 text-sm text-gray-300">
+                <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0"></i> 3 revision rounds
+              </li>
+              <li class="flex items-center gap-3 text-sm text-gray-300">
+                <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0"></i> 30 days free support
+              </li>
+            </ul>
+            <a href="#contact" class="btn-primary block w-full text-center px-6 py-3 bg-primary hover:bg-accent text-dark-900 font-bold rounded-xl transition-all hover:shadow-lg hover:shadow-primary/30">
+              Get Started
+            </a>
+          </div>
+        </div>
+
+        <!-- Business -->
+        <div class="glass-card rounded-2xl p-8 fade-in relative">
+          <div class="mb-6">
+            <h3 class="text-xl font-bold mb-2">Business</h3>
+            <p class="text-gray-400 text-sm">For businesses that need more</p>
+          </div>
+          <div class="mb-6">
+            <div class="flex items-baseline gap-1">
+              <span class="text-4xl font-bold">$2,999</span>
+              <span class="text-gray-500 text-sm">one-time</span>
+            </div>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0"></i> Up to 10 pages
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0"></i> Mobile responsive
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0"></i> Full SEO optimization
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0"></i> CMS & e-commerce
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0"></i> Custom animations
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0"></i> Unlimited revisions
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0"></i> 90 days free support
+            </li>
+          </ul>
+          <a href="#contact" class="block w-full text-center px-6 py-3 border border-dark-500 hover:border-primary/50 text-gray-300 hover:text-white rounded-xl transition-all hover:bg-dark-700 font-medium">
+            Get Started
+          </a>
+        </div>
+      </div>
+
+      <!-- Custom note -->
+      <div class="text-center mt-10 fade-in">
+        <p class="text-gray-400">Need something different? <a href="#contact" class="text-primary hover:text-accent underline underline-offset-4 transition-colors">Let's talk about a custom package</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TESTIMONIALS SECTION ==================== -->
+  <section id="testimonials" class="py-20 lg:py-28 dot-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 fade-in">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-primary mb-4">
+          <i data-lucide="star" class="w-4 h-4"></i> Testimonials
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+          What my clients <span class="gradient-text">are saying</span>
+        </h2>
+        <p class="text-gray-400 max-w-2xl mx-auto text-lg">
+          Real feedback from real small business owners who trusted me with their online presence.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card glass-card rounded-2xl p-8 fade-in">
+          <div class="flex items-center gap-1 mb-4">
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+          </div>
+          <p class="text-gray-300 leading-relaxed mb-6">"Working with DevForge was a game-changer for our restaurant. Our new website looks incredible and we've seen a 40% increase in online reservations since launch. The process was smooth and communication was excellent."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-dark-900 font-bold text-sm">MR</div>
+            <div>
+              <div class="font-semibold text-sm">Marco Rossi</div>
+              <div class="text-xs text-gray-500">Owner, Bella Cucina</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card glass-card rounded-2xl p-8 fade-in">
+          <div class="flex items-center gap-1 mb-4">
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+          </div>
+          <p class="text-gray-300 leading-relaxed mb-6">"I was worried about the cost and tech jargon, but DevForge made everything easy to understand. My spa's website is gorgeous and my clients love the booking system. Best investment I've made!"</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-violet-400 to-purple-600 flex items-center justify-center text-white font-bold text-sm">SL</div>
+            <div>
+              <div class="font-semibold text-sm">Sarah Lin</div>
+              <div class="text-xs text-gray-500">Founder, Serenity Spa</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card glass-card rounded-2xl p-8 fade-in">
+          <div class="flex items-center gap-1 mb-4">
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+            <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+          </div>
+          <p class="text-gray-300 leading-relaxed mb-6">"From concept to launch, the entire experience was seamless. The website perfectly captures our brand and has helped us attract larger projects. I genuinely couldn't be happier with the result."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center text-white font-bold text-sm">JD</div>
+            <div>
+              <div class="font-semibold text-sm">James Dawson</div>
+              <div class="text-xs text-gray-500">CEO, BuildRight Co.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FAQ SECTION ==================== -->
+  <section id="faq" class="py-20 lg:py-28">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 fade-in">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-primary mb-4">
+          <i data-lucide="help-circle" class="w-4 h-4"></i> FAQ
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+          Frequently asked <span class="gradient-text">questions</span>
+        </h2>
+        <p class="text-gray-400 text-lg">
+          Everything you need to know about working with me.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        <!-- FAQ 1 -->
+        <div class="glass-card rounded-2xl fade-in" style="cursor:pointer" onclick="toggleFaq(this)">
+          <div class="flex items-center justify-between p-6">
+            <h3 class="font-semibold pr-4">How long does it take to build a website?</h3>
+            <i data-lucide="plus" class="faq-icon w-5 h-5 text-primary flex-shrink-0"></i>
+          </div>
+          <div class="faq-answer px-6 pb-0">
+            <p class="text-gray-400 text-sm leading-relaxed pb-6">It depends on the complexity. A simple landing page can be done in 3–5 business days. A full multi-page business website typically takes 2–3 weeks. I'll give you a clear timeline upfront during our discovery call.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="glass-card rounded-2xl fade-in" style="cursor:pointer" onclick="toggleFaq(this)">
+          <div class="flex items-center justify-between p-6">
+            <h3 class="font-semibold pr-4">Do I need to provide the content and images?</h3>
+            <i data-lucide="plus" class="faq-icon w-5 h-5 text-primary flex-shrink-0"></i>
+          </div>
+          <div class="faq-answer px-6 pb-0">
+            <p class="text-gray-400 text-sm leading-relaxed pb-6">I can work with whatever you have! If you have brand assets and copy, great. If not, I can help with content structure, suggest stock photos, and connect you with copywriters and photographers if needed.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="glass-card rounded-2xl fade-in" style="cursor:pointer" onclick="toggleFaq(this)">
+          <div class="flex items-center justify-between p-6">
+            <h3 class="font-semibold pr-4">What about domain name and hosting?</h3>
+            <i data-lucide="plus" class="faq-icon w-5 h-5 text-primary flex-shrink-0"></i>
+          </div>
+          <div class="faq-answer px-6 pb-0">
+            <p class="text-gray-400 text-sm leading-relaxed pb-6">I'll guide you through purchasing a domain name and setting up hosting. I recommend reliable, cost-effective providers and can handle the entire technical setup so you don't have to worry about DNS records or SSL certificates.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="glass-card rounded-2xl fade-in" style="cursor:pointer" onclick="toggleFaq(this)">
+          <div class="flex items-center justify-between p-6">
+            <h3 class="font-semibold pr-4">Will my website work on mobile phones?</h3>
+            <i data-lucide="plus" class="faq-icon w-5 h-5 text-primary flex-shrink-0"></i>
+          </div>
+          <div class="faq-answer px-6 pb-0">
+            <p class="text-gray-400 text-sm leading-relaxed pb-6">Absolutely! Every website I build is fully responsive, meaning it looks and works beautifully on phones, tablets, laptops, and desktops. Mobile-first design is my standard approach.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="glass-card rounded-2xl fade-in" style="cursor:pointer" onclick="toggleFaq(this)">
+          <div class="flex items-center justify-between p-6">
+            <h3 class="font-semibold pr-4">Do you offer ongoing maintenance?</h3>
+            <i data-lucide="plus" class="faq-icon w-5 h-5 text-primary flex-shrink-0"></i>
+          </div>
+          <div class="faq-answer px-6 pb-0">
+            <p class="text-gray-400 text-sm leading-relaxed pb-6">Yes! After your free support period ends, I offer affordable monthly maintenance plans that include updates, backups, security monitoring, and content changes so your site stays fresh and secure.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="glass-card rounded-2xl fade-in" style="cursor:pointer" onclick="toggleFaq(this)">
+          <div class="flex items-center justify-between p-6">
+            <h3 class="font-semibold pr-4">What if I don't like the design?</h3>
+            <i data-lucide="plus" class="faq-icon w-5 h-5 text-primary flex-shrink-0"></i>
+          </div>
+          <div class="faq-answer px-6 pb-0">
+            <p class="text-gray-400 text-sm leading-relaxed pb-6">Your satisfaction is my priority. Every package includes revision rounds, and I work closely with you during the design phase to ensure we're aligned on style and direction before writing a single line of code. If you're not happy, I'll revise it until you are.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA SECTION ==================== -->
+  <section class="py-20 lg:py-28">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="relative glass-card rounded-3xl p-8 sm:p-12 lg:p-16 text-center overflow-hidden fade-in">
+        <!-- Background glow -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="relative z-10">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-primary mb-6">
+            <i data-lucide="sparkles" class="w-4 h-4"></i> Ready to Start?
+          </div>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+            Let's build something <span class="gradient-text">amazing together</span>
+          </h2>
+          <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-8">
+            Whether you're starting from scratch or need a redesign, I'm here to help your business thrive online. Let's chat about your project — no commitment required.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#contact" class="btn-primary inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-accent text-dark-900 font-bold rounded-xl text-lg hover:shadow-lg hover:shadow-primary/30 transition-all">
+              Start Your Project
+              <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </a>
+            <a href="mailto:hello@devforge.studio" class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-dark-500 hover:border-primary/50 text-gray-300 hover:text-white rounded-xl transition-all hover:bg-dark-700">
+              <i data-lucide="mail" class="w-5 h-5"></i>
+              hello@devforge.studio
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTACT SECTION ==================== -->
+  <section id="contact" class="py-20 lg:py-28 dot-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
+        <!-- Left: Info -->
+        <div class="fade-in">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-primary mb-4">
+            <i data-lucide="mail" class="w-4 h-4"></i> Get In Touch
+          </div>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+            Let's talk about <span class="gradient-text">your project</span>
+          </h2>
+          <p class="text-gray-400 text-lg leading-relaxed mb-10">
+            Fill out the form and I'll get back to you within 24 hours. Or use one of the contact methods below — whichever is easiest for you.
+          </p>
+
+          <div class="space-y-6">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="mail" class="w-5 h-5 text-primary"></i>
+              </div>
+              <div>
+                <div class="text-sm text-gray-500">Email</div>
+                <a href="mailto:hello@devforge.studio" class="text-white hover:text-primary transition-colors">hello@devforge.studio</a>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="phone" class="w-5 h-5 text-primary"></i>
+              </div>
+              <div>
+                <div class="text-sm text-gray-500">Phone</div>
+                <a href="tel:+15551234567" class="text-white hover:text-primary transition-colors">+1 (555) 123-4567</a>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="map-pin" class="w-5 h-5 text-primary"></i>
+              </div>
+              <div>
+                <div class="text-sm text-gray-500">Location</div>
+                <span class="text-white">Working remotely worldwide</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="clock" class="w-5 h-5 text-primary"></i>
+              </div>
+              <div>
+                <div class="text-sm text-gray-500">Response Time</div>
+                <span class="text-white">Within 24 hours</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Links -->
+          <div class="mt-10">
+            <p class="text-sm text-gray-500 mb-4">Follow me</p>
+            <div class="flex gap-3">
+              <a href="#" class="w-10 h-10 rounded-lg glass flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary/30 transition-all">
+                <i data-lucide="github" class="w-5 h-5"></i>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-lg glass flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary/30 transition-all">
+                <i data-lucide="linkedin" class="w-5 h-5"></i>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-lg glass flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary/30 transition-all">
+                <i data-lucide="twitter" class="w-5 h-5"></i>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-lg glass flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary/30 transition-all">
+                <i data-lucide="dribbble" class="w-5 h-5"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="fade-in">
+          <form id="contact-form" class="glass-card rounded-2xl p-8">
+            <div class="grid sm:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">First Name *</label>
+                <input type="text" required placeholder="John" class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-dark-600 text-white placeholder-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">Last Name *</label>
+                <input type="text" required placeholder="Doe" class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-dark-600 text-white placeholder-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all">
+              </div>
+            </div>
+            <div class="mb-6">
+              <label class="block text-sm font-medium text-gray-300 mb-2">Email *</label>
+              <input type="email" required placeholder="john@example.com" class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-dark-600 text-white placeholder-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all">
+            </div>
+            <div class="mb-6">
+              <label class="block text-sm font-medium text-gray-300 mb-2">What do you need?</label>
+              <select class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-dark-600 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all appearance-none cursor-pointer">
+                <option value="" disabled selected>Select a service</option>
+                <option>Landing Page</option>
+                <option>Business Website</option>
+                <option>E-Commerce Store</option>
+                <option>Website Redesign</option>
+                <option>SEO Optimization</option>
+                <option>Ongoing Support</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="mb-6">
+              <label class="block text-sm font-medium text-gray-300 mb-2">Budget Range</label>
+              <select class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-dark-600 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all appearance-none cursor-pointer">
+                <option value="" disabled selected>Select your budget</option>
+                <option>Under $500</option>
+                <option>$500 – $1,500</option>
+                <option>$1,500 – $3,000</option>
+                <option>$3,000 – $5,000</option>
+                <option>$5,000+</option>
+              </select>
+            </div>
+            <div class="mb-6">
+              <label class="block text-sm font-medium text-gray-300 mb-2">Tell me about your project *</label>
+              <textarea rows="4" required placeholder="Describe your business, goals, and any specific requirements..." class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-dark-600 text-white placeholder-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-none"></textarea>
+            </div>
+            <button type="submit" class="btn-primary w-full flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-accent text-dark-900 font-bold rounded-xl text-lg hover:shadow-lg hover:shadow-primary/30 transition-all">
+              Send Message
+              <i data-lucide="send" class="w-5 h-5"></i>
+            </button>
+            <p class="text-xs text-gray-500 mt-4 text-center">I'll respond within 24 hours. No spam, ever.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="border-t border-dark-600/50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+        <!-- Brand -->
+        <div class="sm:col-span-2 lg:col-span-1">
+          <a href="#hero" class="flex items-center gap-2 mb-4">
+            <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-dark-900 font-bold text-lg">&lt;/&gt;</div>
+            <span class="text-xl font-bold tracking-tight">Dev<span class="text-primary">Forge</span></span>
+          </a>
+          <p class="text-gray-400 text-sm leading-relaxed mb-4">Professional web solutions crafted specifically for small businesses. Let's build your online presence together.</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-9 h-9 rounded-lg bg-dark-700 hover:bg-dark-600 flex items-center justify-center text-gray-400 hover:text-primary transition-all">
+              <i data-lucide="github" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-lg bg-dark-700 hover:bg-dark-600 flex items-center justify-center text-gray-400 hover:text-primary transition-all">
+              <i data-lucide="linkedin" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-lg bg-dark-700 hover:bg-dark-600 flex items-center justify-center text-gray-400 hover:text-primary transition-all">
+              <i data-lucide="twitter" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-lg bg-dark-700 hover:bg-dark-600 flex items-center justify-center text-gray-400 hover:text-primary transition-all">
+              <i data-lucide="dribbble" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <h3 class="font-semibold mb-4">Services</h3>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#services" class="hover:text-primary transition-colors">Landing Pages</a></li>
+            <li><a href="#services" class="hover:text-primary transition-colors">Business Websites</a></li>
+            <li><a href="#services" class="hover:text-primary transition-colors">E-Commerce Setup</a></li>
+            <li><a href="#services" class="hover:text-primary transition-colors">SEO Optimization</a></li>
+            <li><a href="#services" class="hover:text-primary transition-colors">Website Redesign</a></li>
+            <li><a href="#services" class="hover:text-primary transition-colors">Ongoing Support</a></li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h3 class="font-semibold mb-4">Company</h3>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#about" class="hover:text-primary transition-colors">About Me</a></li>
+            <li><a href="#process" class="hover:text-primary transition-colors">How It Works</a></li>
+            <li><a href="#portfolio" class="hover:text-primary transition-colors">Portfolio</a></li>
+            <li><a href="#pricing" class="hover:text-primary transition-colors">Pricing</a></li>
+            <li><a href="#faq" class="hover:text-primary transition-colors">FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal -->
+        <div>
+          <h3 class="font-semibold mb-4">Legal</h3>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#" class="hover:text-primary transition-colors">Privacy Policy</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">Terms of Service</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">Cookie Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="border-t border-dark-600/50 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-sm text-gray-500">&copy; 2024 DevForge. All rights reserved.</p>
+        <p class="text-sm text-gray-500">Made with <span class="text-red-400">♥</span> for small businesses everywhere</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== BACK TO TOP BUTTON ==================== -->
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="fixed bottom-6 right-6 w-12 h-12 rounded-xl bg-primary hover:bg-accent text-dark-900 flex items-center justify-center shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all z-40 opacity-0 translate-y-4 pointer-events-none" aria-label="Back to top">
+    <i data-lucide="arrow-up" class="w-5 h-5"></i>
+  </button>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // ===== Mobile Menu =====
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuOverlay = document.getElementById('menu-overlay');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.add('open');
+      menuOverlay.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    });
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+      menuOverlay.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    // ===== Navbar background on scroll =====
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('glass');
+        navbar.style.borderBottom = '1px solid rgba(14, 165, 233, 0.08)';
+      } else {
+        navbar.classList.remove('glass');
+        navbar.style.borderBottom = 'none';
+      }
+    });
+
+    // ===== Back to Top Button =====
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        backToTop.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+        backToTop.classList.add('opacity-100', 'translate-y-0');
+      } else {
+        backToTop.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+        backToTop.classList.remove('opacity-100', 'translate-y-0');
+      }
+    });
+
+    // ===== FAQ Toggle =====
+    function toggleFaq(element) {
+      const answer = element.querySelector('.faq-answer');
+      const icon = element.querySelector('.faq-icon');
+      
+      // Close other open FAQs
+      document.querySelectorAll('.faq-answer.open').forEach(a => {
+        if (a !== answer) {
+          a.classList.remove('open');
+          a.parentElement.querySelector('.faq-icon').classList.remove('rotated');
+        }
+      });
+
+      answer.classList.toggle('open');
+      icon.classList.toggle('rotated');
+    }
+
+    // ===== Scroll Animations =====
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // ===== Stat Counter Animation =====
+    function animateCounters() {
+      const counters = document.querySelectorAll('.stat-number');
+      counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        if (!target) return;
+        const increment = target / 60;
+        let current = 0;
+        const updateCounter = () => {
+          current += increment;
+          if (current < target) {
+            counter.textContent = Math.ceil(current) + (target === 100 ? '%' : '+');
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.textContent = target + (target === 100 ? '%' : '+');
+          }
+        };
+        updateCounter();
+      });
+    }
+
+    const heroObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounters();
+          heroObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    const heroSection = document.getElementById('hero');
+    if (heroSection) {
+      heroObserver.observe(heroSection);
+    }
+
+    // ===== Active Nav Link on Scroll =====
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        if (window.scrollY >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // ===== Contact Form Handler =====
+    document.getElementById('contact-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      const originalContent = btn.innerHTML;
+      
+      btn.innerHTML = '<span class="inline-flex items-center gap-2"><svg class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Sending...</span>';
+      btn.disabled = true;
+
+      // Simulate form submission
+      setTimeout(() => {
+        btn.innerHTML = '<span class="inline-flex items-center gap-2"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg> Message Sent!</span>';
+        btn.classList.remove('bg-primary', 'hover:bg-accent');
+        btn.classList.add('bg-green-500');
+        
+        setTimeout(() => {
+          btn.innerHTML = originalContent;
+          btn.disabled = false;
+          btn.classList.remove('bg-green-500');
+          btn.classList.add('bg-primary', 'hover:bg-accent');
+          e.target.reset();
+          lucide.createIcons();
+        }, 3000);
+      }, 1500);
+    });
+
+    // ===== Smooth Scroll for all anchor links =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
