@@ -290,12 +290,13 @@
     }
 
     /* === ICON SIZE & CENTERING FIXES === */
+
     /* Social icons in glass containers */
     .glass .fab,
     .glass .fas,
     .glass-card .fab,
     .glass-card .fas {
-      font-size: 1.8rem !important;
+      font-size: 1.8rem;
       line-height: 1 !important;
       display: flex !important;
       align-items: center !important;
@@ -305,59 +306,59 @@
     /* Social icon containers (the <a> tags) */
     .glass .fab,
     .glass .fas {
-      font-size: 1.8rem !important;
+      font-size: 1.8rem;
     }
 
     /* W-10 h-10 containers */
     .w-10.h-10 .fab,
     .w-10.h-10 .fas {
-      font-size: 1.8rem !important;
+      font-size: 1.8rem;
       line-height: 1 !important;
     }
 
     .w-9.h-9 .fab,
     .w-9.h-9 .fas {
-      font-size: 1.8rem !important;
+      font-size: 1.8rem;
       line-height: 1 !important;
     }
 
     /* Service icons (w-7 h-7 containers) */
     .w-7.h-7 .fas,
     .w-7.h-7 .fab {
-      font-size: 1.8rem !important;
+      font-size: 1.8rem;
       line-height: 1 !important;
     }
 
     /* Process icons (w-8 h-8 containers) */
     .w-8.h-8 .fas,
     .w-8.h-8 .fab {
-      font-size: 1.8rem !important;
+      font-size: 1.8rem;
       line-height: 1 !important;
     }
 
     /* Menu icons */
     .w-5.h-5 .fas,
     .w-5.h-5 .fab {
-      font-size: 1.8rem !important;
+      font-size: 1.8rem;
       line-height: 1 !important;
     }
 
     .w-6.h-6 .fas,
     .w-6.h-6 .fab {
-      font-size: 1.8rem !important;
+      font-size: 1.8rem;
       line-height: 1 !important;
     }
 
     /* Contact icons (w-5 h-5 containers) */
     .w-5.h-5 .fas,
     .w-5.h-5 .fab {
-      font-size: 1.8rem !important;
+      font-size: 1.8rem;
       line-height: 1 !important;
     }
 
     /* Back to top icon */
     #back-to-top .fas {
-      font-size: 1.8rem !important;
+      font-size: 1.8rem;
       line-height: 1 !important;
     }
 
@@ -388,8 +389,9 @@
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
-    }
+    }    
   </style>
+
 </head>
 <body class="grid-bg">
 
@@ -1184,7 +1186,7 @@
 
   <!-- ==================== FAQ SECTION ==================== -->
   <section id="faq" class="py-20 lg:py-28">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"> <!-- Cambié max-w-3xl a max-w-5xl -->
       <div class="text-center mb-16 fade-in">
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-primary mb-4">
           <i class="fas fa-question-circle"></i> FAQ
@@ -1197,7 +1199,7 @@
         </p>
       </div>
 
-      <div class="space-y-4">
+      <div class="grid md:grid-cols-2 gap-4"> <!-- Aquí está el cambio principal -->
         <!-- FAQ 1 -->
         <div class="glass-card rounded-2xl fade-in" style="cursor:pointer" onclick="toggleFaq(this)">
           <div class="flex items-center justify-between p-6">
@@ -1309,10 +1311,18 @@
             </p>
           </div>
         </div>
-
       </div>
     </div>
   </section>
+
+
+
+
+
+
+
+
+
 
   <!-- ==================== CONTACT SECTION ==================== -->
   <section id="contact" class="py-20 lg:py-28 dot-bg">
@@ -1334,7 +1344,7 @@
           <div class="space-y-6">
             <div class="flex items-center gap-4">
               <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
-                <i class="fas fa-envelope text-primary"></i>
+                <i class="fas fa-envelope w-8 h-8 text-primary"></i>
               </div>
               <div>
                 <div class="text-sm text-gray-500">Correo Electrónico</div>
@@ -1343,11 +1353,11 @@
             </div>
             <div class="flex items-center gap-4">
               <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
-                <i class="fas fa-phone text-primary"></i>
+                <i class="fab fa-whatsapp text-primary"></i>
               </div>
               <div>
                 <div class="text-sm text-gray-500">WhatsApp</div>
-                <a href="tel:+15551234567" class="text-white hover:text-primary transition-colors">+7 (981) 863-5525</a>
+                <a href="tel:+79818635525" class="text-white hover:text-primary transition-colors">+7 (981) 863-5525</a>
               </div>
             </div>
             <div class="flex items-center gap-4">
