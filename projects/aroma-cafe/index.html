@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aroma — Cafetería en el corazón de la ciudad</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            coffee: {
+              50: '#fdf8f0',
+              100: '#f9edda',
+              200: '#f0d5b0',
+              300: '#e4b87a',
+              400: '#d99a4a',
+              500: '#c07c2a',
+              600: '#a36320',
+              700: '#864c1d',
+              800: '#6d3d1e',
+              900: '#5a331d',
+              950: '#331a0c',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fdf8f0;
+      color: #331a0c;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+
+    /* Hamburger animation */
+    .hamburger span {
+      transition: all 0.3s ease;
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #331a0c;
+      margin: 5px 0;
+      border-radius: 2px;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* Hero parallax grain overlay */
+    .hero-grain::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    /* Steam animation */
+    @keyframes steam {
+      0% { transform: translateY(0) scaleX(1); opacity: 0.6; }
+      50% { transform: translateY(-20px) scaleX(1.2); opacity: 0.3; }
+      100% { transform: translateY(-40px) scaleX(0.8); opacity: 0; }
+    }
+
+    .steam-line {
+      animation: steam 2.5s ease-in-out infinite;
+    }
+    .steam-line:nth-child(2) { animation-delay: 0.5s; }
+    .steam-line:nth-child(3) { animation-delay: 1s; }
+
+    /* Card hover */
+    .service-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(51, 26, 12, 0.12);
+    }
+
+    /* Fade in animation */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in-up {
+      opacity: 0;
+      animation: fadeInUp 0.7s ease forwards;
+    }
+
+    .fade-in-up:nth-child(1) { animation-delay: 0.1s; }
+    .fade-in-up:nth-child(2) { animation-delay: 0.25s; }
+    .fade-in-up:nth-child(3) { animation-delay: 0.4s; }
+
+    /* Scroll animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Button pulse */
+    @keyframes pulse-ring {
+      0% { box-shadow: 0 0 0 0 rgba(192, 124, 42, 0.5); }
+      70% { box-shadow: 0 0 0 12px rgba(192, 124, 42, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(192, 124, 42, 0); }
+    }
+
+    .btn-pulse:hover {
+      animation: pulse-ring 1.5s infinite;
+    }
+
+    /* Input focus ring */
+    input:focus, textarea:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(192, 124, 42, 0.25);
+      border-color: #c07c2a;
+    }
+
+    /* Scroll indicator */
+    @keyframes bounce-down {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+
+    .scroll-indicator {
+      animation: bounce-down 2s ease-in-out infinite;
+    }
+
+    /* Nav link underline */
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #c07c2a;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAVEGACIÓN ========== -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="background: transparent;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-2 group">
+          <i class="fa-solid fa-mug-hot text-coffee-500 text-2xl group-hover:rotate-12 transition-transform duration-300"></i>
+          <span class="font-['Playfair_Display'] text-xl md:text-2xl font-bold text-coffee-950">Aroma</span>
+        </a>
+
+        <!-- Navegación Desktop -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#services" class="nav-link text-coffee-950 hover:text-coffee-600 font-medium transition-colors text-sm tracking-wide">Servicios</a>
+          <a href="#testimonial" class="nav-link text-coffee-950 hover:text-coffee-600 font-medium transition-colors text-sm tracking-wide">Testimonios</a>
+          <a href="#contact" class="nav-link text-coffee-950 hover:text-coffee-600 font-medium transition-colors text-sm tracking-wide">Contacto</a>
+          <a href="#booking" class="bg-coffee-500 hover:bg-coffee-600 text-white px-5 py-2.5 rounded-full font-medium text-sm transition-all duration-300 hover:shadow-lg">Reservar</a>
+        </div>
+
+        <!-- Hamburger -->
+        <button id="hamburgerBtn" class="hamburger md:hidden p-2 focus:outline-none" aria-label="Menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menú Móvil -->
+    <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-72 h-full bg-coffee-50 shadow-2xl z-50 flex flex-col">
+      <div class="flex items-center justify-between p-5 border-b border-coffee-200">
+        <span class="font-['Playfair_Display'] text-xl font-bold text-coffee-950">Aroma</span>
+        <button id="closeMenu" class="p-2 text-coffee-950 hover:text-coffee-600 transition-colors">
+          <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+      </div>
+      <div class="flex flex-col p-6 gap-1">
+        <a href="#services" class="mobile-link text-coffee-800 hover:text-coffee-500 hover:bg-coffee-100 py-3 px-4 rounded-lg font-medium transition-all">Servicios</a>
+        <a href="#testimonial" class="mobile-link text-coffee-800 hover:text-coffee-500 hover:bg-coffee-100 py-3 px-4 rounded-lg font-medium transition-all">Testimonios</a>
+        <a href="#contact" class="mobile-link text-coffee-800 hover:text-coffee-500 hover:bg-coffee-100 py-3 px-4 rounded-lg font-medium transition-all">Contacto</a>
+        <a href="#booking" class="mt-4 bg-coffee-500 hover:bg-coffee-600 text-white text-center py-3 px-4 rounded-full font-medium transition-all">Reservar</a>
+      </div>
+      <div class="mt-auto p-6 border-t border-coffee-200">
+        <p class="text-coffee-600 text-sm"><i class="fa-solid fa-phone mr-2"></i>+7 (999) 123-45-67</p>
+        <p class="text-coffee-600 text-sm mt-2"><i class="fa-solid fa-location-dot mr-2"></i>Av. Principal 123, Centro</p>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Overlay móvil -->
+  <div id="overlay" class="fixed inset-0 bg-black/40 z-40 hidden transition-opacity duration-300"></div>
+
+  <!-- ========== HERO ========== -->
+  <section id="hero" class="relative min-h-screen flex items-center hero-grain overflow-hidden">
+    <!-- Imagen de fondo -->
+    <div class="absolute inset-0">
+      <img src="http://static.photos/coffee/1200x630/77" alt="" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-gradient-to-r from-coffee-950/85 via-coffee-900/70 to-coffee-800/50"></div>
+    </div>
+
+    <!-- Círculos decorativos -->
+    <div class="absolute top-20 right-10 w-64 h-64 bg-coffee-400/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-20 left-10 w-48 h-48 bg-coffee-300/10 rounded-full blur-3xl"></div>
+
+    <!-- Contenido -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-0 w-full">
+      <div class="max-w-2xl">
+        <!-- Animación de vapor -->
+        <div class="flex gap-2 mb-6 ml-2">
+          <div class="steam-line w-0.5 h-8 bg-coffee-300/50 rounded-full"></div>
+          <div class="steam-line w-0.5 h-6 bg-coffee-300/40 rounded-full"></div>
+          <div class="steam-line w-0.5 h-10 bg-coffee-300/30 rounded-full"></div>
+        </div>
+
+        <p class="text-coffee-300 font-medium tracking-[0.25em] uppercase text-xs md:text-sm mb-4 fade-in-up">Cafetería en el corazón de la ciudad</p>
+
+        <h1 class="font-['Playfair_Display'] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 fade-in-up">
+          Empieza el día<br>
+          <span class="text-coffee-400">con verdadero</span><br>
+          café
+        </h1>
+
+        <p class="text-coffee-200/80 text-base md:text-lg leading-relaxed mb-10 max-w-lg fade-in-up">
+          Cada taza en "Aroma" es un pequeño viaje. Tostamos el grano nosotros mismos, lo preparamos con alma y creamos un lugar al que siempre quieres volver.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 fade-in-up">
+          <a href="#booking" class="btn-pulse inline-flex items-center justify-center gap-2 bg-coffee-500 hover:bg-coffee-400 text-white px-8 py-4 rounded-full font-semibold text-base transition-all duration-300 hover:shadow-xl hover:shadow-coffee-500/25">
+            <i class="fa-solid fa-calendar-check text-sm"></i>
+            Reservar mesa
+          </a>
+          <a href="#services" class="inline-flex items-center justify-center gap-2 border-2 border-coffee-300/40 text-coffee-100 hover:bg-white/10 px-8 py-4 rounded-full font-medium text-base transition-all duration-300">
+            Conoce más
+            <i class="fa-solid fa-arrow-down text-sm"></i>
+          </a>
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="flex gap-8 mt-14 fade-in-up">
+          <div>
+            <p class="text-3xl md:text-4xl font-['Playfair_Display'] font-bold text-white">12+</p>
+            <p class="text-coffee-300/70 text-sm mt-1">años de historia</p>
+          </div>
+          <div class="w-px bg-coffee-300/20"></div>
+          <div>
+            <p class="text-3xl md:text-4xl font-['Playfair_Display'] font-bold text-white">50+</p>
+            <p class="text-coffee-300/70 text-sm mt-1">variedades de café</p>
+          </div>
+          <div class="w-px bg-coffee-300/20"></div>
+          <div>
+            <p class="text-3xl md:text-4xl font-['Playfair_Display'] font-bold text-white">8k+</p>
+            <p class="text-coffee-300/70 text-sm mt-1">clientes al mes</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Indicador de scroll -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator">
+      <div class="w-6 h-10 border-2 border-coffee-300/40 rounded-full flex justify-center pt-2">
+        <div class="w-1 h-2.5 bg-coffee-300/60 rounded-full"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICIOS ========== -->
+  <section id="services" class="py-20 md:py-28 bg-coffee-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Encabezado -->
+      <div class="text-center mb-14 md:mb-20 reveal">
+        <p class="text-coffee-500 font-medium tracking-[0.2em] uppercase text-xs md:text-sm mb-3">Nuestros servicios</p>
+        <h2 class="font-['Playfair_Display'] text-3xl md:text-4xl lg:text-5xl font-bold text-coffee-950 mb-4">Qué ofrecemos</h2>
+        <div class="w-16 h-1 bg-coffee-400 mx-auto rounded-full"></div>
+      </div>
+
+      <!-- Tarjetas -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+
+        <!-- Tarjeta 1 -->
+        <div class="service-card bg-white rounded-2xl p-8 md:p-10 border border-coffee-100 group reveal">
+          <div class="w-16 h-16 bg-coffee-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-coffee-500 transition-colors duration-300">
+            <i class="fa-solid fa-mug-saucer text-coffee-600 text-2xl group-hover:text-white transition-colors duration-300"></i>
+          </div>
+          <h3 class="font-['Playfair_Display'] text-xl md:text-2xl font-bold text-coffee-950 mb-3">Café de autor</h3>
+          <p class="text-coffee-700 leading-relaxed">
+            Tostamos el grano en nuestro propio tostadero — desde Etiopía hasta Colombia. Cada variedad la revelamos para que sientas frutas, chocolate o flores. No es el café de máquina.
+          </p>
+          <div class="mt-6 flex items-center gap-2 text-coffee-500 font-medium text-sm group-hover:gap-3 transition-all duration-300">
+            <span>Más información</span>
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </div>
+        </div>
+
+        <!-- Tarjeta 2 -->
+        <div class="service-card bg-white rounded-2xl p-8 md:p-10 border border-coffee-100 group reveal">
+          <div class="w-16 h-16 bg-coffee-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-coffee-500 transition-colors duration-300">
+            <i class="fa-solid fa-cake-candles text-coffee-600 text-2xl group-hover:text-white transition-colors duration-300"></i>
+          </div>
+          <h3 class="font-['Playfair_Display'] text-xl md:text-2xl font-bold text-coffee-950 mb-3">Repostería casera</h3>
+          <p class="text-coffee-700 leading-relaxed">
+            Croissants que se deshacen en la boca. Cheesecakes de los que no puedes dejar de comer. Todo horneado por la mañana, caliente para tu primer espresso. Recetas probadas por años, sin industrializados.
+          </p>
+          <div class="mt-6 flex items-center gap-2 text-coffee-500 font-medium text-sm group-hover:gap-3 transition-all duration-300">
+            <span>Más información</span>
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </div>
+        </div>
+
+        <!-- Tarjeta 3 -->
+        <div class="service-card bg-white rounded-2xl p-8 md:p-10 border border-coffee-100 group reveal">
+          <div class="w-16 h-16 bg-coffee-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-coffee-500 transition-colors duration-300">
+            <i class="fa-solid fa-wifi text-coffee-600 text-2xl group-hover:text-white transition-colors duration-300"></i>
+          </div>
+          <h3 class="font-['Playfair_Display'] text-xl md:text-2xl font-bold text-coffee-950 mb-3">Zona de coworking</h3>
+          <p class="text-coffee-700 leading-relaxed">
+            Espacio tranquilo con buen Wi-Fi y enchufes en cada mesa. Trabaja con tu portátil sin molestar. De día — para freelancers, de noche — para encuentros. Café ilimitado.
+          </p>
+          <div class="mt-6 flex items-center gap-2 text-coffee-500 font-medium text-sm group-hover:gap-3 transition-all duration-300">
+            <span>Más información</span>
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIO ========== -->
+  <section id="testimonial" class="py-20 md:py-28 bg-coffee-950 relative overflow-hidden">
+    <!-- Elementos decorativos -->
+    <div class="absolute top-0 left-0 w-80 h-80 bg-coffee-600/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-coffee-500/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center mb-14 reveal">
+        <p class="text-coffee-400 font-medium tracking-[0.2em] uppercase text-xs md:text-sm mb-3">Testimonios de clientes</p>
+        <h2 class="font-['Playfair_Display'] text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">Lo que dicen de nosotros</h2>
+        <div class="w-16 h-1 bg-coffee-500 mx-auto rounded-full"></div>
+      </div>
+
+      <div class="max-w-3xl mx-auto reveal">
+        <div class="relative bg-coffee-900/50 backdrop-blur-sm border border-coffee-700/30 rounded-3xl p-8 md:p-12">
+          <!-- Icono de comillas -->
+          <div class="absolute -top-5 left-8 md:left-12 w-10 h-10 bg-coffee-500 rounded-full flex items-center justify-center">
+            <i class="fa-solid fa-quote-left text-white text-sm"></i>
+          </div>
+
+          <div class="flex flex-col md:flex-row gap-8 items-center">
+            <!-- Foto -->
+            <div class="flex-shrink-0">
+              <div class="w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-4 border-coffee-500/30 shadow-lg">
+                <img src="http://static.photos/people/200x200/42" alt="Ana Pérez" class="w-full h-full object-cover">
+              </div>
+            </div>
+
+            <!-- Contenido -->
+            <div class="text-center md:text-left">
+              <p class="text-coffee-100 text-lg md:text-xl leading-relaxed mb-6 italic">
+                «Vengo aquí cada mañana desde hace tres años. Para mí, "Aroma" no es solo café, es un ritual. El capuchino siempre es excelente, los croissants están calientes y el ambiente es como estar en casa, pero más bonito. Y lo mejor — no es pretencioso, es genuinamente acogedor.»
+              </p>
+
+              <div>
+                <p class="font-['Playfair_Display'] font-bold text-white text-lg">Ana Pérez</p>
+                <p class="text-coffee-400 text-sm mt-1">periodista, clienta habitual</p>
+              </div>
+
+              <!-- Estrellas -->
+              <div class="flex gap-1 mt-3 justify-center md:justify-start">
+                <i class="fa-solid fa-star text-coffee-400 text-sm"></i>
+                <i class="fa-solid fa-star text-coffee-400 text-sm"></i>
+                <i class="fa-solid fa-star text-coffee-400 text-sm"></i>
+                <i class="fa-solid fa-star text-coffee-400 text-sm"></i>
+                <i class="fa-solid fa-star text-coffee-400 text-sm"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FORMULARIO DE CONTACTO ========== -->
+  <section id="contact" class="py-20 md:py-28 bg-coffee-50 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+
+        <!-- Izquierda: Info -->
+        <div class="reveal">
+          <p class="text-coffee-500 font-medium tracking-[0.2em] uppercase text-xs md:text-sm mb-3">Contáctanos</p>
+          <h2 class="font-['Playfair_Display'] text-3xl md:text-4xl lg:text-5xl font-bold text-coffee-950 mb-6">Escríbenos — <br>siempre estamos aquí</h2>
+          <p class="text-coffee-700 leading-relaxed mb-10 max-w-lg">
+            ¿Tienes una pregunta, sugerencia o quieres reservar una mesa con antelación? Completa el formulario y te llamaremos en una hora en horario laboral. O llámanos directamente.
+          </p>
+
+          <!-- Detalles de contacto -->
+          <div class="space-y-5">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-coffee-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <i class="fa-solid fa-location-dot text-coffee-600"></i>
+              </div>
+              <div>
+                <p class="font-medium text-coffee-950">Dirección</p>
+                <p class="text-coffee-600 text-sm">Av. Principal 123, Centro</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-coffee-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <i class="fa-solid fa-phone text-coffee-600"></i>
+              </div>
+              <div>
+                <p class="font-medium text-coffee-950">Teléfono</p>
+                <p class="text-coffee-600 text-sm">+7 (999) 123-45-67</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-coffee-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <i class="fa-solid fa-clock text-coffee-600"></i>
+              </div>
+              <div>
+                <p class="font-medium text-coffee-950">Horario</p>
+                <p class="text-coffee-600 text-sm">Lun—Vie: 7:00—22:00 · Sáb—Dom: 8:00—23:00</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Imagen -->
+          <div class="mt-10 rounded-2xl overflow-hidden shadow-lg hidden lg:block">
+            <img src="http://static.photos/coffee/640x360/33" alt="Interior de la cafetería Aroma" class="w-full h-52 object-cover">
+          </div>
+        </div>
+
+        <!-- Derecha: Formulario -->
+        <div class="reveal">
+          <div class="bg-white rounded-3xl p-7 md:p-10 shadow-lg border border-coffee-100">
+            <h3 id="booking" class="font-['Playfair_Display'] text-2xl font-bold text-coffee-950 mb-2">Reservar una mesa</h3>
+            <p class="text-coffee-600 text-sm mb-8">Completa el formulario y confirmaremos tu reserva</p>
+
+            <form id="contactForm" class="space-y-5" novalidate>
+              <!-- Nombre -->
+              <div>
+                <label for="name" class="block text-sm font-medium text-coffee-800 mb-1.5">Tu nombre</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Ej: Carlos"
+                  required
+                  class="w-full px-4 py-3 bg-coffee-50 border border-coffee-200 rounded-xl text-coffee-950 placeholder:text-coffee-400 transition-all duration-300 text-sm"
+                >
+                <p class="error-msg text-red-500 text-xs mt-1 hidden">Por favor, ingresa tu nombre</p>
+              </div>
+
+              <!-- Teléfono -->
+              <div>
+                <label for="phone" class="block text-sm font-medium text-coffee-800 mb-1.5">Teléfono</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder="+7 (___) ___-__-__"
+                  required
+                  class="w-full px-4 py-3 bg-coffee-50 border border-coffee-200 rounded-xl text-coffee-950 placeholder:text-coffee-400 transition-all duration-300 text-sm"
+                >
+                <p class="error-msg text-red-500 text-xs mt-1 hidden">Por favor, ingresa un número de teléfono válido</p>
+              </div>
+
+              <!-- Mensaje -->
+              <div>
+                <label for="message" class="block text-sm font-medium text-coffee-800 mb-1.5">Mensaje</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  placeholder="Ej: necesito una mesa para dos el sábado por la noche"
+                  class="w-full px-4 py-3 bg-coffee-50 border border-coffee-200 rounded-xl text-coffee-950 placeholder:text-coffee-400 transition-all duration-300 resize-none text-sm"
+                ></textarea>
+              </div>
+
+              <!-- Enviar -->
+              <button
+                type="submit"
+                class="w-full bg-coffee-500 hover:bg-coffee-600 text-white py-3.5 rounded-xl font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:shadow-coffee-500/25 flex items-center justify-center gap-2"
+              >
+                <i class="fa-solid fa-paper-plane text-xs"></i>
+                Enviar
+              </button>
+            </form>
+
+            <!-- Mensaje de éxito -->
+            <div id="successMsg" class="hidden text-center py-8">
+              <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fa-solid fa-check text-green-600 text-2xl"></i>
+              </div>
+              <h4 class="font-['Playfair_Display'] text-xl font-bold text-coffee-950 mb-2">¡Gracias!</h4>
+              <p class="text-coffee-600 text-sm">Te llamaremos en breve</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PIE DE PÁGINA ========== -->
+  <footer class="bg-coffee-950 pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+
+        <!-- Columna 1: Marca -->
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <i class="fa-solid fa-mug-hot text-coffee-400 text-2xl"></i>
+            <span class="font-['Playfair_Display'] text-2xl font-bold text-white">Aroma</span>
+          </div>
+          <p class="text-coffee-400 text-sm leading-relaxed max-w-xs">
+            Cafetería en el centro, donde cada taza es como un pequeño viaje. Trabajamos desde 2012 y no tenemos planes de parar.
+          </p>
+        </div>
+
+        <!-- Columna 2: Contacto -->
+        <div>
+          <h4 class="font-['Playfair_Display'] font-bold text-white text-lg mb-4">Contacto</h4>
+          <div class="space-y-3">
+            <a href="tel:79991234567" class="flex items-center gap-3 text-coffee-400 hover:text-coffee-200 text-sm transition-colors">
+              <i class="fa-solid fa-phone text-xs"></i>
+              <span>+7 (999) 123-45-67</span>
+            </a>
+            <div class="flex items-center gap-3 text-coffee-400 text-sm">
+              <i class="fa-solid fa-location-dot text-xs"></i>
+              <span>Av. Principal 123, Centro</span>
+            </div>
+            <div class="flex items-center gap-3 text-coffee-400 text-sm">
+              <i class="fa-solid fa-envelope text-xs"></i>
+              <span>hola@aroma.com</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Columna 3: Redes Sociales -->
+        <div>
+          <h4 class="font-['Playfair_Display'] font-bold text-white text-lg mb-4">Redes Sociales</h4>
+          <p class="text-coffee-400 text-sm mb-4">Síguenos — hay promociones, nuevas recetas y la vida de la cafetería</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 bg-coffee-800 hover:bg-coffee-500 rounded-xl flex items-center justify-center transition-all duration-300 group">
+              <i class="fa-brands fa-vk text-coffee-400 group-hover:text-white transition-colors"></i>
+            </a>
+            <a href="#" class="w-10 h-10 bg-coffee-800 hover:bg-coffee-500 rounded-xl flex items-center justify-center transition-all duration-300 group">
+              <i class="fa-brands fa-telegram text-coffee-400 group-hover:text-white transition-colors"></i>
+            </a>
+            <a href="#" class="w-10 h-10 bg-coffee-800 hover:bg-coffee-500 rounded-xl flex items-center justify-center transition-all duration-300 group">
+              <i class="fa-brands fa-instagram text-coffee-400 group-hover:text-white transition-colors"></i>
+            </a>
+            <a href="#" class="w-10 h-10 bg-coffee-800 hover:bg-coffee-500 rounded-xl flex items-center justify-center transition-all duration-300 group">
+              <i class="fa-brands fa-youtube text-coffee-400 group-hover:text-white transition-colors"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Divisor -->
+      <div class="border-t border-coffee-800/50 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-coffee-500 text-xs">© 2024 Aroma. Todos los derechos reservados.</p>
+        <p class="text-coffee-600 text-xs">Hecho con <i class="fa-solid fa-heart text-coffee-500 text-xs"></i> en la ciudad</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script>
+    // ---- Menú móvil ----
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeMenu = document.getElementById('closeMenu');
+    const overlay = document.getElementById('overlay');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    function openMenu() {
+      mobileMenu.classList.add('open');
+      overlay.classList.remove('hidden');
+      hamburgerBtn.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenuFn() {
+      mobileMenu.classList.remove('open');
+      overlay.classList.add('hidden');
+      hamburgerBtn.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    hamburgerBtn.addEventListener('click', openMenu);
+    closeMenu.addEventListener('click', closeMenuFn);
+    overlay.addEventListener('click', closeMenuFn);
+    mobileLinks.forEach(link => link.addEventListener('click', closeMenuFn));
+
+    // ---- Efecto de scroll en navbar ----
+    const navbar = document.getElementById('navbar');
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+
+      if (currentScroll > 80) {
+        navbar.style.background = 'rgba(253, 248, 240, 0.95)';
+        navbar.style.backdropFilter = 'blur(12px)';
+        navbar.style.boxShadow = '0 1px 12px rgba(51, 26, 12, 0.08)';
+      } else {
+        navbar.style.background = 'transparent';
+        navbar.style.backdropFilter = 'none';
+        navbar.style.boxShadow = 'none';
+      }
+    });
+
+    // ---- Animación al hacer scroll ----
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // ---- Máscara de teléfono ----
+    const phoneInput = document.getElementById('phone');
+
+    phoneInput.addEventListener('input', (e) => {
+      let value = e.target.value.replace(/\D/g, '');
+
+      if (value.startsWith('7') || value.startsWith('8')) {
+        value = value.substring(1);
+      }
+
+      let formatted = '+7';
+      if (value.length > 0) formatted += ' (' + value.substring(0, 3);
+      if (value.length >= 3) formatted += ') ' + value.substring(3, 6);
+      if (value.length >= 6) formatted += '-' + value.substring(6, 8);
+      if (value.length >= 8) formatted += '-' + value.substring(8, 10);
+
+      e.target.value = value.length > 0 ? formatted : '';
+    });
+
+    // ---- Envío del formulario ----
+    const contactForm = document.getElementById('contactForm');
+    const successMsg = document.getElementById('successMsg');
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('name');
+      const phone = document.getElementById('phone');
+      const errorMsgs = contactForm.querySelectorAll('.error-msg');
+      let isValid = true;
+
+      // Resetear errores
+      errorMsgs.forEach(msg => msg.classList.add('hidden'));
+      [name, phone].forEach(input => input.style.borderColor = '');
+
+      // Validar nombre
+      if (!name.value.trim()) {
+        name.nextElementSibling.classList.remove('hidden');
+        name.style.borderColor = '#ef4444';
+        isValid = false;
+      }
+
+      // Validar teléfono
+      const phoneDigits = phone.value.replace(/\D/g, '');
+      if (phoneDigits.length < 11) {
+        phone.nextElementSibling.classList.remove('hidden');
+        phone.style.borderColor = '#ef4444';
+        isValid = false;
+      }
+
+      if (isValid) {
+        contactForm.style.opacity = '0';
+        contactForm.style.transform = 'scale(0.95)';
+        contactForm.style.transition = 'all 0.3s ease';
+
+        setTimeout(() => {
+          contactForm.classList.add('hidden');
+          successMsg.classList.remove('hidden');
+          successMsg.style.opacity = '0';
+          successMsg.style.transform = 'scale(0.95)';
+
+          requestAnimationFrame(() => {
+            successMsg.style.transition = 'all 0.4s ease';
+            successMsg.style.opacity = '1';
+            successMsg.style.transform = 'scale(1)';
+          });
+        }, 300);
+      }
+    });
+
+    // ---- Scroll suave para enlaces de ancla ----
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+
+        // Ignorar enlaces vacíos o que solo tengan "#"
+        if (href === '#' || href === '' || href.length < 2) return;
+        
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
