@@ -1,556 +1,943 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>
-    Agustín Peña — Soluciones Web Para Pequeños Negocios
-  </title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agustín Peña — Soluciones Web Para Pequeños Negocios</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#0ea5e9',
-            accent: '#38bdf8',
-            dark: {
-              900: '#0a0e1a',
-              800: '#0f1629',
-              700: '#151d35',
-              600: '#1c2744',
-              500: '#243052',
-            }
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#0ea5e9",
+              accent: "#38bdf8",
+              dark: {
+                900: "#0a0e1a",
+                800: "#0f1629",
+                700: "#151d35",
+                600: "#1c2744",
+                500: "#243052",
+              },
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
           },
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
-          }
-        }
-      }
-    }
-  </script>
-  <!-- <style></style> -->
-  <link rel="stylesheet" href="css/style.css">
-
-</head>
-<body class="grid-bg">
-
-  <!-- ==================== NAVIGATION ==================== -->
-  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 lg:h-20">
-        <!-- Logo -->
-        <a href="#hero" class="flex items-center gap-2 group">
-          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-dark-900 font-bold text-lg group-hover:shadow-lg group-hover:shadow-primary/30 transition-shadow">
-            &lt;/&gt;
-          </div>
-          <span class="text-xl font-bold tracking-tight">Agustín<span class="text-primary">Peña</span></span>
-        </a>
-
-        <!-- Desktop Navigation -->
-        <div class="hidden lg:flex items-center gap-8">
-          <a href="#services" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Servicios</a>
-          <a href="#about" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Sobre Mí</a>
-          <a href="#process" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Proceso</a>
-          <a href="#portfolio" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Portafolio</a>
-          <a href="#pricing" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Precios</a>
-          <a href="#faq" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Preguntas Frecuentes</a>
-          <a href="#contact" class="inline-flex items-center gap-2 px-5 py-2.5 bg-primary hover:bg-accent text-dark-900 font-semibold rounded-lg transition-all hover:shadow-lg hover:shadow-primary/30 text-sm">
-            Contacto
-            <i class="fas fa-arrow-right"></i>
+        },
+      };
+    </script>
+    <!-- <style></style> -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="grid-bg">
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav
+      id="navbar"
+      class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16 lg:h-20">
+          <!-- Logo -->
+          <a href="#hero" class="flex items-center gap-2 group">
+            <div
+              class="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-dark-900 font-bold text-lg group-hover:shadow-lg group-hover:shadow-primary/30 transition-shadow"
+            >
+              &lt;/&gt;
+            </div>
+            <span class="text-xl font-bold tracking-tight"
+              >Agustín<span class="text-primary">Peña</span></span
+            >
           </a>
-        </div>
 
-        <!-- Mobile Menu Button -->
-        <button id="menu-btn" class="lg:hidden text-gray-300 hover:text-white p-2" aria-label="Open menu">
-          <i class="fas fa-bars"></i>
-        </button>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Mobile Menu Overlay -->
-  <div id="menu-overlay" class="fixed inset-0 bg-dark-900/80 backdrop-blur-sm z-50 hidden" onclick="closeMobileMenu()"></div>
-
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 bottom-0 w-72 bg-dark-800 z-50 shadow-2xl">
-    <div class="flex items-center justify-between p-4 border-b border-dark-600">
-      <div class="flex items-center gap-2">
-        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-dark-900 font-bold text-sm">&lt;/&gt;</div>
-        <span class="text-lg font-bold">Agustín<span class="text-primary">Peña</span></span>
-      </div>
-      <button onclick="closeMobileMenu()" class="text-gray-400 hover:text-white p-1" aria-label="Close menu">
-        <i class="fas fa-times"></i>
-      </button>
-    </div>
-    <div class="p-4 flex flex-col gap-1">
-      <a href="#services" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-dark-600 transition-all">
-        <i class="fas fa-th-large text-primary"></i> Servicios
-      </a>
-      <a href="#about" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-dark-600 transition-all">
-        <i class="fas fa-user text-primary"></i> Sobre Mí
-      </a>
-      <a href="#process" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-dark-600 transition-all">
-        <i class="fas fa-code-branch text-primary"></i> Proceso
-      </a>
-      <a href="#portfolio" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-dark-600 transition-all">
-        <i class="fas fa-folder-open text-primary"></i> Portafolio
-      </a>
-      <a href="#pricing" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-dark-600 transition-all">
-        <i class="fas fa-tag text-primary"></i> Precios
-      </a>
-      <a href="#faq" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-dark-600 transition-all">
-        <i class="fas fa-question-circle text-primary"></i> Preguntas Frecuentes
-      </a>
-      <div class="mt-4 pt-4 border-t border-dark-600">
-        <a href="#contact" onclick="closeMobileMenu()" class="flex items-center justify-center gap-2 px-5 py-3 bg-primary hover:bg-accent text-dark-900 font-semibold rounded-lg transition-all w-full">
-          Contacto <i class="fas fa-arrow-right"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== HERO SECTION ==================== -->
-  <section id="hero" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
-    <!-- Background orbs -->
-    <div class="hero-orb w-96 h-96 bg-primary top-20 -left-48 float-anim"></div>
-    <div class="hero-orb w-72 h-72 bg-accent top-40 right-10 float-anim-delay"></div>
-    <div class="hero-orb w-64 h-64 bg-cyan-400 bottom-20 left-1/3 float-anim-delay2"></div>
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
-        <!-- Left: Text -->
-        <div class="fade-in">
-          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6 text-sm">
-            <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-            <span class="text-gray-300">Disponible para nuevos proyectos</span>
-          </div>
-
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            Construyo <br> sitios web<br>
-            <span class="gradient-text">que hacen crecer<br>a su negocio</span>
-          </h1>
-
-          <p class="text-lg text-gray-400 mb-8 max-w-xl leading-relaxed">
-            Soluciones web profesionales y rápidas adaptadas especialmente para pequeños negocios. Desde landing pages hasta sitios web completos — llevemos su negocio a la red para que prospere.
-          </p>
-
-          <div class="flex flex-col sm:flex-row gap-4 mb-12">
-            <a href="#contact" class="btn-primary inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-accent text-dark-900 font-bold rounded-xl text-lg hover:shadow-lg hover:shadow-primary/30 transition-all">
-              Empecemos Su Proyecto
+          <!-- Desktop Navigation -->
+          <div class="hidden lg:flex items-center gap-8">
+            <a
+              href="#services"
+              class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors"
+              >Servicios</a
+            >
+            <a
+              href="#about"
+              class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors"
+              >Sobre Mí</a
+            >
+            <a
+              href="#process"
+              class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors"
+              >Proceso</a
+            >
+            <a
+              href="#portfolio"
+              class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors"
+              >Portafolio</a
+            >
+            <a
+              href="#pricing"
+              class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors"
+              >Precios</a
+            >
+            <a
+              href="#faq"
+              class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors"
+              >Preguntas Frecuentes</a
+            >
+            <a
+              href="#contact"
+              class="inline-flex items-center gap-2 px-5 py-2.5 bg-primary hover:bg-accent text-dark-900 font-semibold rounded-lg transition-all hover:shadow-lg hover:shadow-primary/30 text-sm"
+            >
+              Contacto
               <i class="fas fa-arrow-right"></i>
             </a>
-            <a href="#portfolio" class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-dark-500 hover:border-primary/50 text-gray-300 hover:text-white rounded-xl transition-all hover:bg-dark-700">
-              <i class="fas fa-eye"></i>
-              Ver Mi Trabajo
-            </a>
           </div>
 
-          <!-- Stats -->
-          <div class="flex flex-wrap gap-8 sm:gap-12">
-            <div>
-              <div class="text-3xl font-bold text-white stat-number" data-target="50">0</div>
-              <div class="text-sm text-gray-500 mt-1">Proyectos Completados</div>
-            </div>
-            <div>
-              <div class="text-3xl font-bold text-white stat-number" data-target="100">0</div>
-              <div class="text-sm text-gray-500 mt-1 flex items-center gap-1">% Satisfacción</div>
-            </div>
-            <div>
-              <div class="text-3xl font-bold text-white stat-number" data-target="5">0</div>
-              <div class="text-sm text-gray-500 mt-1">Años de Experiencia</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right: Code visual -->
-        <div class="hidden lg:block fade-in">
-          <div class="relative">
-            <!-- Floating code window -->
-            <div class="glass rounded-2xl p-6 glow-blue float-anim">
-              <div class="flex items-center gap-2 mb-4">
-                <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                <span class="ml-2 text-xs text-gray-500 font-mono">index.html</span>
-              </div>
-              <div class="code-block p-4 text-sm leading-relaxed overflow-hidden">
-                <div><span class="text-gray-500">&lt;</span><span class="text-pink-400">div</span> <span class="text-yellow-300">class</span><span class="text-gray-500">=</span><span class="text-green-400">"business"</span><span class="text-gray-500">&gt;</span></div>
-                <div class="ml-4"><span class="text-gray-500">&lt;</span><span class="text-pink-400">h1</span><span class="text-gray-500">&gt;</span><span class="text-white">Your Brand Online</span><span class="text-gray-500">&lt;/</span><span class="text-pink-400">h1</span><span class="text-gray-500">&gt;</span></div>
-                <div class="ml-4"><span class="text-gray-500">&lt;</span><span class="text-pink-400">p</span><span class="text-gray-500">&gt;</span><span class="text-cyan-300">Beautiful & Fast</span><span class="text-gray-500">&lt;/</span><span class="text-pink-400">p</span><span class="text-gray-500">&gt;</span></div>
-                <div><span class="text-gray-500">&lt;/</span><span class="text-pink-400">div</span><span class="text-gray-500">&gt;</span></div>
-                <div class="mt-2"><span class="text-gray-500">✓</span> <span class="text-gray-400">Responsive Design</span></div>
-                <div><span class="text-gray-500">✓</span> <span class="text-gray-400">SEO Optimized</span></div>
-                <div><span class="text-gray-500">✓</span> <span class="text-gray-400">Lightning Fast</span></div>
-                <div><span class="text-primary typing-cursor">→ deployed</span></div>
-              </div>
-            </div>
-
-            <!-- Floating badges -->
-            <div class="absolute -top-4 -right-4 glass rounded-xl px-4 py-2 flex items-center gap-2 text-sm float-anim-delay">
-              <i class="fas fa-bolt text-yellow-400"></i>
-              <span class="font-medium">Entrega Rápida</span>
-            </div>
-            <div class="absolute -bottom-4 -left-4 glass rounded-xl px-4 py-2 flex items-center gap-2 text-sm float-anim-delay2">
-              <i class="fas fa-shield-alt text-green-400"></i>
-              <span class="font-medium">Seguro & Confiable</span>
-            </div>
-          </div>
+          <!-- Mobile Menu Button -->
+          <button
+            id="menu-btn"
+            class="lg:hidden text-gray-300 hover:text-white p-2"
+            aria-label="Open menu"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
         </div>
       </div>
-    </div>
-  </section>
+    </nav>
 
-  <!-- ==================== SERVICES SECTION ==================== -->
-  <section id="services" class="py-20 lg:py-28">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16 fade-in">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-primary mb-4">
-          <i class="fas fa-th-large"></i> Lo que Ofrezco
+    <!-- Mobile Menu Overlay -->
+    <div
+      id="menu-overlay"
+      class="fixed inset-0 bg-dark-900/80 backdrop-blur-sm z-50 hidden"
+      onclick="closeMobileMenu()"
+    ></div>
+
+    <!-- Mobile Menu -->
+    <div
+      id="mobile-menu"
+      class="mobile-menu fixed top-0 right-0 bottom-0 w-72 bg-dark-800 z-50 shadow-2xl"
+    >
+      <div
+        class="flex items-center justify-between p-4 border-b border-dark-600"
+      >
+        <div class="flex items-center gap-2">
+          <div
+            class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-dark-900 font-bold text-sm"
+          >
+            &lt;/&gt;
+          </div>
+          <span class="text-lg font-bold"
+            >Agustín<span class="text-primary">Peña</span></span
+          >
         </div>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-          Cómo Puedo <span class="gradient-text">Ayudarle</span>
-        </h2>
-        <p class="text-gray-400 max-w-2xl mx-auto text-lg">
-          Todo pequeño negocio merece una fuerte presencia en línea. Así puedo ayudarle a sobresalir.
-        </p>
+        <button
+          onclick="closeMobileMenu()"
+          class="text-gray-400 hover:text-white p-1"
+          aria-label="Close menu"
+        >
+          <i class="fas fa-times"></i>
+        </button>
       </div>
-
-      <div class="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
-        <!-- Servicio 1: Sitio de Presentación -->
-        <div class="glass-card rounded-2xl p-8 fade-in">
-          <div class="w-14 h-14 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-6">
-            <i class="fas fa-file-code text-primary"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-3">Sitio Web de Presentación</h3>
-          <p class="text-gray-400 leading-relaxed mb-4">
-            Un sitio de 3 a 5 páginas (Inicio, Servicios, Contacto, Galería) para que su negocio tenga presencia profesional en línea.
-          </p>
-          <ul class="text-sm text-gray-400 grid grid-cols-2 gap-x-4 gap-y-1 mb-4">
-            <li class="flex items-center gap-2"><i class="fas fa-check text-primary"></i> Diseño a su marca</li>
-            <li class="flex items-center gap-2"><i class="fas fa-check text-primary"></i> 100% responsivo</li>
-            <li class="flex items-center gap-2"><i class="fas fa-check text-primary"></i> Formulario de contacto</li>
-            <li class="flex items-center gap-2"><i class="fas fa-check text-primary"></i> Entrega en 5–7 días</li>
-          </ul>
-        </div>
-
-        <!-- Servicio 2: Landing Page -->
-        <div class="glass-card rounded-2xl p-8 fade-in">
-          <div class="w-14 h-14 rounded-xl bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center mb-6">
-            <i class="fas fa-rocket text-cyan-400"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-3">Landing Page</h3>
-          <p class="text-gray-400 leading-relaxed mb-4">
-            Una página única diseñada para convertir visitantes en clientes. Perfecta para lanzar un producto, promocionar un servicio o capturar leads.
-          </p>
-          <ul class="text-sm text-gray-400 grid grid-cols-2 gap-x-4 gap-y-1 mb-4">
-            <li class="flex items-center gap-2"><i class="fas fa-check text-primary"></i> Diseño conversión</li>
-            <li class="flex items-center gap-2"><i class="fas fa-check text-primary"></i> Formulario de captura</li>
-            <li class="flex items-center gap-2"><i class="fas fa-check text-primary"></i> Botón de llamado acción</li>
-            <li class="flex items-center gap-2"><i class="fas fa-check text-primary"></i> Entrega en 3–5 días</li>
-          </ul>
-        </div>
-
-        <!-- Servicio 3: Adaptación Móvil -->
-        <div class="glass-card rounded-2xl p-8 fade-in">
-          <div class="w-14 h-14 rounded-xl bg-violet-400/10 border border-violet-400/20 flex items-center justify-center mb-6">
-            <i class="fas fa-mobile-alt text-violet-400"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-3">Adaptación a Móviles</h3>
-          <p class="text-gray-400 leading-relaxed mb-4">
-            ¿Su sitio se ve mal en el teléfono? Lo adapto para que funcione y se vea bien en cualquier dispositivo, sin perder su contenido actual.
-          </p>
-          <ul class="text-sm text-gray-400 grid grid-cols-2 gap-x-4 gap-y-1 mb-4">
-            <li class="flex items-center gap-2"><i class="fas fa-check text-primary"></i> Adaptación celular/tablet</li>
-            <li class="flex items-center gap-2"><i class="fas fa-check text-primary"></i> Menú para pantallas táctiles</li>
-            <li class="flex items-center gap-2"><i class="fas fa-check text-primary"></i> Pruebas en dispositivos</li>
-            <li class="flex items-center gap-2"><i class="fas fa-check text-primary"></i> Entrega en 3–5 días</li>
-          </ul>
-        </div>
-
-        <!-- Servicio 4: Rediseño de Sitio -->
-        <div class="glass-card rounded-2xl p-8 fade-in">
-          <div class="w-14 h-14 rounded-xl bg-orange-400/10 border border-orange-400/20 flex items-center justify-center mb-6">
-            <i class="fas fa-palette text-orange-400"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-3">Rediseño de Sitio Web</h3>
-          <p class="text-gray-400 leading-relaxed mb-4">
-            ¿Su sitio se ve viejo o no carga rápido? Reconstruyo su contenido en un diseño moderno, rápido y responsivo. Su negocio gana una imagen actualizada sin perder lo que ya tiene.
-          </p>
-          <ul class="text-sm text-gray-400 grid grid-cols-2 gap-x-4 gap-y-1 mb-4">
-            <li class="flex items-center gap-2"><i class="fas fa-check text-primary"></i> Diseño moderno</li>
-            <li class="flex items-center gap-2"><i class="fas fa-check text-primary"></i> Mejora en velocidad</li>
-            <li class="flex items-center gap-2"><i class="fas fa-check text-primary"></i> Mantengo su contenido</li>
-            <li class="flex items-center gap-2"><i class="fas fa-check text-primary"></i> Entrega en 7–10 días</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== ABOUT SECTION ==================== -->
-  <section id="about" class="py-20 lg:py-28 dot-bg">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <!-- Left: Visual -->
-        <div class="relative fade-in">
-          <div class="glass rounded-2xl p-1 glow-blue">
-            <img src="http://static.photos/workspace/640x360/88" alt="Developer workspace" class="rounded-xl w-full object-cover">
-          </div>
-          <!-- Floating card: Experience -->
-          <div class="absolute -bottom-6 -right-4 sm:-right-6 glass rounded-2xl p-4 glow-blue float-anim-delay">
-            <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
-                <i class="fas fa-code text-primary"></i>
-              </div>
-              <div>
-                <div class="text-2xl font-bold">5+</div>
-                <div class="text-sm text-gray-400">Años programando</div>
-              </div>
-            </div>
-          </div>
-          <!-- Floating card: Projects -->
-          <div class="absolute -top-6 -left-4 sm:-left-6 glass rounded-2xl p-4 glow-blue float-anim">
-            <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-xl bg-green-400/20 flex items-center justify-center">
-                <i class="fas fa-check-circle text-green-400"></i>
-              </div>
-              <div>
-                <div class="text-2xl font-bold">50+</div>
-                <div class="text-sm text-gray-400">Proyectos Hechos</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right: Text -->
-        <div class="fade-in">
-          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-primary mb-4">
-            <i class="fas fa-user"></i> Sobre Mí
-          </div>
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-            Su aliado digital <span class="gradient-text">de confianza</span>
-          </h2>
-          <p class="text-gray-400 text-lg leading-relaxed mb-6">
-            Me llamo Agustín Peña, soy desarrollador web independiente y me encanta ayudar a pequeños negocios a dar el salto al mundo digital. Sin agencias, sin vueltas: comunicación directa y páginas hechas con ganas y dedicación.
-          </p>
-          <p class="text-gray-400 leading-relaxed mb-8">
-            Trabajo con HTML, CSS y JavaScript, y me aseguro de que su sitio se vea perfecto en cualquier dispositivo, se cargue rápido y le dé a sus clientes una experiencia sencilla y agradable.
-          </p>
-
-          <!-- Skills -->
-          <div class="grid grid-cols-2 gap-4 mb-8">
-            <div class="flex items-center gap-3">
-              <i class="fas fa-check text-primary"></i>
-              <span class="text-gray-300">HTML & CSS</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <i class="fas fa-check text-primary"></i>
-              <span class="text-gray-300">JavaScript</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <i class="fas fa-check text-primary"></i>
-              <span class="text-gray-300">Diseño Responsivo</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <i class="fas fa-check text-primary"></i>
-              <span class="text-gray-300">SEO & Rendimiento</span>
-            </div>
-          </div>
-
-          <a href="#contact" class="btn-primary inline-flex items-center gap-2 px-7 py-3.5 bg-primary hover:bg-accent text-dark-900 font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-primary/30">
-            Trabajemos Juntos
-            <i class="fas fa-arrow-right"></i>
+      <div class="p-4 flex flex-col gap-1">
+        <a
+          href="#services"
+          onclick="closeMobileMenu()"
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-dark-600 transition-all"
+        >
+          <i class="fas fa-th-large text-primary"></i> Servicios
+        </a>
+        <a
+          href="#about"
+          onclick="closeMobileMenu()"
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-dark-600 transition-all"
+        >
+          <i class="fas fa-user text-primary"></i> Sobre Mí
+        </a>
+        <a
+          href="#process"
+          onclick="closeMobileMenu()"
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-dark-600 transition-all"
+        >
+          <i class="fas fa-code-branch text-primary"></i> Proceso
+        </a>
+        <a
+          href="#portfolio"
+          onclick="closeMobileMenu()"
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-dark-600 transition-all"
+        >
+          <i class="fas fa-folder-open text-primary"></i> Portafolio
+        </a>
+        <a
+          href="#pricing"
+          onclick="closeMobileMenu()"
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-dark-600 transition-all"
+        >
+          <i class="fas fa-tag text-primary"></i> Precios
+        </a>
+        <a
+          href="#faq"
+          onclick="closeMobileMenu()"
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-dark-600 transition-all"
+        >
+          <i class="fas fa-question-circle text-primary"></i> Preguntas
+          Frecuentes
+        </a>
+        <div class="mt-4 pt-4 border-t border-dark-600">
+          <a
+            href="#contact"
+            onclick="closeMobileMenu()"
+            class="flex items-center justify-center gap-2 px-5 py-3 bg-primary hover:bg-accent text-dark-900 font-semibold rounded-lg transition-all w-full"
+          >
+            Contacto <i class="fas fa-arrow-right"></i>
           </a>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- ==================== PROCESS SECTION ==================== -->
-  <section id="process" class="py-20 lg:py-28">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16 fade-in">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-primary mb-4">
-          <i class="fas fa-code-branch"></i> Procedimiento
-        </div>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-          De la idea al <span class="gradient-text">lanzamiento en 4 pasos</span>
-        </h2>
-        <p class="text-gray-400 max-w-2xl mx-auto text-lg">
-          Un proceso simple y transparente que lo mantiene informado y en control en cada etapa del proyecto.
-        </p>
-      </div>
+    <!-- ==================== HERO SECTION ==================== -->
+    <section
+      id="hero"
+      class="relative min-h-screen flex items-center pt-20 overflow-hidden"
+    >
+      <!-- Background orbs -->
+      <div
+        class="hero-orb w-96 h-96 bg-primary top-20 -left-48 float-anim"
+      ></div>
+      <div
+        class="hero-orb w-72 h-72 bg-accent top-40 right-10 float-anim-delay"
+      ></div>
+      <div
+        class="hero-orb w-64 h-64 bg-cyan-400 bottom-20 left-1/3 float-anim-delay2"
+      ></div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <!-- Step 1 -->
-        <div class="relative fade-in">
-          <div class="glass-card rounded-2xl p-8 text-center relative h-full">
-            <div class="w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto mb-6 relative">
-              <i class="fas fa-comments text-primary"></i>
-              <span class="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-primary text-dark-900 text-xs font-bold flex items-center justify-center">1</span>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <!-- Left: Text -->
+          <div class="fade-in">
+            <div
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6 text-sm"
+            >
+              <span
+                class="w-2 h-2 rounded-full bg-green-400 animate-pulse"
+              ></span>
+              <span class="text-gray-300"
+                >Disponible para nuevos proyectos</span
+              >
             </div>
-            <h3 class="text-xl font-bold mb-3">Lo primero es conocernos</h3>
-            <p class="text-gray-400 text-sm leading-relaxed">
-              Hablamos de su negocio, sus objetivos, el público a quien va dirigido y lo que necesita lograr su sitio web.
+
+            <h1
+              class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6"
+            >
+              Construyo <br />
+              sitios web<br />
+              <span class="gradient-text"
+                >que hacen crecer<br />a su negocio</span
+              >
+            </h1>
+
+            <p class="text-lg text-gray-400 mb-8 max-w-xl leading-relaxed">
+              Soluciones web profesionales y rápidas adaptadas especialmente
+              para pequeños negocios. Desde landing pages hasta sitios web
+              completos — llevemos su negocio a la red para que prospere.
             </p>
-          </div>
-          <div class="hidden lg:block absolute top-1/2 -right-4 text-dark-500">
-            <i class="fas fa-arrow-right"></i>
-          </div>
-        </div>
 
-        <!-- Step 2 -->
-        <div class="relative fade-in">
-          <div class="glass-card rounded-2xl p-8 text-center h-full">
-            <div class="w-16 h-16 rounded-2xl bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center mx-auto mb-6 relative">
-              <i class="fas fa-pencil-ruler text-cyan-400"></i>
-              <span class="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-cyan-400 text-dark-900 text-xs font-bold flex items-center justify-center">2</span>
+            <div class="flex flex-col sm:flex-row gap-4 mb-12">
+              <a
+                href="#contact"
+                class="btn-primary inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-accent text-dark-900 font-bold rounded-xl text-lg hover:shadow-lg hover:shadow-primary/30 transition-all"
+              >
+                Empecemos Su Proyecto
+                <i class="fas fa-arrow-right"></i>
+              </a>
+              <a
+                href="#portfolio"
+                class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-dark-500 hover:border-primary/50 text-gray-300 hover:text-white rounded-xl transition-all hover:bg-dark-700"
+              >
+                <i class="fas fa-eye"></i>
+                Ver Mi Trabajo
+              </a>
             </div>
-            <h3 class="text-xl font-bold mb-3">Diseño & Prototipo</h3>
-            <p class="text-gray-400 text-sm leading-relaxed">
-              Diseño una maqueta a medida para su marca, la revisamos juntos y la ajustamos hasta que quede perfecta.
-            </p>
-          </div>
-          <div class="hidden lg:block absolute top-1/2 -right-4 text-dark-500">
-            <i class="fas fa-arrow-right"></i>
-          </div>
-        </div>
 
-        <!-- Step 3 -->
-        <div class="relative fade-in">
-          <div class="glass-card rounded-2xl p-8 text-center h-full">
-            <div class="w-16 h-16 rounded-2xl bg-violet-400/10 border border-violet-400/20 flex items-center justify-center mx-auto mb-6 relative">
-              <i class="fas fa-code text-violet-400"></i>
-              <span class="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-violet-400 text-dark-900 text-xs font-bold flex items-center justify-center">3</span>
-            </div>
-            <h3 class="text-xl font-bold mb-3">Desarrollo</h3>
-            <p class="text-gray-400 text-sm leading-relaxed">
-              Desarrollo su web con código limpio y rápido, y le mantengo al tanto del progreso en todo momento.
-            </p>
-          </div>
-          <div class="hidden lg:block absolute top-1/2 -right-4 text-dark-500">
-            <i class="fas fa-arrow-right"></i>
-          </div>
-        </div>
-
-        <!-- Step 4 -->
-        <div class="relative fade-in">
-          <div class="glass-card rounded-2xl p-8 text-center h-full">
-            <div class="w-16 h-16 rounded-2xl bg-green-400/10 border border-green-400/20 flex items-center justify-center mx-auto mb-6 relative">
-              <i class="fas fa-rocket text-green-400"></i>
-              <span class="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-green-400 text-dark-900 text-xs font-bold flex items-center justify-center">4</span>
-            </div>
-            <h3 class="text-xl font-bold mb-3">Lanzamiento & Soporte</h3>
-            <p class="text-gray-400 text-sm leading-relaxed">¡Su sitio se lanza en la red! Yo lo activo, optimizo el SEO y brindo soporte continuo para su buen funcionamiento.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== PORTFOLIO SECTION ==================== -->
-  <section id="portfolio" class="py-20 lg:py-28 dot-bg">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16 fade-in">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-primary mb-4">
-          <i class="fas fa-folder-open"></i> Portafolio
-        </div>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-          Proyectos <span class="gradient-text">Recientes</span>
-        </h2>
-        <p class="text-gray-400 max-w-2xl mx-auto text-lg">
-          Una selección de sitios web que he creado para negocios como el suyo.
-        </p>
-      </div>
-
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-        <!-- Project 1 -->
-        <a href="projects/aroma-cafe/index.html" target="_blank" rel="noopener noreferrer" class="work-card glass-card rounded-2xl overflow-hidden group fade-in no-underline">
-          <div class="portfolio-card glass-card rounded-2xl overflow-hidden group fade-in">
-          <div class="relative overflow-hidden">
-            <img src="http://static.photos/restaurant/640x360/10" alt="Sitio web para Restaurante" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500">
-            <div class="portfolio-overlay absolute inset-0 bg-dark-900/80 flex items-center justify-center">
-              <div class="flex gap-3">
-                <span class="px-3 py-1 rounded-full glass text-xs text-primary">HTML</span>
-                <span class="px-3 py-1 rounded-full glass text-xs text-primary">CSS</span>
-                <span class="px-3 py-1 rounded-full glass text-xs text-primary">JS</span>
+            <!-- Stats -->
+            <div class="flex flex-wrap gap-8 sm:gap-12">
+              <div>
+                <div
+                  class="text-3xl font-bold text-white stat-number"
+                  data-target="50"
+                >
+                  0
+                </div>
+                <div class="text-sm text-gray-500 mt-1">
+                  Proyectos Completados
+                </div>
+              </div>
+              <div>
+                <div
+                  class="text-3xl font-bold text-white stat-number"
+                  data-target="100"
+                >
+                  0
+                </div>
+                <div class="text-sm text-gray-500 mt-1 flex items-center gap-1">
+                  % Satisfacción
+                </div>
+              </div>
+              <div>
+                <div
+                  class="text-3xl font-bold text-white stat-number"
+                  data-target="5"
+                >
+                  0
+                </div>
+                <div class="text-sm text-gray-500 mt-1">
+                  Años de Experiencia
+                </div>
               </div>
             </div>
           </div>
-          <div class="p-6">
-            <h3 class="text-lg font-bold mb-2">Aroma Café</h3>
-            <p class="text-gray-400 text-sm mb-4">
-              Sitio web one-page para cafetería con diseño acogedor, menú digital, testimonios de clientes y sistema de reservas integrado. Totalmente responsivo y con microinteracciones que mejoran la experiencia del usuario.
-            </p>
-            <div class="flex items-center justify-between">
-              <span class="text-xs text-primary font-mono uppercase tracking-wider">Restaurante</span>
-              <i class="fas fa-external-link-alt text-gray-500 group-hover:text-primary transition-colors"></i>
+
+          <!-- Right: Code visual -->
+          <div class="hidden lg:block fade-in">
+            <div class="relative">
+              <!-- Floating code window -->
+              <div class="glass rounded-2xl p-6 glow-blue float-anim">
+                <div class="flex items-center gap-2 mb-4">
+                  <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                  <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                  <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                  <span class="ml-2 text-xs text-gray-500 font-mono"
+                    >index.html</span
+                  >
+                </div>
+                <div
+                  class="code-block p-4 text-sm leading-relaxed overflow-hidden"
+                >
+                  <div>
+                    <span class="text-gray-500">&lt;</span
+                    ><span class="text-pink-400">div</span>
+                    <span class="text-yellow-300">class</span
+                    ><span class="text-gray-500">=</span
+                    ><span class="text-green-400">"business"</span
+                    ><span class="text-gray-500">&gt;</span>
+                  </div>
+                  <div class="ml-4">
+                    <span class="text-gray-500">&lt;</span
+                    ><span class="text-pink-400">h1</span
+                    ><span class="text-gray-500">&gt;</span
+                    ><span class="text-white">Your Brand Online</span
+                    ><span class="text-gray-500">&lt;/</span
+                    ><span class="text-pink-400">h1</span
+                    ><span class="text-gray-500">&gt;</span>
+                  </div>
+                  <div class="ml-4">
+                    <span class="text-gray-500">&lt;</span
+                    ><span class="text-pink-400">p</span
+                    ><span class="text-gray-500">&gt;</span
+                    ><span class="text-cyan-300">Beautiful & Fast</span
+                    ><span class="text-gray-500">&lt;/</span
+                    ><span class="text-pink-400">p</span
+                    ><span class="text-gray-500">&gt;</span>
+                  </div>
+                  <div>
+                    <span class="text-gray-500">&lt;/</span
+                    ><span class="text-pink-400">div</span
+                    ><span class="text-gray-500">&gt;</span>
+                  </div>
+                  <div class="mt-2">
+                    <span class="text-gray-500">✓</span>
+                    <span class="text-gray-400">Responsive Design</span>
+                  </div>
+                  <div>
+                    <span class="text-gray-500">✓</span>
+                    <span class="text-gray-400">SEO Optimized</span>
+                  </div>
+                  <div>
+                    <span class="text-gray-500">✓</span>
+                    <span class="text-gray-400">Lightning Fast</span>
+                  </div>
+                  <div>
+                    <span class="text-primary typing-cursor">→ deployed</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Floating badges -->
+              <div
+                class="absolute -top-4 -right-4 glass rounded-xl px-4 py-2 flex items-center gap-2 text-sm float-anim-delay"
+              >
+                <i class="fas fa-bolt text-yellow-400"></i>
+                <span class="font-medium">Entrega Rápida</span>
+              </div>
+              <div
+                class="absolute -bottom-4 -left-4 glass rounded-xl px-4 py-2 flex items-center gap-2 text-sm float-anim-delay2"
+              >
+                <i class="fas fa-shield-alt text-green-400"></i>
+                <span class="font-medium">Seguro & Confiable</span>
+              </div>
             </div>
           </div>
         </div>
-        </a>
+      </div>
+    </section>
 
-        <!-- Project 2 -->
-        <a href="projects/musician/index.html" target="_blank" rel="noopener noreferrer" class="work-card glass-card rounded-2xl overflow-hidden group fade-in no-underline">
-          <div class="portfolio-card glass-card rounded-2xl overflow-hidden group fade-in">
+    <!-- ==================== SERVICES SECTION ==================== -->
+    <section id="services" class="py-20 lg:py-28">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 fade-in">
+          <div
+            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-primary mb-4"
+          >
+            <i class="fas fa-th-large"></i> Lo que Ofrezco
+          </div>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+            Cómo Puedo <span class="gradient-text">Ayudarle</span>
+          </h2>
+          <p class="text-gray-400 max-w-2xl mx-auto text-lg">
+            Todo pequeño negocio merece una fuerte presencia en línea. Así puedo
+            ayudarle a sobresalir.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
+          <!-- Servicio 1: Sitio de Presentación -->
+          <div class="glass-card rounded-2xl p-8 fade-in">
+            <div
+              class="w-14 h-14 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-6"
+            >
+              <i class="fas fa-file-code text-primary"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Sitio Web de Presentación</h3>
+            <p class="text-gray-400 leading-relaxed mb-4">
+              Un sitio de 3 a 5 páginas (Inicio, Servicios, Contacto, Galería)
+              para que su negocio tenga presencia profesional en línea.
+            </p>
+            <ul
+              class="text-sm text-gray-400 grid grid-cols-2 gap-x-4 gap-y-1 mb-4"
+            >
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-primary"></i> Diseño a su marca
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-primary"></i> 100% responsivo
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-primary"></i> Formulario de contacto
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-primary"></i> Entrega en 5–7 días
+              </li>
+            </ul>
+          </div>
+
+          <!-- Servicio 2: Landing Page -->
+          <div class="glass-card rounded-2xl p-8 fade-in">
+            <div
+              class="w-14 h-14 rounded-xl bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center mb-6"
+            >
+              <i class="fas fa-rocket text-cyan-400"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Landing Page</h3>
+            <p class="text-gray-400 leading-relaxed mb-4">
+              Una página única diseñada para convertir visitantes en clientes.
+              Perfecta para lanzar un producto, promocionar un servicio o
+              capturar leads.
+            </p>
+            <ul
+              class="text-sm text-gray-400 grid grid-cols-2 gap-x-4 gap-y-1 mb-4"
+            >
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-primary"></i> Diseño conversión
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-primary"></i> Formulario de captura
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-primary"></i> Botón de llamado
+                acción
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-primary"></i> Entrega en 3–5 días
+              </li>
+            </ul>
+          </div>
+
+          <!-- Servicio 3: Adaptación Móvil -->
+          <div class="glass-card rounded-2xl p-8 fade-in">
+            <div
+              class="w-14 h-14 rounded-xl bg-violet-400/10 border border-violet-400/20 flex items-center justify-center mb-6"
+            >
+              <i class="fas fa-mobile-alt text-violet-400"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Adaptación a Móviles</h3>
+            <p class="text-gray-400 leading-relaxed mb-4">
+              ¿Su sitio se ve mal en el teléfono? Lo adapto para que funcione y
+              se vea bien en cualquier dispositivo, sin perder su contenido
+              actual.
+            </p>
+            <ul
+              class="text-sm text-gray-400 grid grid-cols-2 gap-x-4 gap-y-1 mb-4"
+            >
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-primary"></i> Adaptación
+                celular/tablet
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-primary"></i> Menú para pantallas
+                táctiles
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-primary"></i> Pruebas en
+                dispositivos
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-primary"></i> Entrega en 3–5 días
+              </li>
+            </ul>
+          </div>
+
+          <!-- Servicio 4: Rediseño de Sitio -->
+          <div class="glass-card rounded-2xl p-8 fade-in">
+            <div
+              class="w-14 h-14 rounded-xl bg-orange-400/10 border border-orange-400/20 flex items-center justify-center mb-6"
+            >
+              <i class="fas fa-palette text-orange-400"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Rediseño de Sitio Web</h3>
+            <p class="text-gray-400 leading-relaxed mb-4">
+              ¿Su sitio se ve viejo o no carga rápido? Reconstruyo su contenido
+              en un diseño moderno, rápido y responsivo. Su negocio gana una
+              imagen actualizada sin perder lo que ya tiene.
+            </p>
+            <ul
+              class="text-sm text-gray-400 grid grid-cols-2 gap-x-4 gap-y-1 mb-4"
+            >
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-primary"></i> Diseño moderno
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-primary"></i> Mejora en velocidad
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-primary"></i> Mantengo su contenido
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-primary"></i> Entrega en 7–10 días
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ABOUT SECTION ==================== -->
+    <section id="about" class="py-20 lg:py-28 dot-bg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+          <!-- Left: Visual -->
+          <div class="relative fade-in">
+            <div class="glass rounded-2xl p-1 glow-blue">
+              <img
+                src="http://static.photos/workspace/640x360/88"
+                alt="Developer workspace"
+                class="rounded-xl w-full object-cover"
+              />
+            </div>
+            <!-- Floating card: Experience -->
+            <div
+              class="absolute -bottom-6 -right-4 sm:-right-6 glass rounded-2xl p-4 glow-blue float-anim-delay"
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center"
+                >
+                  <i class="fas fa-code text-primary"></i>
+                </div>
+                <div>
+                  <div class="text-2xl font-bold">5+</div>
+                  <div class="text-sm text-gray-400">Años programando</div>
+                </div>
+              </div>
+            </div>
+            <!-- Floating card: Projects -->
+            <div
+              class="absolute -top-6 -left-4 sm:-left-6 glass rounded-2xl p-4 glow-blue float-anim"
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-12 h-12 rounded-xl bg-green-400/20 flex items-center justify-center"
+                >
+                  <i class="fas fa-check-circle text-green-400"></i>
+                </div>
+                <div>
+                  <div class="text-2xl font-bold">50+</div>
+                  <div class="text-sm text-gray-400">Proyectos Hechos</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Text -->
+          <div class="fade-in">
+            <div
+              class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-primary mb-4"
+            >
+              <i class="fas fa-user"></i> Sobre Mí
+            </div>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+              Su aliado digital <span class="gradient-text">de confianza</span>
+            </h2>
+            <p class="text-gray-400 text-lg leading-relaxed mb-6">
+              Me llamo Agustín Peña, soy desarrollador web independiente y me
+              encanta ayudar a pequeños negocios a dar el salto al mundo
+              digital. Sin agencias, sin vueltas: comunicación directa y páginas
+              hechas con ganas y dedicación.
+            </p>
+            <p class="text-gray-400 leading-relaxed mb-8">
+              Trabajo con HTML, CSS y JavaScript, y me aseguro de que su sitio
+              se vea perfecto en cualquier dispositivo, se cargue rápido y le dé
+              a sus clientes una experiencia sencilla y agradable.
+            </p>
+
+            <!-- Skills -->
+            <div class="grid grid-cols-2 gap-4 mb-8">
+              <div class="flex items-center gap-3">
+                <i class="fas fa-check text-primary"></i>
+                <span class="text-gray-300">HTML & CSS</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <i class="fas fa-check text-primary"></i>
+                <span class="text-gray-300">JavaScript</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <i class="fas fa-check text-primary"></i>
+                <span class="text-gray-300">Diseño Responsivo</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <i class="fas fa-check text-primary"></i>
+                <span class="text-gray-300">SEO & Rendimiento</span>
+              </div>
+            </div>
+
+            <a
+              href="#contact"
+              class="btn-primary inline-flex items-center gap-2 px-7 py-3.5 bg-primary hover:bg-accent text-dark-900 font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-primary/30"
+            >
+              Trabajemos Juntos
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PROCESS SECTION ==================== -->
+    <section id="process" class="py-20 lg:py-28">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 fade-in">
+          <div
+            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-primary mb-4"
+          >
+            <i class="fas fa-code-branch"></i> Procedimiento
+          </div>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+            De la idea al
+            <span class="gradient-text">lanzamiento en 4 pasos</span>
+          </h2>
+          <p class="text-gray-400 max-w-2xl mx-auto text-lg">
+            Un proceso simple y transparente que lo mantiene informado y en
+            control en cada etapa del proyecto.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Step 1 -->
+          <div class="relative fade-in">
+            <div class="glass-card rounded-2xl p-8 text-center relative h-full">
+              <div
+                class="w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto mb-6 relative"
+              >
+                <i class="fas fa-comments text-primary"></i>
+                <span
+                  class="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-primary text-dark-900 text-xs font-bold flex items-center justify-center"
+                  >1</span
+                >
+              </div>
+              <h3 class="text-xl font-bold mb-3">Lo primero es conocernos</h3>
+              <p class="text-gray-400 text-sm leading-relaxed">
+                Hablamos de su negocio, sus objetivos, el público a quien va
+                dirigido y lo que necesita lograr su sitio web.
+              </p>
+            </div>
+            <div
+              class="hidden lg:block absolute top-1/2 -right-4 text-dark-500"
+            >
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="relative fade-in">
+            <div class="glass-card rounded-2xl p-8 text-center h-full">
+              <div
+                class="w-16 h-16 rounded-2xl bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center mx-auto mb-6 relative"
+              >
+                <i class="fas fa-pencil-ruler text-cyan-400"></i>
+                <span
+                  class="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-cyan-400 text-dark-900 text-xs font-bold flex items-center justify-center"
+                  >2</span
+                >
+              </div>
+              <h3 class="text-xl font-bold mb-3">Diseño & Prototipo</h3>
+              <p class="text-gray-400 text-sm leading-relaxed">
+                Diseño una maqueta a medida para su marca, la revisamos juntos y
+                la ajustamos hasta que quede perfecta.
+              </p>
+            </div>
+            <div
+              class="hidden lg:block absolute top-1/2 -right-4 text-dark-500"
+            >
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="relative fade-in">
+            <div class="glass-card rounded-2xl p-8 text-center h-full">
+              <div
+                class="w-16 h-16 rounded-2xl bg-violet-400/10 border border-violet-400/20 flex items-center justify-center mx-auto mb-6 relative"
+              >
+                <i class="fas fa-code text-violet-400"></i>
+                <span
+                  class="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-violet-400 text-dark-900 text-xs font-bold flex items-center justify-center"
+                  >3</span
+                >
+              </div>
+              <h3 class="text-xl font-bold mb-3">Desarrollo</h3>
+              <p class="text-gray-400 text-sm leading-relaxed">
+                Desarrollo su web con código limpio y rápido, y le mantengo al
+                tanto del progreso en todo momento.
+              </p>
+            </div>
+            <div
+              class="hidden lg:block absolute top-1/2 -right-4 text-dark-500"
+            >
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="relative fade-in">
+            <div class="glass-card rounded-2xl p-8 text-center h-full">
+              <div
+                class="w-16 h-16 rounded-2xl bg-green-400/10 border border-green-400/20 flex items-center justify-center mx-auto mb-6 relative"
+              >
+                <i class="fas fa-rocket text-green-400"></i>
+                <span
+                  class="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-green-400 text-dark-900 text-xs font-bold flex items-center justify-center"
+                  >4</span
+                >
+              </div>
+              <h3 class="text-xl font-bold mb-3">Lanzamiento & Soporte</h3>
+              <p class="text-gray-400 text-sm leading-relaxed">
+                ¡Su sitio se lanza en la red! Yo lo activo, optimizo el SEO y
+                brindo soporte continuo para su buen funcionamiento.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PORTFOLIO SECTION ==================== -->
+    <section id="portfolio" class="py-20 lg:py-28 dot-bg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 fade-in">
+          <div
+            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-primary mb-4"
+          >
+            <i class="fas fa-folder-open"></i> Portafolio
+          </div>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+            Proyectos <span class="gradient-text">Recientes</span>
+          </h2>
+          <p class="text-gray-400 max-w-2xl mx-auto text-lg">
+            Una selección de sitios web que he creado para negocios como el
+            suyo.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Project 1 -->
+          <a
+            href="projects/cafe/index.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="work-card glass-card rounded-2xl overflow-hidden group fade-in no-underline"
+          >
+            <div
+              class="portfolio-card glass-card rounded-2xl overflow-hidden group fade-in"
+            >
+              <div class="relative overflow-hidden">
+                <img
+                  src="http://static.photos/restaurant/640x360/10"
+                  alt="Sitio web para Restaurante"
+                  class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div
+                  class="portfolio-overlay absolute inset-0 bg-dark-900/80 flex items-center justify-center"
+                >
+                  <div class="flex gap-3">
+                    <span
+                      class="px-3 py-1 rounded-full glass text-xs text-primary"
+                      >HTML</span
+                    >
+                    <span
+                      class="px-3 py-1 rounded-full glass text-xs text-primary"
+                      >CSS</span
+                    >
+                    <span
+                      class="px-3 py-1 rounded-full glass text-xs text-primary"
+                      >JS</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="p-6">
+                <h3 class="text-lg font-bold mb-2">Aroma Café</h3>
+                <p class="text-gray-400 text-sm mb-4">
+                  Sitio web one-page para cafetería con diseño acogedor, menú
+                  digital, testimonios de clientes y sistema de reservas
+                  integrado. Totalmente responsivo y con microinteracciones que
+                  mejoran la experiencia del usuario.
+                </p>
+                <div class="flex items-center justify-between">
+                  <span
+                    class="text-xs text-primary font-mono uppercase tracking-wider"
+                    >Restaurante</span
+                  >
+                  <i
+                    class="fas fa-external-link-alt text-gray-500 group-hover:text-primary transition-colors"
+                  ></i>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Project 2 -->
+          <a
+            href="projects/musician/index.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="work-card glass-card rounded-2xl overflow-hidden group fade-in no-underline"
+          >
+            <div
+              class="portfolio-card glass-card rounded-2xl overflow-hidden group fade-in"
+            >
+              <div class="relative overflow-hidden">
+                <img
+                  src="http://static.photos/wellness/640x360/22"
+                  alt="Spa website"
+                  class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div
+                  class="portfolio-overlay absolute inset-0 bg-dark-900/80 flex items-center justify-center"
+                >
+                  <div class="flex gap-3">
+                    <span
+                      class="px-3 py-1 rounded-full glass text-xs text-primary"
+                      >HTML</span
+                    >
+                    <span
+                      class="px-3 py-1 rounded-full glass text-xs text-primary"
+                      >CSS</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="p-6">
+                <h3 class="text-lg font-bold mb-2">
+                  Alberto Méndez - Pianista
+                </h3>
+                <p class="text-gray-400 text-sm mb-4">
+                  Sitio web para pianista y compositor con biografía, catálogo
+                  de composiciones, videoteca de conciertos, calendario de
+                  eventos, galería fotográfica y formulario de contacto. Diseño
+                  oscuro, elegante y completamente responsivo.
+                </p>
+                <div class="flex items-center justify-between">
+                  <span
+                    class="text-xs text-primary font-mono uppercase tracking-wider"
+                    >Arte</span
+                  >
+                  <i
+                    class="fas fa-external-link-alt text-gray-500 group-hover:text-primary transition-colors"
+                  ></i>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Project 3 -->
+          <div
+            class="portfolio-card glass-card rounded-2xl overflow-hidden group fade-in"
+          >
             <div class="relative overflow-hidden">
-              <img src="http://static.photos/wellness/640x360/22" alt="Spa website" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500">
-              <div class="portfolio-overlay absolute inset-0 bg-dark-900/80 flex items-center justify-center">
+              <img
+                src="http://static.photos/construction/640x360/35"
+                alt="Construction website"
+                class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div
+                class="portfolio-overlay absolute inset-0 bg-dark-900/80 flex items-center justify-center"
+              >
                 <div class="flex gap-3">
-                  <span class="px-3 py-1 rounded-full glass text-xs text-primary">HTML</span>
-                  <span class="px-3 py-1 rounded-full glass text-xs text-primary">CSS</span>
+                  <span
+                    class="px-3 py-1 rounded-full glass text-xs text-primary"
+                    >HTML</span
+                  >
+                  <span
+                    class="px-3 py-1 rounded-full glass text-xs text-primary"
+                    >CSS</span
+                  >
+                  <span
+                    class="px-3 py-1 rounded-full glass text-xs text-primary"
+                    >JS</span
+                  >
                 </div>
               </div>
             </div>
             <div class="p-6">
-              <h3 class="text-lg font-bold mb-2">
-                Alberto Méndez - Pianista
-              </h3>
+              <h3 class="text-lg font-bold mb-2">BuildRight Construction</h3>
               <p class="text-gray-400 text-sm mb-4">
-                Sitio web para pianista y compositor con biografía, catálogo de composiciones, videoteca de conciertos, calendario de eventos, galería fotográfica y formulario de contacto. Diseño oscuro,  elegante y completamente responsivo.
+                Professional construction company site with project gallery,
+                services breakdown, and quote request form.
               </p>
               <div class="flex items-center justify-between">
-                <span class="text-xs text-primary font-mono uppercase tracking-wider">Arte</span>
-                <i class="fas fa-external-link-alt text-gray-500 group-hover:text-primary transition-colors"></i>
+                <span
+                  class="text-xs text-primary font-mono uppercase tracking-wider"
+                  >Construction</span
+                >
+                <i
+                  class="fas fa-external-link-alt text-gray-500 group-hover:text-primary transition-colors"
+                ></i>
               </div>
             </div>
           </div>
-         </a>
 
-        <!-- Project 3 -->
-        <div class="portfolio-card glass-card rounded-2xl overflow-hidden group fade-in">
-          <div class="relative overflow-hidden">
-            <img src="http://static.photos/construction/640x360/35" alt="Construction website" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500">
-            <div class="portfolio-overlay absolute inset-0 bg-dark-900/80 flex items-center justify-center">
-              <div class="flex gap-3">
-                <span class="px-3 py-1 rounded-full glass text-xs text-primary">HTML</span>
-                <span class="px-3 py-1 rounded-full glass text-xs text-primary">CSS</span>
-                <span class="px-3 py-1 rounded-full glass text-xs text-primary">JS</span>
-              </div>
-            </div>
-          </div>
-          <div class="p-6">
-            <h3 class="text-lg font-bold mb-2">BuildRight Construction</h3>
-            <p class="text-gray-400 text-sm mb-4">Professional construction company site with project gallery, services breakdown, and quote request form.</p>
-            <div class="flex items-center justify-between">
-              <span class="text-xs text-primary font-mono uppercase tracking-wider">Construction</span>
-              <i class="fas fa-external-link-alt text-gray-500 group-hover:text-primary transition-colors"></i>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 4 -->
-        <!-- <div class="portfolio-card glass-card rounded-2xl overflow-hidden group fade-in">
+          <!-- Project 4 -->
+          <!-- <div class="portfolio-card glass-card rounded-2xl overflow-hidden group fade-in">
           <div class="relative overflow-hidden">
             <img src="http://static.photos/education/640x360/47" alt="Education website" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500">
             <div class="portfolio-overlay absolute inset-0 bg-dark-900/80 flex items-center justify-center">
@@ -569,165 +956,183 @@
             </div>
           </div>
         </div> -->
-        <!-- end of project 4 -->
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== PRICING SECTION ==================== -->
-  <section id="pricing" class="py-20 lg:py-28">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16 fade-in">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-primary mb-4">
-          <i class="fas fa-tag"></i> Precios
+          <!-- end of project 4 -->
         </div>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-          Simple y <span class="gradient-text">honesto</span>
-        </h2>
-        <p class="text-gray-400 max-w-2xl mx-auto text-lg">
-          Sin comisiones ocultas. El precio depende de la complejidad — contácteme para un cálculo exacto.
-        </p>
       </div>
+    </section>
 
-      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-
-        <!-- Presentation web site -->
-        <div class="glass-card rounded-2xl p-8 fade-in relative">
-          <div class="mb-6">
-            <h3 class="text-xl font-bold mb-2">Sitio web de presentación</h3>
-            <p class="text-gray-400 text-sm">Ideal para tener presencia en línea sin complicaciones.</p>
+    <!-- ==================== PRICING SECTION ==================== -->
+    <section id="pricing" class="py-20 lg:py-28">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 fade-in">
+          <div
+            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-primary mb-4"
+          >
+            <i class="fas fa-tag"></i> Precios
           </div>
-          <div class="mb-6">
-            <div class="flex items-baseline gap-1">
-              <span class="text-4xl font-bold">MXN$2500</span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+            Simple y <span class="gradient-text">honesto</span>
+          </h2>
+          <p class="text-gray-400 max-w-2xl mx-auto text-lg">
+            Sin comisiones ocultas. El precio depende de la complejidad —
+            contácteme para un cálculo exacto.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <!-- Presentation web site -->
+          <div class="glass-card rounded-2xl p-8 fade-in relative">
+            <div class="mb-6">
+              <h3 class="text-xl font-bold mb-2">Sitio web de presentación</h3>
+              <p class="text-gray-400 text-sm">
+                Ideal para tener presencia en línea sin complicaciones.
+              </p>
             </div>
-          </div>
-          <ul class="space-y-3 mb-8">
-            <li class="flex items-center gap-3 text-sm text-gray-300">
-              <i class="fas fa-check text-primary flex-shrink-0"></i>
+            <div class="mb-6">
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl font-bold">MXN$2500</span>
+              </div>
+            </div>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center gap-3 text-sm text-gray-300">
+                <i class="fas fa-check text-primary flex-shrink-0"></i>
                 3–5 páginas (inicio, servicios, contacto, galería)
-            </li>
-            <li class="flex items-center gap-3 text-sm text-gray-300">
-              <i class="fas fa-check text-primary flex-shrink-0"></i>
+              </li>
+              <li class="flex items-center gap-3 text-sm text-gray-300">
+                <i class="fas fa-check text-primary flex-shrink-0"></i>
                 Diseño responsivo
-            </li>
-            <li class="flex items-center gap-3 text-sm text-gray-300">
-              <i class="fas fa-check text-primary flex-shrink-0"></i>
+              </li>
+              <li class="flex items-center gap-3 text-sm text-gray-300">
+                <i class="fas fa-check text-primary flex-shrink-0"></i>
                 Formulario de Contacto
-            </li>
-            <li class="flex items-center gap-3 text-sm text-gray-300">
-              <i class="fas fa-check text-primary flex-shrink-0"></i>
-              Mapa con Ubicación
-            </li>
-            <li class="flex items-center gap-3 text-sm text-gray-300">
-              <i class="fas fa-check text-primary flex-shrink-0"></i>
-              1 ronda de ajustes gratuitos
-            </li>
-            <li class="flex items-center gap-3 text-sm text-gray-300">
-              <i class="fas fa-check text-primary flex-shrink-0"></i>
-              Entrega en 5-7 días hábiles
-            </li>
-          </ul>
-        </div>
+              </li>
+              <li class="flex items-center gap-3 text-sm text-gray-300">
+                <i class="fas fa-check text-primary flex-shrink-0"></i>
+                Mapa con Ubicación
+              </li>
+              <li class="flex items-center gap-3 text-sm text-gray-300">
+                <i class="fas fa-check text-primary flex-shrink-0"></i>
+                1 ronda de ajustes gratuitos
+              </li>
+              <li class="flex items-center gap-3 text-sm text-gray-300">
+                <i class="fas fa-check text-primary flex-shrink-0"></i>
+                Entrega en 5-7 días hábiles
+              </li>
+            </ul>
+          </div>
 
-        <!-- Landing page -->
-        <div class="glass-card rounded-2xl p-8 fade-in relative">
-          <div class="mb-6">
-            <h3 class="text-xl font-bold mb-2">Landing Page</h3>
-            <p class="text-gray-400 text-sm">
-              Para lanzar un producto, promoción o servicio nuevo.
-            </p>
-          </div>
-          <div class="mb-6">
-            <div class="flex items-baseline gap-1">
-              <span class="text-4xl font-bold">MXN$2000</span>
+          <!-- Landing page -->
+          <div class="glass-card rounded-2xl p-8 fade-in relative">
+            <div class="mb-6">
+              <h3 class="text-xl font-bold mb-2">Landing Page</h3>
+              <p class="text-gray-400 text-sm">
+                Para lanzar un producto, promoción o servicio nuevo.
+              </p>
             </div>
+            <div class="mb-6">
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl font-bold">MXN$2000</span>
+              </div>
+            </div>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center gap-3 text-sm text-gray-300">
+                <i class="fas fa-check text-primary flex-shrink-0"></i>
+                Diseño 100% responsivo (celular, tablet, escritorio)
+              </li>
+              <li class="flex items-center gap-3 text-sm text-gray-300">
+                <i class="fas fa-check text-primary flex-shrink-0"></i>
+                Formulario de contacto o captura de leads
+              </li>
+              <li class="flex items-center gap-3 text-sm text-gray-300">
+                <i class="fas fa-check text-primary flex-shrink-0"></i>
+                Botón de llamado a la acción (WhatsApp, cotizar, etc.)
+              </li>
+              <li class="flex items-center gap-3 text-sm text-gray-300">
+                <i class="fas fa-check text-primary flex-shrink-0"></i>
+                2 rondas de revisiones gratuitas
+              </li>
+              <li class="flex items-center gap-3 text-sm text-gray-300">
+                <i class="fas fa-check text-primary flex-shrink-0"></i>
+                Configuración básica de SEO (títulos, descripciones)
+              </li>
+              <li class="flex items-center gap-3 text-sm text-gray-300">
+                <i class="fas fa-check text-primary flex-shrink-0"></i>
+                Entrega en 3-5 días hábiles
+              </li>
+            </ul>
           </div>
-          <ul class="space-y-3 mb-8">
-            <li class="flex items-center gap-3 text-sm text-gray-300">
-              <i class="fas fa-check text-primary flex-shrink-0"></i>
-              Diseño 100% responsivo (celular, tablet, escritorio)
-            </li>
-            <li class="flex items-center gap-3 text-sm text-gray-300">
-              <i class="fas fa-check text-primary flex-shrink-0"></i>
-              Formulario de contacto o captura de leads
-            </li>
-            <li class="flex items-center gap-3 text-sm text-gray-300">
-              <i class="fas fa-check text-primary flex-shrink-0"></i>
-              Botón de llamado a la acción (WhatsApp, cotizar, etc.)
-            </li>
-            <li class="flex items-center gap-3 text-sm text-gray-300">
-              <i class="fas fa-check text-primary flex-shrink-0"></i>
-              2 rondas de revisiones gratuitas
-            </li>
-            <li class="flex items-center gap-3 text-sm text-gray-300">
-              <i class="fas fa-check text-primary flex-shrink-0"></i>
-              Configuración básica de SEO (títulos, descripciones)
-            </li>
-            <li class="flex items-center gap-3 text-sm text-gray-300">
-              <i class="fas fa-check text-primary flex-shrink-0"></i>
-              Entrega en 3-5 días hábiles
-            </li>
-          </ul>
-        </div>
 
-        <!-- Mobile adaptation -->
-        <div class="glass-card rounded-2xl p-8 fade-in relative">
-          <div class="mb-6">
-            <h3 class="text-xl font-bold mb-2">Adaptación Móvil</h3>
-            <p class="text-gray-400 text-sm">¿Su sitio no se ve bien en el teléfono? Lo arreglo en pocos días.</p>
-          </div>
-          <div class="mb-6">
-            <div class="flex items-baseline gap-1">
-              <span class="text-4xl font-bold">MXN$2000</span>
+          <!-- Mobile adaptation -->
+          <div class="glass-card rounded-2xl p-8 fade-in relative">
+            <div class="mb-6">
+              <h3 class="text-xl font-bold mb-2">Adaptación Móvil</h3>
+              <p class="text-gray-400 text-sm">
+                ¿Su sitio no se ve bien en el teléfono? Lo arreglo en pocos
+                días.
+              </p>
             </div>
-          </div>
-          <ul class="space-y-3 mb-8">
-            <li class="flex items-center gap-3 text-sm text-gray-300">
-              <i class="fas fa-check text-primary flex-shrink-0"></i>
+            <div class="mb-6">
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl font-bold">MXN$2000</span>
+              </div>
+            </div>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center gap-3 text-sm text-gray-300">
+                <i class="fas fa-check text-primary flex-shrink-0"></i>
                 Adaptación completa para celular y tablet
-            </li>
-            <li class="flex items-center gap-3 text-sm text-gray-300">
-              <i class="fas fa-check text-primary flex-shrink-0"></i>
-              Menú de navegación adaptado para pantallas táctiles
-            </li>
-            <li class="flex items-center gap-3 text-sm text-gray-300">
-              <i class="fas fa-check text-primary flex-shrink-0"></i>
-              Ajuste de tamaños de texto, botones y espacios
-            </li>
-            <li class="flex items-center gap-3 text-sm text-gray-300">
-              <i class="fas fa-check text-primary flex-shrink-0"></i>
-              Pruebas en al menos 3 dispositivos (celular, tablet y escritorio)
-            </li>
-            <li class="flex items-center gap-3 text-sm text-gray-300">
-              <i class="fas fa-check text-primary flex-shrink-0"></i>
-              2 rondas de revisiones gratuitas
-            </li>
-            <li class="flex items-center gap-3 text-sm text-gray-300">
-              <i class="fas fa-check text-primary flex-shrink-0"></i>
-              Entrega en 3 a 5 días hábiles
-            </li>
-          </ul>
+              </li>
+              <li class="flex items-center gap-3 text-sm text-gray-300">
+                <i class="fas fa-check text-primary flex-shrink-0"></i>
+                Menú de navegación adaptado para pantallas táctiles
+              </li>
+              <li class="flex items-center gap-3 text-sm text-gray-300">
+                <i class="fas fa-check text-primary flex-shrink-0"></i>
+                Ajuste de tamaños de texto, botones y espacios
+              </li>
+              <li class="flex items-center gap-3 text-sm text-gray-300">
+                <i class="fas fa-check text-primary flex-shrink-0"></i>
+                Pruebas en al menos 3 dispositivos (celular, tablet y
+                escritorio)
+              </li>
+              <li class="flex items-center gap-3 text-sm text-gray-300">
+                <i class="fas fa-check text-primary flex-shrink-0"></i>
+                2 rondas de revisiones gratuitas
+              </li>
+              <li class="flex items-center gap-3 text-sm text-gray-300">
+                <i class="fas fa-check text-primary flex-shrink-0"></i>
+                Entrega en 3 a 5 días hábiles
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Centered Start Project Button -->
+        <div class="text-center mt-10 fade-in">
+          <a
+            href="#contact"
+            class="inline-block px-8 py-4 border border-dark-500 hover:border-primary/50 text-gray-300 hover:text-white rounded-xl transition-all hover:bg-dark-700 font-medium"
+          >
+            Empezar Proyecto
+          </a>
+        </div>
+
+        <!-- Custom note -->
+        <div class="text-center mt-6 fade-in">
+          <p class="text-gray-400">
+            ¿Necesita algo distinto?
+            <a
+              href="#contact"
+              class="text-primary hover:text-accent underline underline-offset-4 transition-colors"
+              >Hablemos de un paquete personalizado</a
+            >
+          </p>
         </div>
       </div>
+    </section>
 
-      <!-- Centered Start Project Button -->
-      <div class="text-center mt-10 fade-in">
-        <a href="#contact" class="inline-block px-8 py-4 border border-dark-500 hover:border-primary/50 text-gray-300 hover:text-white rounded-xl transition-all hover:bg-dark-700 font-medium">
-          Empezar Proyecto
-        </a>
-      </div>
+    <!-- ==================== TESTIMONIALS SECTION ==================== -->
 
-      <!-- Custom note -->
-      <div class="text-center mt-6 fade-in">
-        <p class="text-gray-400">¿Necesita algo distinto? <a href="#contact" class="text-primary hover:text-accent underline underline-offset-4 transition-colors">Hablemos de un paquete personalizado</a></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== TESTIMONIALS SECTION ==================== -->
-
-  <!-- <section id="testimonials" class="py-20 lg:py-28 dot-bg">
+    <!-- <section id="testimonials" class="py-20 lg:py-28 dot-bg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16 fade-in">
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-primary mb-4">
@@ -800,348 +1205,551 @@
     </div>
   </section> -->
 
-  <!-- ==================== FAQ SECTION ==================== -->
-  <section id="faq" class="py-20 lg:py-28">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"> <!-- Cambié max-w-3xl a max-w-5xl -->
-      <div class="text-center mb-16 fade-in">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-primary mb-4">
-          <i class="fas fa-question-circle"></i> FAQ
-        </div>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-          Preguntas <span class="gradient-text">Frecuentes</span>
-        </h2>
-        <p class="text-gray-400 text-lg">
-          Todo lo que necesita saber usted antes de empezar.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-4"> <!-- Aquí está el cambio principal -->
-        <!-- FAQ 1 -->
-        <div class="glass-card rounded-2xl fade-in" style="cursor:pointer" onclick="toggleFaq(this)">
-          <div class="flex items-center justify-between p-6">
-            <h3 class="font-semibold pr-4">
-              ¿Cuánto tiempo lleva desarrollar un sitio web?
-            </h3>
-            <i class="fas fa-plus faq-icon text-primary flex-shrink-0"></i>
+    <!-- ==================== FAQ SECTION ==================== -->
+    <section id="faq" class="py-20 lg:py-28">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Cambié max-w-3xl a max-w-5xl -->
+        <div class="text-center mb-16 fade-in">
+          <div
+            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-primary mb-4"
+          >
+            <i class="fas fa-question-circle"></i> FAQ
           </div>
-          <div class="faq-answer px-6 pb-0">
-            <p class="text-gray-400 text-sm leading-relaxed pb-6">
-              Una landing page — 3–5 días hábiles. Sitio de presentación o institucional (3–5 páginas) — 5–7 días. Los plazos exactos los definimos en la primera llamada, después de discutir el alcance.
-            </p>
-          </div>
-        </div>
-
-        <!-- FAQ 2 -->
-        <div class="glass-card rounded-2xl fade-in" style="cursor:pointer" onclick="toggleFaq(this)">
-          <div class="flex items-center justify-between p-6">
-            <h3 class="font-semibold pr-4">
-              ¿Qué necesito proporcionar para empezar?
-            </h3>
-            <i class="fas fa-plus faq-icon text-primary flex-shrink-0"></i>
-          </div>
-          <div class="faq-answer px-6 pb-0">
-            <p class="text-gray-400 text-sm leading-relaxed pb-6">
-              Basta con una idea y un contacto. Le ayudo a preparar textos, fotos y logo. Si ya tiene materiales, genial. Si no, le ayudo con la estructura, recomiendo fotos de stock y, si es necesario, puedo ayudarle a redactar.
-            </p>
-          </div>
-        </div>
-
-        <!-- FAQ 3 -->
-        <div class="glass-card rounded-2xl fade-in" style="cursor:pointer" onclick="toggleFaq(this)">
-          <div class="flex items-center justify-between p-6">
-            <h3 class="font-semibold pr-4">¿Cómo se hace el pago?</h3>
-            <i class="fas fa-plus faq-icon text-primary flex-shrink-0"></i>
-          </div>
-          <div class="faq-answer px-6 pb-0">
-            <p class="text-gray-400 text-sm leading-relaxed pb-6">
-              50% de anticipo antes de empezar, 50% al finalizar y aprobar el sitio. Acepto transferencia bancaria o por datos de autónomo. Todas las condiciones se reflejan en el contrato.
-            </p>
-          </div>
-        </div>
-
-        <!-- FAQ 4 -->
-        <div class="glass-card rounded-2xl fade-in" style="cursor:pointer" onclick="toggleFaq(this)">
-          <div class="flex items-center justify-between p-6">
-            <h3 class="font-semibold pr-4">¿Funcionará el sitio web en el teléfono?</h3>
-            <i class="fas fa-plus faq-icon text-primary flex-shrink-0"></i>
-          </div>
-          <div class="faq-answer px-6 pb-0">
-            <p class="text-gray-400 text-sm leading-relaxed pb-6">
-              Sí. Todos los sitios que creo son totalmente responsivos y se ven bien en móviles, tabletas, portátiles y ordenadores. Mobile-first es mi estándar.
-            </p>
-          </div>
-        </div>
-
-        <!-- FAQ 5 -->
-        <div class="glass-card rounded-2xl fade-in" style="cursor:pointer" onclick="toggleFaq(this)">
-          <div class="flex items-center justify-between p-6">
-            <h3 class="font-semibold pr-4">¿Qué significa "ronda de ajustes o revisiones"?</h3>
-            <i class="fas fa-plus faq-icon text-primary flex-shrink-0"></i>
-          </div>
-          <div class="faq-answer px-6 pb-0">
-            <p class="text-gray-400 text-sm leading-relaxed pb-6">
-              Corrijo errores menores, cambio textos, actualizo datos de contacto, añado o quito algunos elementos de forma gratuita. No incluye creación de nuevas páginas ni cambios de diseño a gran escala.
-            </p>
-          </div>
-        </div>
-
-        <!-- FAQ 6 -->
-        <div class="glass-card rounded-2xl fade-in" style="cursor:pointer" onclick="toggleFaq(this)">
-          <div class="flex items-center justify-between p-6">
-            <h3 class="font-semibold pr-4">
-              ¿Qué pasa si no me gusta el diseño?
-            </h3>
-            <i class="fas fa-plus faq-icon text-primary flex-shrink-0"></i>
-          </div>
-          <div class="faq-answer px-6 pb-0">
-            <p class="text-gray-400 text-sm leading-relaxed pb-6">
-              Su satisfacción es mi prioridad. En la fase de diseño trabajamos juntos en el estilo antes de escribir código. Ve ud la maqueta y la aprueba. Si algo no le convence, hago ajustes hasta que quede perfecto.
-            </p>
-          </div>
-        </div>
-
-        <!-- FAQ 7 -->
-        <div class="glass-card rounded-2xl fade-in" style="cursor:pointer" onclick="toggleFaq(this)">
-          <div class="flex items-center justify-between p-6">
-            <h3 class="font-semibold pr-4">
-              ¿Necesito mi propio dominio y hosting?
-            </h3>
-            <i class="fas fa-plus faq-icon text-primary flex-shrink-0"></i>
-          </div>
-          <div class="faq-answer px-6 pb-0">
-            <p class="text-gray-400 text-sm leading-relaxed pb-6">
-              Le ayudo a elegir y a registrar dominio y hosting. Recomiendo proveedores confiables y económicos. Toda la configuración técnica (DNS, SSL, despliegue) la manejo yo — no necesita preocuparse por eso.
-            </p>
-          </div>
-        </div>
-
-        <!-- FAQ 8 -->
-        <div class="glass-card rounded-2xl fade-in" style="cursor:pointer" onclick="toggleFaq(this)">
-          <div class="flex items-center justify-between p-6">
-            <h3 class="font-semibold pr-4">¿Podré editar el sitio yo mismo?</h3>
-            <i class="fas fa-plus faq-icon text-primary flex-shrink-0"></i>
-          </div>
-          <div class="faq-answer px-6 pb-0">
-            <p class="text-gray-400 text-sm leading-relaxed pb-6">
-              Sí, si el sitio está en WordPress. Si es HTML/CSS puro, le doy una breve guía para hacer cambios simples. También puedo configurar un panel de administración sencillo para editar contenido sin saber código.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-
-
-
-
-
-
-
-
-  <!-- ==================== CONTACT SECTION ==================== -->
-  <section id="contact" class="py-20 lg:py-28 dot-bg">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
-        <!-- Left: Info -->
-        <div class="fade-in">
-          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-primary mb-4">
-            <i class="fas fa-envelope"></i>
-            Póngase en Contacto
-          </div>
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-            Hablemos <span class="gradient-text">sobre su proyecto</span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+            Preguntas <span class="gradient-text">Frecuentes</span>
           </h2>
-          <p class="text-gray-400 text-lg leading-relaxed mb-10">
-            Llene el formulario y le respondo en menos de 24 horas. Si lo prefiere, también puede contactarme por cualquiera de los medios que aparecen abajo; el que le sea más fácil.
+          <p class="text-gray-400 text-lg">
+            Todo lo que necesita saber usted antes de empezar.
           </p>
+        </div>
 
-          <div class="space-y-6">
-            <div class="flex items-center gap-4">
-              <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
-                <i class="fas fa-envelope w-8 h-8 text-primary"></i>
+        <div class="grid md:grid-cols-2 gap-4">
+          <!-- Aquí está el cambio principal -->
+          <!-- FAQ 1 -->
+          <div
+            class="glass-card rounded-2xl fade-in"
+            style="cursor: pointer"
+            onclick="toggleFaq(this)"
+          >
+            <div class="flex items-center justify-between p-6">
+              <h3 class="font-semibold pr-4">
+                ¿Cuánto tiempo lleva desarrollar un sitio web?
+              </h3>
+              <i class="fas fa-plus faq-icon text-primary flex-shrink-0"></i>
+            </div>
+            <div class="faq-answer px-6 pb-0">
+              <p class="text-gray-400 text-sm leading-relaxed pb-6">
+                Una landing page — 3–5 días hábiles. Sitio de presentación o
+                institucional (3–5 páginas) — 5–7 días. Los plazos exactos los
+                definimos en la primera llamada, después de discutir el alcance.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div
+            class="glass-card rounded-2xl fade-in"
+            style="cursor: pointer"
+            onclick="toggleFaq(this)"
+          >
+            <div class="flex items-center justify-between p-6">
+              <h3 class="font-semibold pr-4">
+                ¿Qué necesito proporcionar para empezar?
+              </h3>
+              <i class="fas fa-plus faq-icon text-primary flex-shrink-0"></i>
+            </div>
+            <div class="faq-answer px-6 pb-0">
+              <p class="text-gray-400 text-sm leading-relaxed pb-6">
+                Basta con una idea y un contacto. Le ayudo a preparar textos,
+                fotos y logo. Si ya tiene materiales, genial. Si no, le ayudo
+                con la estructura, recomiendo fotos de stock y, si es necesario,
+                puedo ayudarle a redactar.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div
+            class="glass-card rounded-2xl fade-in"
+            style="cursor: pointer"
+            onclick="toggleFaq(this)"
+          >
+            <div class="flex items-center justify-between p-6">
+              <h3 class="font-semibold pr-4">¿Cómo se hace el pago?</h3>
+              <i class="fas fa-plus faq-icon text-primary flex-shrink-0"></i>
+            </div>
+            <div class="faq-answer px-6 pb-0">
+              <p class="text-gray-400 text-sm leading-relaxed pb-6">
+                50% de anticipo antes de empezar, 50% al finalizar y aprobar el
+                sitio. Acepto transferencia bancaria o por datos de autónomo.
+                Todas las condiciones se reflejan en el contrato.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div
+            class="glass-card rounded-2xl fade-in"
+            style="cursor: pointer"
+            onclick="toggleFaq(this)"
+          >
+            <div class="flex items-center justify-between p-6">
+              <h3 class="font-semibold pr-4">
+                ¿Funcionará el sitio web en el teléfono?
+              </h3>
+              <i class="fas fa-plus faq-icon text-primary flex-shrink-0"></i>
+            </div>
+            <div class="faq-answer px-6 pb-0">
+              <p class="text-gray-400 text-sm leading-relaxed pb-6">
+                Sí. Todos los sitios que creo son totalmente responsivos y se
+                ven bien en móviles, tabletas, portátiles y ordenadores.
+                Mobile-first es mi estándar.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div
+            class="glass-card rounded-2xl fade-in"
+            style="cursor: pointer"
+            onclick="toggleFaq(this)"
+          >
+            <div class="flex items-center justify-between p-6">
+              <h3 class="font-semibold pr-4">
+                ¿Qué significa "ronda de ajustes o revisiones"?
+              </h3>
+              <i class="fas fa-plus faq-icon text-primary flex-shrink-0"></i>
+            </div>
+            <div class="faq-answer px-6 pb-0">
+              <p class="text-gray-400 text-sm leading-relaxed pb-6">
+                Corrijo errores menores, cambio textos, actualizo datos de
+                contacto, añado o quito algunos elementos de forma gratuita. No
+                incluye creación de nuevas páginas ni cambios de diseño a gran
+                escala.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 6 -->
+          <div
+            class="glass-card rounded-2xl fade-in"
+            style="cursor: pointer"
+            onclick="toggleFaq(this)"
+          >
+            <div class="flex items-center justify-between p-6">
+              <h3 class="font-semibold pr-4">
+                ¿Qué pasa si no me gusta el diseño?
+              </h3>
+              <i class="fas fa-plus faq-icon text-primary flex-shrink-0"></i>
+            </div>
+            <div class="faq-answer px-6 pb-0">
+              <p class="text-gray-400 text-sm leading-relaxed pb-6">
+                Su satisfacción es mi prioridad. En la fase de diseño trabajamos
+                juntos en el estilo antes de escribir código. Ve ud la maqueta y
+                la aprueba. Si algo no le convence, hago ajustes hasta que quede
+                perfecto.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 7 -->
+          <div
+            class="glass-card rounded-2xl fade-in"
+            style="cursor: pointer"
+            onclick="toggleFaq(this)"
+          >
+            <div class="flex items-center justify-between p-6">
+              <h3 class="font-semibold pr-4">
+                ¿Necesito mi propio dominio y hosting?
+              </h3>
+              <i class="fas fa-plus faq-icon text-primary flex-shrink-0"></i>
+            </div>
+            <div class="faq-answer px-6 pb-0">
+              <p class="text-gray-400 text-sm leading-relaxed pb-6">
+                Le ayudo a elegir y a registrar dominio y hosting. Recomiendo
+                proveedores confiables y económicos. Toda la configuración
+                técnica (DNS, SSL, despliegue) la manejo yo — no necesita
+                preocuparse por eso.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 8 -->
+          <div
+            class="glass-card rounded-2xl fade-in"
+            style="cursor: pointer"
+            onclick="toggleFaq(this)"
+          >
+            <div class="flex items-center justify-between p-6">
+              <h3 class="font-semibold pr-4">
+                ¿Podré editar el sitio yo mismo?
+              </h3>
+              <i class="fas fa-plus faq-icon text-primary flex-shrink-0"></i>
+            </div>
+            <div class="faq-answer px-6 pb-0">
+              <p class="text-gray-400 text-sm leading-relaxed pb-6">
+                Sí, si el sitio está en WordPress. Si es HTML/CSS puro, le doy
+                una breve guía para hacer cambios simples. También puedo
+                configurar un panel de administración sencillo para editar
+                contenido sin saber código.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CONTACT SECTION ==================== -->
+    <section id="contact" class="py-20 lg:py-28 dot-bg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
+          <!-- Left: Info -->
+          <div class="fade-in">
+            <div
+              class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-primary mb-4"
+            >
+              <i class="fas fa-envelope"></i>
+              Póngase en Contacto
+            </div>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+              Hablemos <span class="gradient-text">sobre su proyecto</span>
+            </h2>
+            <p class="text-gray-400 text-lg leading-relaxed mb-10">
+              Llene el formulario y le respondo en menos de 24 horas. Si lo
+              prefiere, también puede contactarme por cualquiera de los medios
+              que aparecen abajo; el que le sea más fácil.
+            </p>
+
+            <div class="space-y-6">
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fas fa-envelope w-8 h-8 text-primary"></i>
+                </div>
+                <div>
+                  <div class="text-sm text-gray-500">Correo Electrónico</div>
+                  <a
+                    href="mailto:j.agustin.pena.a@gmail.com"
+                    class="text-white hover:text-primary transition-colors"
+                    >j.agustin.pena.a@gmail.com</a
+                  >
+                </div>
               </div>
-              <div>
-                <div class="text-sm text-gray-500">Correo Electrónico</div>
-                <a href="mailto:j.agustin.pena.a@gmail.com" class="text-white hover:text-primary transition-colors">j.agustin.pena.a@gmail.com</a>
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fab fa-whatsapp text-primary"></i>
+                </div>
+                <div>
+                  <div class="text-sm text-gray-500">WhatsApp</div>
+                  <a
+                    href="tel:+79818635525"
+                    class="text-white hover:text-primary transition-colors"
+                    >+7 (981) 863-5525</a
+                  >
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fas fa-map-marker-alt text-primary"></i>
+                </div>
+                <div>
+                  <div class="text-sm text-gray-500">Ubicación</div>
+                  <span class="text-white"
+                    >Trabajo de manera remota por todo el mundo</span
+                  >
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fas fa-clock text-primary"></i>
+                </div>
+                <div>
+                  <div class="text-sm text-gray-500">Plazo de respuesta</div>
+                  <span class="text-white">24 horas a más tardar</span>
+                </div>
               </div>
             </div>
-            <div class="flex items-center gap-4">
-              <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
-                <i class="fab fa-whatsapp text-primary"></i>
-              </div>
-              <div>
-                <div class="text-sm text-gray-500">WhatsApp</div>
-                <a href="tel:+79818635525" class="text-white hover:text-primary transition-colors">+7 (981) 863-5525</a>
-              </div>
-            </div>
-            <div class="flex items-center gap-4">
-              <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
-                <i class="fas fa-map-marker-alt text-primary"></i>
-              </div>
-              <div>
-                <div class="text-sm text-gray-500">Ubicación</div>
-                <span class="text-white">Trabajo de manera remota por todo el mundo</span>
-              </div>
-            </div>
-            <div class="flex items-center gap-4">
-              <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
-                <i class="fas fa-clock text-primary"></i>
-              </div>
-              <div>
-                <div class="text-sm text-gray-500">Plazo de respuesta</div>
-                <span class="text-white">24 horas a más tardar</span>
+
+            <!-- Social Links -->
+            <div class="mt-10">
+              <p class="text-sm text-gray-500 mb-4">Mis Redes Sociales</p>
+              <div class="flex gap-3">
+                <a
+                  href="#"
+                  class="w-10 h-10 rounded-lg glass flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary/30 transition-all"
+                >
+                  <i class="fab fa-github"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-10 h-10 rounded-lg glass flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary/30 transition-all"
+                >
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-10 h-10 rounded-lg glass flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary/30 transition-all"
+                >
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-10 h-10 rounded-lg glass flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary/30 transition-all"
+                >
+                  <i class="fab fa-dribbble"></i>
+                </a>
               </div>
             </div>
           </div>
 
-          <!-- Social Links -->
-          <div class="mt-10">
-            <p class="text-sm text-gray-500 mb-4">Mis Redes Sociales</p>
+          <!-- Right: Form -->
+          <div class="fade-in">
+            <form id="contact-form" class="glass-card rounded-2xl p-8">
+              <div class="grid sm:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-300 mb-2"
+                    >Nombre(s) *</label
+                  >
+                  <input
+                    type="text"
+                    required
+                    placeholder="Juan"
+                    class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-dark-600 text-white placeholder-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-300 mb-2"
+                    >Apellido(s) *</label
+                  >
+                  <input
+                    type="text"
+                    required
+                    placeholder="Pérez"
+                    class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-dark-600 text-white placeholder-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
+                  />
+                </div>
+              </div>
+              <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-300 mb-2"
+                  >Correo Electrónico *</label
+                >
+                <input
+                  type="email"
+                  required
+                  placeholder="juan@ejemplo.com"
+                  class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-dark-600 text-white placeholder-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
+                />
+              </div>
+              <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-300 mb-2"
+                  >¿Qué es lo que necesita?</label
+                >
+                <select
+                  class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-dark-600 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all appearance-none cursor-pointer"
+                >
+                  <option value="" disabled selected>
+                    Seleccione un servicio
+                  </option>
+                  <option>Sitio de Presentación</option>
+                  <option>Landing Page</option>
+                  <option>Adaptación Móvil</option>
+                  <option>Rediseño de Sitio</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+
+              <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-300 mb-2">
+                  Cuénteme sobre su proyecto *
+                </label>
+                <textarea
+                  rows="4"
+                  required
+                  placeholder="Describa su negocio, sus objetivos y cualquier requisito específico..."
+                  class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-dark-600 text-white placeholder-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-none"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="btn-primary w-full flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-accent text-dark-900 font-bold rounded-xl text-lg hover:shadow-lg hover:shadow-primary/30 transition-all"
+              >
+                Enviar Mensaje
+                <i class="fas fa-envelope"></i>
+              </button>
+              <p class="text-xs text-gray-500 mt-4 text-center">
+                Recibirá respuesta a más tardar en 24 horas.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="border-t border-dark-600/50 py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+          <!-- Brand -->
+          <div class="sm:col-span-2 lg:col-span-1">
+            <a href="#hero" class="flex items-center gap-2 mb-4">
+              <div
+                class="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-dark-900 font-bold text-lg"
+              >
+                &lt;/&gt;
+              </div>
+              <span class="text-xl font-bold tracking-tight"
+                >Agustín<span class="text-primary">Peña</span></span
+              >
+            </a>
+            <p class="text-gray-400 text-sm leading-relaxed mb-4">
+              Soluciones web profesionales para pequeños negocios. Construyamos
+              juntos su presencia en línea.
+            </p>
             <div class="flex gap-3">
-              <a href="#" class="w-10 h-10 rounded-lg glass flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary/30 transition-all">
+              <a
+                href="#"
+                class="w-9 h-9 rounded-lg bg-dark-700 hover:bg-dark-600 flex items-center justify-center text-gray-400 hover:text-primary transition-all"
+              >
                 <i class="fab fa-github"></i>
               </a>
-              <a href="#" class="w-10 h-10 rounded-lg glass flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary/30 transition-all">
+              <a
+                href="#"
+                class="w-9 h-9 rounded-lg bg-dark-700 hover:bg-dark-600 flex items-center justify-center text-gray-400 hover:text-primary transition-all"
+              >
                 <i class="fab fa-linkedin-in"></i>
               </a>
-              <a href="#" class="w-10 h-10 rounded-lg glass flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary/30 transition-all">
+              <a
+                href="#"
+                class="w-9 h-9 rounded-lg bg-dark-700 hover:bg-dark-600 flex items-center justify-center text-gray-400 hover:text-primary transition-all"
+              >
                 <i class="fab fa-twitter"></i>
               </a>
-              <a href="#" class="w-10 h-10 rounded-lg glass flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary/30 transition-all">
+              <a
+                href="#"
+                class="w-9 h-9 rounded-lg bg-dark-700 hover:bg-dark-600 flex items-center justify-center text-gray-400 hover:text-primary transition-all"
+              >
                 <i class="fab fa-dribbble"></i>
               </a>
             </div>
           </div>
-        </div>
 
-        <!-- Right: Form -->
-        <div class="fade-in">
-          <form id="contact-form" class="glass-card rounded-2xl p-8">
-            <div class="grid sm:grid-cols-2 gap-6 mb-6">
-              <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">Nombre(s) *</label>
-                <input type="text" required placeholder="Juan" class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-dark-600 text-white placeholder-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all">
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">Apellido(s) *</label>
-                <input type="text" required placeholder="Pérez" class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-dark-600 text-white placeholder-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all">
-              </div>
-            </div>
-            <div class="mb-6">
-              <label class="block text-sm font-medium text-gray-300 mb-2">Correo Electrónico *</label>
-              <input type="email" required placeholder="juan@ejemplo.com" class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-dark-600 text-white placeholder-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all">
-            </div>
-            <div class="mb-6">
-              <label class="block text-sm font-medium text-gray-300 mb-2">¿Qué es lo que necesita?</label>
-              <select class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-dark-600 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all appearance-none cursor-pointer">
-                <option value="" disabled selected>Seleccione un servicio</option>
-                <option>Sitio de Presentación</option>
-                <option>Landing Page</option>
-                <option>Adaptación Móvil</option>
-                <option>Rediseño de Sitio</option>
-                <option>Otro</option>
-              </select>
-            </div>
+          <!-- Services -->
+          <div>
+            <h3 class="font-semibold mb-4">Servicios</h3>
+            <ul class="space-y-2 text-sm text-gray-400">
+              <li>
+                <a href="#services" class="hover:text-primary transition-colors"
+                  >Sitios de presentación</a
+                >
+              </li>
+              <li>
+                <a href="#services" class="hover:text-primary transition-colors"
+                  >Landing Pages</a
+                >
+              </li>
+              <li>
+                <a href="#services" class="hover:text-primary transition-colors"
+                  >Adaptación Móvil</a
+                >
+              </li>
+              <li>
+                <a href="#services" class="hover:text-primary transition-colors"
+                  >Rediseño de Sitios</a
+                >
+              </li>
+            </ul>
+          </div>
 
-            <div class="mb-6">
-              <label class="block text-sm font-medium text-gray-300 mb-2">
-                Cuénteme sobre su proyecto *
-              </label>
-              <textarea rows="4" required placeholder="Describa su negocio, sus objetivos y cualquier requisito específico..." class="w-full px-4 py-3 rounded-xl bg-dark-800 border border-dark-600 text-white placeholder-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-none"></textarea>
-            </div>
-            <button type="submit" class="btn-primary w-full flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-accent text-dark-900 font-bold rounded-xl text-lg hover:shadow-lg hover:shadow-primary/30 transition-all">
-              Enviar Mensaje
-              <i class="fas fa-envelope"></i>
-            </button>
-            <p class="text-xs text-gray-500 mt-4 text-center">
-              Recibirá respuesta a más tardar en 24 horas.
-            </p>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
+          <!-- Company -->
+          <div>
+            <h3 class="font-semibold mb-4">Compañía</h3>
+            <ul class="space-y-2 text-sm text-gray-400">
+              <li>
+                <a href="#about" class="hover:text-primary transition-colors"
+                  >Sobre Mí</a
+                >
+              </li>
+              <li>
+                <a href="#process" class="hover:text-primary transition-colors"
+                  >Procedimiento</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#portfolio"
+                  class="hover:text-primary transition-colors"
+                  >Portafolio</a
+                >
+              </li>
+              <li>
+                <a href="#pricing" class="hover:text-primary transition-colors"
+                  >Precios</a
+                >
+              </li>
+              <li>
+                <a href="#faq" class="hover:text-primary transition-colors"
+                  >Preguntas Frecuentes</a
+                >
+              </li>
+            </ul>
+          </div>
 
-  <!-- ==================== FOOTER ==================== -->
-  <footer class="border-t border-dark-600/50 py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
-        <!-- Brand -->
-        <div class="sm:col-span-2 lg:col-span-1">
-          <a href="#hero" class="flex items-center gap-2 mb-4">
-            <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-dark-900 font-bold text-lg">&lt;/&gt;</div>
-            <span class="text-xl font-bold tracking-tight">Agustín<span class="text-primary">Peña</span></span>
-          </a>
-          <p class="text-gray-400 text-sm leading-relaxed mb-4">
-            Soluciones web profesionales para pequeños negocios. Construyamos juntos su presencia en línea.
-          </p>
-          <div class="flex gap-3">
-            <a href="#" class="w-9 h-9 rounded-lg bg-dark-700 hover:bg-dark-600 flex items-center justify-center text-gray-400 hover:text-primary transition-all">
-              <i class="fab fa-github"></i>
-            </a>
-            <a href="#" class="w-9 h-9 rounded-lg bg-dark-700 hover:bg-dark-600 flex items-center justify-center text-gray-400 hover:text-primary transition-all">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="#" class="w-9 h-9 rounded-lg bg-dark-700 hover:bg-dark-600 flex items-center justify-center text-gray-400 hover:text-primary transition-all">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="w-9 h-9 rounded-lg bg-dark-700 hover:bg-dark-600 flex items-center justify-center text-gray-400 hover:text-primary transition-all">
-              <i class="fab fa-dribbble"></i>
-            </a>
+          <!-- Legal -->
+          <div>
+            <h3 class="font-semibold mb-4">Legal</h3>
+            <ul class="space-y-2 text-sm text-gray-400">
+              <li>
+                <a href="#" class="hover:text-primary transition-colors"
+                  >Política de Privacidad</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-primary transition-colors"
+                  >Términos de servicio</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-primary transition-colors"
+                  >Política de Cookies</a
+                >
+              </li>
+            </ul>
           </div>
         </div>
 
-        <!-- Services -->
-        <div>
-          <h3 class="font-semibold mb-4">Servicios</h3>
-          <ul class="space-y-2 text-sm text-gray-400">
-            <li><a href="#services" class="hover:text-primary transition-colors">Sitios de presentación</a></li>
-            <li><a href="#services" class="hover:text-primary transition-colors">Landing Pages</a></li>
-            <li><a href="#services" class="hover:text-primary transition-colors">Adaptación Móvil</a></li>
-            <li><a href="#services" class="hover:text-primary transition-colors">Rediseño de Sitios</a></li>
-          </ul>
-        </div>
-
-        <!-- Company -->
-        <div>
-          <h3 class="font-semibold mb-4">Compañía</h3>
-          <ul class="space-y-2 text-sm text-gray-400">
-            <li><a href="#about" class="hover:text-primary transition-colors">Sobre Mí</a></li>
-            <li><a href="#process" class="hover:text-primary transition-colors">Procedimiento</a></li>
-            <li><a href="#portfolio" class="hover:text-primary transition-colors">Portafolio</a></li>
-            <li><a href="#pricing" class="hover:text-primary transition-colors">Precios</a></li>
-            <li><a href="#faq" class="hover:text-primary transition-colors">Preguntas Frecuentes</a></li>
-          </ul>
-        </div>
-
-        <!-- Legal -->
-        <div>
-          <h3 class="font-semibold mb-4">Legal</h3>
-          <ul class="space-y-2 text-sm text-gray-400">
-            <li><a href="#" class="hover:text-primary transition-colors">Política de Privacidad</a></li>
-            <li><a href="#" class="hover:text-primary transition-colors">Términos de servicio</a></li>
-            <li><a href="#" class="hover:text-primary transition-colors">Política de Cookies</a></li>
-          </ul>
+        <!-- Bottom bar -->
+        <div
+          class="border-t border-dark-600/50 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
+        >
+          <p class="text-sm text-gray-500">
+            &copy; 2026 Agustín Peña. TODOS LOS DERECHOS RESERVADOS.
+          </p>
+          <p class="text-sm text-gray-500">
+            Hecho con <span class="text-red-400">♥</span> para todos los
+            pequeños negocios en todo el mundo.
+          </p>
         </div>
       </div>
+    </footer>
 
-      <!-- Bottom bar -->
-      <div class="border-t border-dark-600/50 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p class="text-sm text-gray-500">&copy; 2026 Agustín Peña. TODOS LOS DERECHOS RESERVADOS.</p>
-        <p class="text-sm text-gray-500">Hecho con <span class="text-red-400">♥</span> para todos los pequeños negocios en todo el mundo.</p>
-      </div>
-    </div>
-  </footer>
+    <!-- ==================== BACK TO TOP BUTTON ==================== -->
+    <button
+      id="back-to-top"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+      class="fixed bottom-6 right-6 w-12 h-12 rounded-xl bg-primary hover:bg-accent text-dark-900 flex items-center justify-center shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all z-40 opacity-0 translate-y-4 pointer-events-none"
+      aria-label="Back to top"
+    >
+      <i class="fas fa-arrow-up"></i>
+    </button>
 
-  <!-- ==================== BACK TO TOP BUTTON ==================== -->
-  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="fixed bottom-6 right-6 w-12 h-12 rounded-xl bg-primary hover:bg-accent text-dark-900 flex items-center justify-center shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all z-40 opacity-0 translate-y-4 pointer-events-none" aria-label="Back to top">
-    <i class="fas fa-arrow-up"></i>
-  </button>
-
-  <!-- ==================== JAVASCRIPT ==================== -->
-  <script src="js/script.js"></script>
-
-</body>
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script src="js/script.js"></script>
+  </body>
 </html>
