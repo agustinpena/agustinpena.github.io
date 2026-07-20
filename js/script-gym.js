@@ -1,6 +1,6 @@
 /* --------------------------------------------
            Application Object
-           -------------------------------------------- */
+   -------------------------------------------- */
 const app = {
   // Initialize the app
   init() {
@@ -14,7 +14,7 @@ const app = {
 
   /* --------------------------------------------
                Hash-Based Router
-               -------------------------------------------- */
+     -------------------------------------------- */
   setupRouter() {
     // Handle hash changes
     window.addEventListener("hashchange", () => this.handleRoute());
@@ -78,7 +78,8 @@ const app = {
   },
 
   /* --------------------------------------------
-               Mobile Menu Toggle -------------------------------------------- */
+               Mobile Menu Toggle
+     -------------------------------------------- */
   setupMobileMenu() {
     const hamburger = document.getElementById("hamburgerBtn");
     const navLinks = document.getElementById("navLinks");
@@ -92,7 +93,7 @@ const app = {
 
   /* --------------------------------------------
                Class Filter System
-               -------------------------------------------- */
+     -------------------------------------------- */
   setupClassFilters() {
     const filterBtns = document.querySelectorAll(".filter-btn");
     const classCards = document.querySelectorAll(".class-card");
@@ -119,8 +120,8 @@ const app = {
   },
 
   /* --------------------------------------------
-               Contact Form Validation & Dummy Submission
- -------------------------------------------- */
+      Contact Form Validation & Dummy Submission
+     -------------------------------------------- */
   setupContactForm() {
     const form = document.getElementById("contactForm");
     const statusDiv = document.getElementById("formStatus");
@@ -186,10 +187,11 @@ const app = {
   },
 
   /* --------------------------------------------
-               Generic Action Buttons (Reservar / Inscribirse)
-               -------------------------------------------- */
+    Generic Action Buttons (Reservar/Inscribirse)
+     -------------------------------------------- */
   setupActionButtons() {
-    // Reservation buttons                const reserveBtns = document.querySelectorAll('.action-reserve');
+    // Reservation buttons
+    const reserveBtns = document.querySelectorAll(".action-reserve");
     reserveBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
         this.showToast(
@@ -208,8 +210,8 @@ const app = {
   },
 
   /* --------------------------------------------
-               Toast Notification System
- -------------------------------------------- */
+           Toast Notification System
+     -------------------------------------------- */
   showToast(message) {
     const toast = document.getElementById("toastContainer");
     if (!toast) return;
@@ -227,7 +229,7 @@ const app = {
 
   /* --------------------------------------------
                Navbar Scroll Effect
- -------------------------------------------- */
+     -------------------------------------------- */
   setupScrollNavbar() {
     const navbar = document.getElementById("navbar");
     if (!navbar) return;
