@@ -19,7 +19,11 @@
       sizes="32x32"
     />
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- CSS (STATIC & TAILWIND) -->
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/output.css" />
+
+    <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -27,37 +31,11 @@
       rel="stylesheet"
     />
 
-    <!-- Font Awesome -->
+    <!-------- FONT AWESOME -------->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
-
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: "#0ea5e9",
-              accent: "#38bdf8",
-              dark: {
-                900: "#0a0e1a",
-                800: "#0f1629",
-                700: "#151d35",
-                600: "#1c2744",
-                500: "#243052",
-              },
-            },
-            fontFamily: {
-              sans: ["Inter", "sans-serif"],
-              mono: ["JetBrains Mono", "monospace"],
-            },
-          },
-        },
-      };
-    </script>
-    <!-- <style></style> -->
-    <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body class="grid-bg">
     <!-- ==================== NAVIGATION ==================== -->

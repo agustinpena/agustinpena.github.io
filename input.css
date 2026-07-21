@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: #0ea5e9;
+    --color-accent: #38bdf8;
+    --color-dark-900: #0a0e1a;
+    --color-dark-800: #0f1629;
+    --color-dark-700: #151d35;
+    --color-dark-600: #1c2744;
+    --color-dark-500: #243052;
+  }
+}
+
+@layer utilities {
+  .gradient-text {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
