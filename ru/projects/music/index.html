@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Иван Смирнов — Пианист и композитор</title>
+    <meta
+      name="description"
+      content="Официальное портфолио Ивана Смирнова, пианиста и композитора. Слушайте оригинальные сочинения, смотрите живые выступления и заказывайте для мероприятий."
+    />
+    <!-- ============== FAVICON ================== -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎹%3C/text%3E%3C/svg%3E"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/css/style-music.css" />
+  </head>
+  <body>
+    <!-- ============ HEADER ============ -->
+    <header class="header" id="header">
+      <div class="container header-inner">
+        <a href="#home" class="logo" data-link="home"
+          >Иван <span>Смирнов</span></a
+        >
+        <nav class="nav" id="nav">
+          <ul>
+            <li><a href="#home" data-link="home" class="active">Главная</a></li>
+            <li><a href="#biography" data-link="biography">Биография</a></li>
+            <li><a href="#music" data-link="music">Музыка</a></li>
+            <li><a href="#videos" data-link="videos">Видео</a></li>
+            <li><a href="#concerts" data-link="concerts">Концерты</a></li>
+            <li><a href="#gallery" data-link="gallery">Галерея</a></li>
+            <li><a href="#contact" data-link="contact">Контакты</a></li>
+          </ul>
+        </nav>
+        <button class="hamburger" id="hamburger" aria-label="Меню">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ============ HERO / HOME ============ -->
+    <main>
+      <section class="page active" id="home">
+        <div class="hero">
+          <div class="hero-bg"></div>
+          <div class="hero-content">
+            <span class="eyebrow">Добро пожаловать</span>
+            <h1>Иван <span class="gold">Смирнов</span></h1>
+            <p class="tagline">Пианист &amp; Композитор</p>
+            <div class="hero-buttons">
+              <a href="#music" data-link="music" class="btn btn-primary">
+                <i class="fas fa-headphones"></i> Слушать музыку
+              </a>
+              <a href="#contact" data-link="contact" class="btn btn-outline">
+                <i class="fas fa-calendar-check"></i> Заказать для мероприятий
+              </a>
+            </div>
+          </div>
+          <div class="scroll-indicator">Прокрутите</div>
+        </div>
+
+        <!-- Quick intro below hero -->
+        <div class="section">
+          <div class="container" style="text-align: center; max-width: 760px">
+            <span class="eyebrow fade-in">Об артисте</span>
+            <h2 class="section-title fade-in">
+              Там, где эмоции встречаются с клавиатурой.
+            </h2>
+            <p
+              class="fade-in"
+              style="color: var(--text-dim); font-size: 1.05rem"
+            >
+              Более пятнадцати лет Иван Смирнов переводит тишину в звук —
+              сочиняя камерные пьесы, вдохновлённые классической традицией,
+              танго и современным минимализмом.
+            </p>
+            <div style="margin-top: 2rem" class="fade-in">
+              <a
+                href="#biography"
+                data-link="biography"
+                class="btn btn-outline btn-sm"
+                >Читать историю</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ BIOGRAPHY ============ -->
+      <section class="page" id="biography">
+        <div class="section">
+          <div class="container">
+            <span class="eyebrow fade-in">Биография</span>
+            <h2 class="section-title fade-in">
+              Жизнь, посвящённая фортепиано.
+            </h2>
+
+            <div class="bio-grid">
+              <div class="bio-photo fade-in">
+                <img
+                  src="/assets/images/music/music-bio.jpg?auto=format&fit=crop&w=800&q=80"
+                  alt="Портрет Иван Смирнова"
+                />
+              </div>
+              <div class="bio-text fade-in">
+                <p>
+                  <strong>Иван Смирнов</strong> родился в Москве, где звук
+                  вертикального фортепиано его бабушки стал первым пейзажем в
+                  его памяти. В семь лет он начал обучение в Национальной
+                  консерватории, а в пятнадцать уже дал свой первый сольный
+                  концерт.
+                </p>
+                <p>
+                  За <strong>15-летнюю карьеру</strong> Иван выработал
+                  уникальный голос, соединяющий романтическую традицию с
+                  современным минимализмом. Его сочинения — часто вдохновлённые
+                  памятью, пейзажем и молчаливой драмой повседневной жизни —
+                  звучали в концертных залах Латинской Америки и Европы.
+                </p>
+                <p>
+                  Его творчество находится на пересечении лиризма Шопена,
+                  колористического воображения Дебюсси, беспокойного танго
+                  Пьяццоллы и кинематографичной ясности Эйнауди. Каждая пьеса —
+                  это приглашение остановиться, послушать и вспомнить.
+                </p>
+
+                <div class="influences">
+                  <h4>Музыкальные влияния</h4>
+                  <div class="influences-list">
+                    <span>Фридерик Шопен</span>
+                    <span>Клод Дебюсси</span>
+                    <span>Астор Пьяццолла</span>
+                    <span>Людовико Эйнауди</span>
+                  </div>
+                </div>
+
+                <div class="stats">
+                  <div class="stat">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Лет карьеры</span>
+                  </div>
+                  <div class="stat">
+                    <span class="stat-number">12</span>
+                    <span class="stat-label">Оригинальных сочинений</span>
+                  </div>
+                  <div class="stat">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Концертов</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ MUSIC ============ -->
+      <section class="page" id="music">
+        <div class="section">
+          <div class="container">
+            <span class="eyebrow fade-in">Оригинальные сочинения</span>
+            <h2 class="section-title fade-in">Музыка.</h2>
+            <p class="section-subtitle fade-in">
+              Подборка оригинальных фортепианных произведений, написанных в
+              период с 2014 по 2025 год. Каждая пьеса — это маленькая вселенная,
+              сочинённая, исполненная и записанная Иван Смирновом.
+            </p>
+
+            <div class="music-grid" id="musicGrid"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ VIDEOS ============ -->
+      <section class="page" id="videos">
+        <div class="section">
+          <div class="container">
+            <span class="eyebrow fade-in">Живые выступления</span>
+            <h2 class="section-title fade-in">На сцене.</h2>
+            <p class="section-subtitle fade-in">
+              Записи концертов и сольных вечеров — запечатлённые в интимной
+              атмосфере момента.
+            </p>
+
+            <div class="video-grid" id="videoGrid"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CONCERTS ============ -->
+      <section class="page" id="concerts">
+        <div class="section">
+          <div class="container">
+            <span class="eyebrow fade-in">Ближайшие даты</span>
+            <h2 class="section-title fade-in">Концерты и календарь.</h2>
+            <p class="section-subtitle fade-in">
+              Приходите на ближайший концерт. Билеты доступны в официальных
+              кассах каждой площадки.
+            </p>
+
+            <div class="concert-list" id="concertList"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ GALLERY ============ -->
+      <section class="page" id="gallery">
+        <div class="section">
+          <div class="container">
+            <span class="eyebrow fade-in">Галерея</span>
+            <h2 class="section-title fade-in">Мгновения в кадре.</h2>
+            <p class="section-subtitle fade-in">
+              Художественные фотографии с концертов, репетиций и тихих моментов
+              между нотами.
+            </p>
+
+            <div class="gallery-grid" id="galleryGrid"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CONTACT ============ -->
+      <section class="page" id="contact">
+        <div class="section">
+          <div class="container">
+            <span class="eyebrow fade-in">Контакты</span>
+            <h2 class="section-title fade-in">Создадим что-то вместе.</h2>
+
+            <div class="contact-grid">
+              <div class="contact-info fade-in">
+                <h3>Профессиональные запросы</h3>
+                <p>
+                  По вопросам сотрудничества, заказов, прессы или просто чтобы
+                  поздороваться — я буду рад получить ваше сообщение. Обычно
+                  отвечаю в течение 48 часов.
+                </p>
+                <ul class="contact-list">
+                  <li>
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                      <strong>Электронная почта</strong>
+                      <span>ivan@ismirnoff.com</span>
+                    </div>
+                  </li>
+                  <li>
+                    <i class="fas fa-phone"></i>
+                    <div>
+                      <strong>Телефон</strong>
+                      <span>+54 11 4567 8900</span>
+                    </div>
+                  </li>
+                  <li>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                      <strong>Местоположение</strong>
+                      <span>Москва, Россия</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <form class="contact-form fade-in" id="contactForm" novalidate>
+                <div class="form-group">
+                  <label for="name">Имя</label>
+                  <input type="text" id="name" name="name" required />
+                </div>
+                <div class="form-group">
+                  <label for="email">Электронная почта</label>
+                  <input type="email" id="email" name="email" required />
+                </div>
+                <div class="form-group">
+                  <label for="message">Сообщение</label>
+                  <textarea id="message" name="message" required></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  style="width: 100%; justify-content: center"
+                >
+                  <i class="fas fa-paper-plane"></i> Отправить сообщение
+                </button>
+                <div class="form-status" id="formStatus"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ VIDEO MODAL ============ -->
+    <div class="modal" id="videoModal">
+      <div class="modal-content">
+        <button class="modal-close" id="modalClose" aria-label="Закрыть">
+          <i class="fas fa-times"></i>
+        </button>
+        <iframe id="modalIframe" src="" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="#home" data-link="home" class="logo"
+              >Иван <span>Смирнов</span></a
+            >
+            <p>
+              Пианист и композитор из Москва. Переводит тишину в звук с 2010
+              года.
+            </p>
+            <div class="social-icons">
+              <a href="#" aria-label="Spotify"
+                ><i class="fab fa-spotify"></i
+              ></a>
+              <a href="#" aria-label="Apple Music"
+                ><i class="fab fa-apple"></i
+              ></a>
+              <a href="#" aria-label="YouTube"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a href="#" aria-label="Instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+          <div>
+            <h4>Навигация</h4>
+            <ul class="footer-links">
+              <li><a href="#home" data-link="home">Главная</a></li>
+              <li><a href="#biography" data-link="biography">Биография</a></li>
+              <li><a href="#music" data-link="music">Музыка</a></li>
+              <li><a href="#videos" data-link="videos">Видео</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Связаться</h4>
+            <ul class="footer-links">
+              <li><a href="#concerts" data-link="concerts">Концерты</a></li>
+              <li><a href="#gallery" data-link="gallery">Галерея</a></li>
+              <li><a href="#contact" data-link="contact">Контакты</a></li>
+              <li><a href="mailto:contacto@Иванmendez.com">Почта</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          © 2026 <span class="gold">Иван Смирнов</span> — Все права защищены.
+          Сделано с душой.
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="/ru/js/script-music.js"></script>
+  </body>
+</html>

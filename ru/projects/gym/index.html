@@ -1,0 +1,1378 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Iron Forge Gym в Москве. Тренажёрный зал высоких достижений с CrossFit, HIIT, боксом и другим. Первая неделя бесплатно. Выкуй свою лучшую версию."
+    />
+    <meta
+      name="keywords"
+      content="тренажёрный зал Москвы, CrossFit Москвы, персональные тренировки, фитнес, Iron Forge Gym, HIIT, бокс, Spinning"
+    />
+    <meta name="author" content="Iron Forge Gym" />
+    <meta
+      property="og:title"
+      content="Iron Forge Gym | Выкуй свою лучшую версию"
+    />
+    <meta
+      property="og:description"
+      content="Тренируйтесь в лучшем тренажёрном зале высоких достижений в Москве. Первая неделя бесплатно."
+    />
+    <meta property="og:type" content="website" />
+    <title>Iron Forge Gym | Выкуй свою лучшую версию — Москва</title>
+
+    <!-- Favicon placeholder using inline SVG -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🏋️%3C/text%3E%3C/svg%3E"
+    />
+
+    <!-- Google Fonts: Oswald for headings, Inter for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Oswald:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="/css/style-gym.css" />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+      <div class="container">
+        <a href="#home" class="logo" onclick="app.navigate('home')"
+          >Iron Forge <span>Gym</span></a
+        >
+
+        <!-- Hamburger Menu Button -->
+        <button
+          class="hamburger-btn"
+          id="hamburgerBtn"
+          aria-label="Открыть меню навигации"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Navigation Links -->
+        <ul class="nav-links" id="navLinks">
+          <li>
+            <a
+              href="#home"
+              class="nav-link active"
+              onclick="app.navigate('home')"
+              >Главная</a
+            >
+          </li>
+          <li>
+            <a
+              href="#classes"
+              class="nav-link"
+              onclick="app.navigate('classes')"
+              >Занятия</a
+            >
+          </li>
+          <li>
+            <a
+              href="#trainers"
+              class="nav-link"
+              onclick="app.navigate('trainers')"
+              >Тренеры</a
+            >
+          </li>
+          <li>
+            <a
+              href="#pricing"
+              class="nav-link"
+              onclick="app.navigate('pricing')"
+              >Цены</a
+            >
+          </li>
+          <li>
+            <a
+              href="#testimonials"
+              class="nav-link"
+              onclick="app.navigate('testimonials')"
+              >Отзывы</a
+            >
+          </li>
+          <li>
+            <a
+              href="#gallery"
+              class="nav-link"
+              onclick="app.navigate('gallery')"
+              >Галерея</a
+            >
+          </li>
+          <li>
+            <a
+              href="#contact"
+              class="nav-link"
+              onclick="app.navigate('contact')"
+              >Контакты</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main id="mainContent">
+      <!-- ============================================
+                              HOME PAGE
+           ============================================ -->
+      <section class="page-section active" id="home">
+        <!-- Hero Section -->
+        <div class="hero">
+          <div class="hero-content">
+            <h1>Iron Forge Gym</h1>
+            <p class="tagline">Выкуй свою лучшую версию</p>
+            <div class="hero-ctas">
+              <a
+                href="#pricing"
+                class="btn btn-primary"
+                onclick="app.navigate('pricing')"
+                >Начать сегодня</a
+              >
+              <a
+                href="#classes"
+                class="btn btn-outline"
+                onclick="app.navigate('classes')"
+                >Смотреть занятия</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Stats Bar -->
+        <div class="stats-bar">
+          <div class="container">
+            <div class="stats-grid">
+              <div class="stat-item">
+                <i class="fas fa-users"></i>
+                <span class="stat-number">500+</span>
+                <span class="stat-label">Участников</span>
+              </div>
+              <div class="stat-item">
+                <i class="fas fa-dumbbell"></i>
+                <span class="stat-number">20+</span>
+                <span class="stat-label">Занятий в неделю</span>
+              </div>
+              <div class="stat-item">
+                <i class="fas fa-medal"></i>
+                <span class="stat-number">5</span>
+                <span class="stat-label">Опытных тренеров</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Featured Classes Preview -->
+        <div class="section-padding">
+          <div class="container text-center">
+            <h2 class="section-title">Наши специализации</h2>
+            <p class="section-subtitle">
+              Тренировки, разработанные для реальных результатов. Без
+              оправданий.
+            </p>
+            <div class="preview-grid">
+              <article class="card">
+                <div class="card-body text-center">
+                  <div class="preview-icon"><i class="fas fa-fire"></i></div>
+                  <h3 class="card-title">CrossFit</h3>
+                  <p class="card-text">
+                    Сила, выносливость и функциональный тренинг, который
+                    преображает вашу физическую форму.
+                  </p>
+                </div>
+              </article>
+              <article class="card">
+                <div class="card-body text-center">
+                  <div class="preview-icon"><i class="fas fa-bolt"></i></div>
+                  <h3 class="card-title">HIIT</h3>
+                  <p class="card-text">
+                    Максимальное сжигание калорий за минимальное время.
+                    Интенсивно и эффективно.
+                  </p>
+                </div>
+              </article>
+              <article class="card">
+                <div class="card-body text-center">
+                  <div class="preview-icon">
+                    <i class="fas fa-hand-fist"></i>
+                  </div>
+                  <h3 class="card-title">Бокс</h3>
+                  <p class="card-text">
+                    Техника, скорость и кондиционирование. Высвободите свою
+                    внутреннюю силу.
+                  </p>
+                </div>
+              </article>
+            </div>
+
+            <div style="margin-top: 2.5rem">
+              <a
+                href="#classes"
+                class="btn btn-outline"
+                onclick="app.navigate('classes')"
+                >Посмотреть все занятия</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Call-to-Action Banner -->
+        <div class="cta-banner">
+          <div class="container">
+            <h2>Готовы преобразить своё тело?</h2>
+            <p>
+              Присоединяйтесь сейчас и получите первую неделю совершенно
+              бесплатно. Без обязательств.
+            </p>
+            <a
+              href="#pricing"
+              class="btn btn-outline"
+              onclick="app.navigate('pricing')"
+              style="border-color: #ffffff; color: #ffffff"
+              >Записаться сейчас</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================
+                           CLASSES PAGE
+           ============================================ -->
+      <section class="page-section" id="classes">
+        <div class="section-padding">
+          <div class="container">
+            <div class="text-center">
+              <br />
+              <h2 class="section-title">Наши занятия</h2>
+              <p class="section-subtitle">
+                Гибкое расписание и интенсивные тренировки для любого уровня.
+              </p>
+            </div>
+
+            <!-- Class Filters -->
+            <div class="filter-bar">
+              <button class="filter-btn active" data-filter="all">Все</button>
+              <button class="filter-btn" data-filter="strength">Сила</button>
+              <button class="filter-btn" data-filter="cardio">Кардио</button>
+              <button class="filter-btn" data-filter="recovery">
+                Восстановление
+              </button>
+            </div>
+
+            <!-- Classes Grid -->
+            <div class="classes-grid">
+              <!-- Class 1: CrossFit -->
+              <article class="class-card" data-category="strength">
+                <img
+                  src="/assets/images/gym/classes/crossfit.jpg?auto=format&fit=crop&w=800&q=80"
+                  alt="Занятие CrossFit со штангой"
+                  class="class-img"
+                  loading="lazy"
+                />
+                <div class="class-info">
+                  <h3 class="card-title">CrossFit</h3>
+                  <div class="class-meta">
+                    <span><i class="far fa-clock"></i> 60 мин</span>
+                    <span><i class="fas fa-person-running"></i> Высокая</span>
+                  </div>
+                  <p class="card-text">
+                    Высокоинтенсивный функциональный тренинг с олимпийскими
+                    подъёмами и гимнастикой.
+                  </p>
+                  <div class="class-footer">
+                    <span class="intensity">Высокая</span>
+                    <span><i class="fas fa-user"></i> Артем Попов</span>
+                  </div>
+                  <button
+                    class="btn btn-primary btn-small action-reserve"
+                    style="margin-top: 1.2rem; width: 100%"
+                  >
+                    Записаться
+                  </button>
+                </div>
+              </article>
+
+              <!-- Class 2: HIIT -->
+              <article class="class-card" data-category="cardio">
+                <img
+                  src="/assets/images/gym/classes/hiit.jpg?auto=format&fit=crop&w=800&q=80"
+                  alt="HIIT – высокоинтенсивные интервальные тренировки с канатами"
+                  class="class-img"
+                  loading="lazy"
+                />
+                <div class="class-info">
+                  <h3 class="card-title">HIIT</h3>
+                  <div class="class-meta">
+                    <span><i class="far fa-clock"></i> 45 мин</span>
+                    <span><i class="fas fa-heart-pulse"></i> Высокая</span>
+                  </div>
+                  <p class="card-text">
+                    Взрывные интервалы, разработанные для сжигания жира и
+                    улучшения сердечно-сосудистой выносливости.
+                  </p>
+                  <div class="class-footer">
+                    <span class="intensity">Высокая</span>
+                    <span><i class="fas fa-user"></i> Анна Смирнова</span>
+                  </div>
+                  <button
+                    class="btn btn-primary btn-small action-reserve"
+                    style="margin-top: 1.2rem; width: 100%"
+                  >
+                    Записаться
+                  </button>
+                </div>
+              </article>
+
+              <!-- Class 3: Boxeo -->
+              <article class="class-card" data-category="cardio">
+                <img
+                  src="/assets/images/gym/classes/boxing.jpg?auto=format&fit=crop&w=800&q=80"
+                  alt="Боксёрские перчатки и груша"
+                  class="class-img"
+                  loading="lazy"
+                />
+                <div class="class-info">
+                  <h3 class="card-title">Бокс</h3>
+                  <div class="class-meta">
+                    <span><i class="far fa-clock"></i> 60 мин</span>
+                    <span><i class="fas fa-fire"></i> Средняя-высокая</span>
+                  </div>
+                  <p class="card-text">
+                    Изучайте технику ударов, защитные движения и боевую
+                    кондицию.
+                  </p>
+                  <div class="class-footer">
+                    <span class="intensity">Средняя-высокая</span>
+                    <span><i class="fas fa-user"></i> Андерй Новиков</span>
+                  </div>
+                  <button
+                    class="btn btn-primary btn-small action-reserve"
+                    style="margin-top: 1.2rem; width: 100%"
+                  >
+                    Записаться
+                  </button>
+                </div>
+              </article>
+
+              <!-- Class 4: Yoga -->
+              <article class="class-card" data-category="recovery">
+                <img
+                  src="/assets/images/gym/classes/yoga.jpg?auto=format&fit=crop&w=800&q=80"
+                  alt="Занятие йогой и растяжкой"
+                  class="class-img"
+                  loading="lazy"
+                />
+                <div class="class-info">
+                  <h3 class="card-title">Йога</h3>
+                  <div class="class-meta">
+                    <span><i class="far fa-clock"></i> 60 мин</span>
+                    <span><i class="fas fa-spa"></i> Низкая</span>
+                  </div>
+                  <p class="card-text">
+                    Гибкость, дыхание и ментальная концентрация. Активное
+                    восстановление для максимальных результатов.
+                  </p>
+                  <div class="class-footer">
+                    <span class="intensity">Низкая</span>
+                    <span><i class="fas fa-user"></i> Ольга Петрова</span>
+                  </div>
+                  <button
+                    class="btn btn-primary btn-small action-reserve"
+                    style="margin-top: 1.2rem; width: 100%"
+                  >
+                    Записаться
+                  </button>
+                </div>
+              </article>
+
+              <!-- Class 5: Spinning -->
+              <article class="class-card" data-category="cardio">
+                <img
+                  src="/assets/images/gym/classes/spinning.jpg?auto=format&fit=crop&w=800&q=80"
+                  alt="Занятие Spinning – велотренировка в помещении"
+                  class="class-img"
+                  loading="lazy"
+                />
+                <div class="class-info">
+                  <h3 class="card-title">Spinning</h3>
+                  <div class="class-meta">
+                    <span><i class="far fa-clock"></i> 45 мин</span>
+                    <span><i class="fas fa-bicycle"></i> Средняя</span>
+                  </div>
+                  <p class="card-text">
+                    Велотренировка в помещении под музыку и свет. Весёлое и
+                    результативное кардио.
+                  </p>
+                  <div class="class-footer">
+                    <span class="intensity">Средняя</span>
+                    <span><i class="fas fa-user"></i> Анна Смирнова</span>
+                  </div>
+                  <button
+                    class="btn btn-primary btn-small action-reserve"
+                    style="margin-top: 1.2rem; width: 100%"
+                  >
+                    Записаться
+                  </button>
+                </div>
+              </article>
+
+              <!-- Class 6: Fuerza -->
+              <article class="class-card" data-category="strength">
+                <img
+                  src="/assets/images/gym/classes/force.jpg?auto=format&fit=crop&w=800&q=80"
+                  alt="Силовая тренировка с гантелями"
+                  class="class-img"
+                  loading="lazy"
+                />
+                <div class="class-info">
+                  <h3 class="card-title">Сила</h3>
+                  <div class="class-meta">
+                    <span><i class="far fa-clock"></i> 60 мин</span>
+                    <span
+                      ><i class="fas fa-hand-fist"></i> Средняя-высокая</span
+                    >
+                  </div>
+                  <p class="card-text">
+                    Научно обоснованная гипертрофия мышц. Тренажёры, гантели и
+                    свободные веса.
+                  </p>
+                  <div class="class-footer">
+                    <span class="intensity">Средняя-высокая</span>
+                    <span><i class="fas fa-user"></i> Артем Попов</span>
+                  </div>
+                  <button
+                    class="btn btn-primary btn-small action-reserve"
+                    style="margin-top: 1.2rem; width: 100%"
+                  >
+                    Записаться
+                  </button>
+                </div>
+              </article>
+            </div>
+
+            <!-- Weekly Schedule -->
+            <div class="text-center" style="margin-top: 4rem">
+              <h2 class="section-title">Расписание на неделю</h2>
+              <p class="section-subtitle">
+                Найдите время, которое подходит вашему графику.
+              </p>
+            </div>
+
+            <div class="schedule-wrapper">
+              <table class="schedule-table">
+                <thead>
+                  <tr>
+                    <th>Время</th>
+                    <th>Пн</th>
+                    <th>Вт</th>
+                    <th>Ср</th>
+                    <th>Чт</th>
+                    <th>Пт</th>
+                    <th>Сб</th>
+                    <th>Вс</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="schedule-time">06:00</span></td>
+                    <td>
+                      <span class="schedule-class">CrossFit</span
+                      ><span class="schedule-time">60 мин</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">HIIT</span
+                      ><span class="schedule-time">45 мин</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Сила</span
+                      ><span class="schedule-time">60 мин</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">CrossFit</span
+                      ><span class="schedule-time">60 мин</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">HIIT</span
+                      ><span class="schedule-time">45 мин</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Йога</span
+                      ><span class="schedule-time">60 мин</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Бокс</span
+                      ><span class="schedule-time">60 мин</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="schedule-time">07:00</span></td>
+                    <td>
+                      <span class="schedule-class">HIIT</span
+                      ><span class="schedule-time">45 мин</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Spinning</span
+                      ><span class="schedule-time">45 мин</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">CrossFit</span
+                      ><span class="schedule-time">60 мин</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Йога</span
+                      ><span class="schedule-time">60 мин</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Spinning</span
+                      ><span class="schedule-time">45 мин</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">CrossFit</span
+                      ><span class="schedule-time">60 мин</span>
+                    </td>
+                    <td>-</td>
+                  </tr>
+                  <tr>
+                    <td><span class="schedule-time">18:00</span></td>
+                    <td>
+                      <span class="schedule-class">Бокс</span
+                      ><span class="schedule-time">60 мин</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">CrossFit</span
+                      ><span class="schedule-time">60 мин</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">HIIT</span
+                      ><span class="schedule-time">45 мин</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Бокс</span
+                      ><span class="schedule-time">60 мин</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Сила</span
+                      ><span class="schedule-time">60 мин</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">HIIT</span
+                      ><span class="schedule-time">45 мин</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Spinning</span
+                      ><span class="schedule-time">45 мин</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="schedule-time">19:00</span></td>
+                    <td>
+                      <span class="schedule-class">Spinning</span
+                      ><span class="schedule-time">45 мин</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Сила</span
+                      ><span class="schedule-time">60 мин</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Йога</span
+                      ><span class="schedule-time">60 мин</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Сила</span
+                      ><span class="schedule-time">60 мин</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">CrossFit</span
+                      ><span class="schedule-time">60 мин</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Бокс</span
+                      ><span class="schedule-time">60 мин</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Йога</span
+                      ><span class="schedule-time">60 мин</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="schedule-time">20:00</span></td>
+                    <td>
+                      <span class="schedule-class">Сила</span
+                      ><span class="schedule-time">60 мин</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Йога</span
+                      ><span class="schedule-time">60 мин</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Бокс</span
+                      ><span class="schedule-time">60 мин</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">HIIT</span
+                      ><span class="schedule-time">45 мин</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Бокс</span
+                      ><span class="schedule-time">60 мин</span>
+                    </td>
+                    <td>-</td>
+                    <td>
+                      <span class="schedule-class">Сила</span
+                      ><span class="schedule-time">60 мин</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================
+                        TRAINERS PAGE
+           ============================================ -->
+      <section class="page-section" id="trainers">
+        <div class="section-padding">
+          <div class="container">
+            <div class="text-center">
+              <br />
+              <h2 class="section-title">Опытные тренеры</h2>
+              <p class="section-subtitle">
+                Сертифицированные профессионалы, преданные вашему преображению.
+              </p>
+            </div>
+
+            <div class="trainers-grid">
+              <!-- Trainer 1 -->
+              <article class="trainer-card">
+                <div class="trainer-img-wrapper">
+                  <img
+                    src="/assets/images/gym/trainers/marcos.jpg?auto=format&fit=crop&w=600&q=80"
+                    alt="Фото профессионального тренера"
+                    class="trainer-img"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="trainer-content">
+                  <div class="trainer-role">
+                    Специалист по CrossFit и силовой подготовке
+                  </div>
+                  <h3 class="trainer-name">Артем Попов</h3>
+                  <div class="trainer-tags">
+                    <span class="tag">CF-L1</span>
+                    <span class="tag">NSCA-CPT</span>
+                    <span class="tag">8 лет опыта</span>
+                  </div>
+                  <p class="trainer-bio">
+                    Бывший соревнующийся атлет, сосредоточен на олимпийских
+                    подъёмах и программировании силы для достижения максимальных
+                    результатов.
+                  </p>
+                  <p class="trainer-quote">
+                    "Дисциплина побеждает талант, когда талант не
+                    дисциплинирован."
+                  </p>
+                </div>
+              </article>
+
+              <!-- Trainer 2 -->
+              <article class="trainer-card">
+                <div class="trainer-img-wrapper">
+                  <img
+                    src="/assets/images/gym/trainers/ana.jpg?auto=format&fit=crop&w=600&q=80"
+                    alt="Фото профессионального тренера-женщины"
+                    class="trainer-img"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="trainer-content">
+                  <div class="trainer-role">Специалист по HIIT и питанию</div>
+                  <h3 class="trainer-name">Анна Смирнова</h3>
+                  <div class="trainer-tags">
+                    <span class="tag">ACE</span>
+                    <span class="tag">ISAK</span>
+                    <span class="tag">6 лет опыта</span>
+                  </div>
+                  <p class="trainer-bio">
+                    Увлечена наукой о физических упражнениях и спортивным
+                    питанием. Поможет оптимизировать каждую тренировку.
+                  </p>
+                  <p class="trainer-quote">
+                    "Ваша забота — это ваше здоровье. Инвестируйте в себя каждый
+                    день."
+                  </p>
+                </div>
+              </article>
+
+              <!-- Trainer 3 -->
+              <article class="trainer-card">
+                <div class="trainer-img-wrapper">
+                  <img
+                    src="/assets/images/gym/trainers/carlos.jpg?auto=format&fit=crop&w=600&q=80"
+                    alt="Фото тренера по боксу"
+                    class="trainer-img"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="trainer-content">
+                  <div class="trainer-role">
+                    Специалист по боксу и кондиционированию
+                  </div>
+                  <h3 class="trainer-name">Андерй Новиков</h3>
+                  <div class="trainer-tags">
+                    <span class="tag">AIBA</span>
+                    <span class="tag">NASM</span>
+                    <span class="tag">10 лет опыта</span>
+                  </div>
+                  <p class="trainer-bio">
+                    Более 30 любительских боёв. Превращает технику бокса в
+                    инструмент физической трансформации.
+                  </p>
+                  <p class="trainer-quote">
+                    "Каждый удар приближает тебя к цели. Не останавливайся."
+                  </p>
+                </div>
+              </article>
+
+              <!-- Trainer 4 -->
+              <article class="trainer-card">
+                <div class="trainer-img-wrapper">
+                  <img
+                    src="/assets/images/gym/trainers/diana.jpg?auto=format&fit=crop&w=600&q=80"
+                    alt="Фото инструктора по йоге и мобильности"
+                    class="trainer-img"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="trainer-content">
+                  <div class="trainer-role">
+                    Специалист по йоге и мобильности
+                  </div>
+                  <h3 class="trainer-name">Ольга Петрова</h3>
+                  <div class="trainer-tags">
+                    <span class="tag">E-RYT 500</span>
+                    <span class="tag">7 лет опыта</span>
+                  </div>
+                  <p class="trainer-bio">
+                    Её подход сочетает физическую силу с ментальным
+                    спокойствием. Идеально для восстановления и устойчивого
+                    прогресса.
+                  </p>
+                  <p class="trainer-quote">
+                    "Сила также обретается в спокойствии и дыхании."
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================
+                          PRICING PAGE
+           ============================================ -->
+      <section class="page-section" id="pricing">
+        <div class="section-padding">
+          <div class="container">
+            <div class="text-center">
+              <br />
+              <h2 class="section-title">Планы и цены</h2>
+              <p class="section-subtitle">
+                Инвестируйте в своё здоровье без запутанных контрактов и мелкого
+                шрифта.
+              </p>
+            </div>
+
+            <div class="pricing-grid">
+              <!-- Tier 1 -->
+              <div class="pricing-card">
+                <div class="pricing-name">Разовое занятие</div>
+                <div class="price">$250 <span>MXN</span></div>
+                <p class="pricing-best-for">Идеально для: редких посещений</p>
+                <ul class="pricing-features">
+                  <li><i class="fas fa-check"></i> Доступ к 1 занятию</li>
+                  <li><i class="fas fa-check"></i> Использование шкафчиков</li>
+                  <li><i class="fas fa-check"></i> Полотенце включено</li>
+                  <li class="cross-text">
+                    <i class="fas fa-times" style="color: #555"></i> Зона
+                    свободных весов
+                  </li>
+                </ul>
+                <button
+                  class="btn btn-outline action-enroll"
+                  style="width: 100%"
+                >
+                  Записаться
+                </button>
+              </div>
+
+              <!-- Tier 2: Popular -->
+              <div class="pricing-card popular">
+                <div class="popular-badge">Самый популярный</div>
+                <div class="pricing-name">Безлимитный месячный</div>
+                <div class="price">$3,000 <span>MXN</span></div>
+                <p class="pricing-best-for">
+                  Идеально для: серьёзных и постоянных результатов
+                </p>
+                <ul class="pricing-features">
+                  <li>
+                    <i class="fas fa-check"></i> Круглосуточный доступ 24/7
+                  </li>
+                  <li><i class="fas fa-check"></i> Все занятия включены</li>
+                  <li><i class="fas fa-check"></i> Зона свободных весов</li>
+                  <li>
+                    <i class="fas fa-check"></i> Приложение для отслеживания
+                  </li>
+                  <li>
+                    <i class="fas fa-check"></i> 1 приглашённое занятие в месяц
+                  </li>
+                  <li><i class="fas fa-check"></i>1 консультация в месяц</li>
+                </ul>
+                <button
+                  class="btn btn-primary action-enroll"
+                  style="width: 100%"
+                >
+                  Записаться
+                </button>
+              </div>
+
+              <!-- Tier 3 -->
+              <div class="pricing-card">
+                <div class="pricing-name">Пакет 10 занятий</div>
+                <div class="price">$2,000 <span>MXN</span></div>
+                <p class="pricing-best-for">Идеально для: умеренной частоты</p>
+                <ul class="pricing-features">
+                  <li><i class="fas fa-check"></i> 10 занятий</li>
+                  <li><i class="fas fa-check"></i> Срок действия 2 месяца</li>
+                  <li><i class="fas fa-check"></i> Использование шкафчиков</li>
+                  <li><i class="fas fa-check"></i> 1 консультация (15 мин)</li>
+                  <li><i class="fas fa-check"></i> Полотенце включено</li>
+                </ul>
+                <button
+                  class="btn btn-outline action-enroll"
+                  style="width: 100%"
+                >
+                  Записаться
+                </button>
+              </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="comparison-section">
+              <div class="text-center" style="margin-bottom: 1.5rem">
+                <h3 class="section-title" style="font-size: 1.5rem">
+                  Сравнение преимуществ
+                </h3>
+              </div>
+              <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                  <thead>
+                    <tr>
+                      <th>Преимущество</th>
+                      <th>Разовое занятие</th>
+                      <th>10 занятий</th>
+                      <th>Безлимитный</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Доступ к занятиям</td>
+                      <td>1</td>
+                      <td>10</td>
+                      <td class="check-icon">Безлимитно</td>
+                    </tr>
+                    <tr>
+                      <td>Зона свободных весов</td>
+                      <td><i class="fas fa-times cross-icon"></i></td>
+                      <td><i class="fas fa-times cross-icon"></i></td>
+                      <td><i class="fas fa-check check-icon"></i></td>
+                    </tr>
+                    <tr>
+                      <td>Шкафчики</td>
+                      <td><i class="fas fa-check check-icon"></i></td>
+                      <td><i class="fas fa-check check-icon"></i></td>
+                      <td><i class="fas fa-check check-icon"></i></td>
+                    </tr>
+                    <tr>
+                      <td>Приложение для отслеживания</td>
+                      <td><i class="fas fa-times cross-icon"></i></td>
+                      <td><i class="fas fa-times cross-icon"></i></td>
+                      <td><i class="fas fa-check check-icon"></i></td>
+                    </tr>
+                    <tr>
+                      <td>Приглашённое занятие / месяц</td>
+                      <td><i class="fas fa-times cross-icon"></i></td>
+                      <td><i class="fas fa-times cross-icon"></i></td>
+                      <td><i class="fas fa-check check-icon"></i></td>
+                    </tr>
+                    <tr>
+                      <td>Первичная консультация</td>
+                      <td><i class="fas fa-times cross-icon"></i></td>
+                      <td><i class="fas fa-check check-icon"></i></td>
+                      <td><i class="fas fa-check check-icon"></i></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================
+                      TESTIMONIALS PAGE
+           ============================================ -->
+      <section class="page-section" id="testimonials">
+        <div class="section-padding">
+          <div class="container">
+            <div class="text-center">
+              <br />
+              <h2 class="section-title">Отзывы</h2>
+              <p class="section-subtitle">
+                Что наше сообщество говорит о своих преображениях.
+              </p>
+            </div>
+
+            <div class="testimonials-grid">
+              <article class="testimonial-card">
+                <img
+                  src="/assets/images/gym/testimonials/fernanda.jpg?auto=format&fit=crop&w=200&h=200&q=80"
+                  alt="Фото клиента"
+                  class="testimonial-avatar"
+                  loading="lazy"
+                />
+                <div class="stars">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">
+                  "Я похудела на 12 кг за 4 месяца, не отказывая себе в любимой
+                  еде. Команда тренеров невероятно предана своему делу."
+                </p>
+                <div class="testimonial-name">Наталья</div>
+                <div class="testimonial-result">-12 кг за 4 месяца</div>
+              </article>
+
+              <article class="testimonial-card">
+                <img
+                  src="/assets/images/gym/testimonials/ricardo.jpg?auto=format&fit=crop&w=200&h=200&q=80"
+                  alt="Фото клиента"
+                  class="testimonial-avatar"
+                  loading="lazy"
+                />
+                <div class="stars">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">
+                  "Я заметно увеличил мышечную массу, а моя рабочая энергия
+                  взлетела. Никогда не чувствовал себя таким сильным."
+                </p>
+                <div class="testimonial-name">Никита</div>
+                <div class="testimonial-result">+6 кг мышц / 6 месяцев</div>
+              </article>
+
+              <article class="testimonial-card">
+                <img
+                  src="/assets/images/gym/testimonials/elena.jpg?auto=format&fit=crop&w=200&h=200&q=80"
+                  alt="Фото клиента"
+                  class="testimonial-avatar"
+                  loading="lazy"
+                />
+                <div class="stars">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">
+                  "Атмосфера и тренеры делают так, что я не хочу пропускать ни
+                  дня. Iron Forge стал моим вторым домом."
+                </p>
+                <div class="testimonial-name">Екатерина</div>
+                <div class="testimonial-result">Посещение 5 дней в неделю</div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================ 
+                          GALLERY PAGE
+           ============================================ -->
+      <section class="page-section" id="gallery">
+        <div class="section-padding">
+          <div class="container">
+            <div class="text-center">
+              <br />
+              <h2 class="section-title">Галерея</h2>
+              <p class="section-subtitle">
+                Ознакомьтесь с нашими первоклассными помещениями в Москве.
+              </p>
+            </div>
+
+            <div class="gallery-grid">
+              <div class="gallery-item">
+                <img
+                  src="/assets/images/gym/gallery/gym.jpg?auto=format&fit=crop&w=600&q=80"
+                  alt="Основной зал с оборудованием"
+                  loading="lazy"
+                />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="/assets/images/gym/gallery/weights.jpg?auto=format&fit=crop&w=600&q=80"
+                  alt="Зона с тяжелыми весами и стойками для приседаний"
+                  loading="lazy"
+                />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="/assets/images/gym/gallery/group-class.jpg?auto=format&fit=crop&w=600&q=80"
+                  alt="Групповое занятие в действии"
+                  loading="lazy"
+                />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="/assets/images/gym/gallery/barbell-plates.jpg?auto=format&fit=crop&w=600&q=80"
+                  alt="Крупный план штанги и дисков"
+                  loading="lazy"
+                />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="/assets/images/gym/gallery/boxing-ring.jpg?auto=format&fit=crop&w=600&q=80"
+                  alt="Боксёрский ринг и груши"
+                  loading="lazy"
+                />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="/assets/images/gym/gallery/yoga.jpg?auto=format&fit=crop&w=600&q=80"
+                  alt="Зона для йоги и растяжки"
+                  loading="lazy"
+                />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="/assets/images/gym/gallery/spinning.jpg?auto=format&fit=crop&w=600&q=80"
+                  alt="Зал Spinning – велотренировки"
+                  loading="lazy"
+                />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="/assets/images/gym/gallery/personal.jpg?auto=format&fit=crop&w=600&q=80"
+                  alt="Персональная тренировка"
+                  loading="lazy"
+                />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="/assets/images/gym/gallery/lockers.jpg?auto=format&fit=crop&w=600&q=80"
+                  alt="Раздевалки и удобства"
+                  loading="lazy"
+                />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================
+                         CONTACT PAGE
+           ============================================ -->
+      <section class="page-section" id="contact">
+        <div class="section-padding">
+          <div class="container">
+            <div class="text-center">
+              <br />
+              <h2 class="section-title">Свяжитесь с нами</h2>
+              <p class="section-subtitle">
+                Мы здесь, чтобы ответить на ваши вопросы и организовать ваш
+                первый визит.
+              </p>
+            </div>
+
+            <div class="contact-grid">
+              <!-- Contact Form -->
+              <div class="contact-form">
+                <form id="contactForm" novalidate>
+                  <div class="form-group">
+                    <label for="nombre">Полное имя *</label>
+                    <input
+                      type="text"
+                      id="nombre"
+                      name="nombre"
+                      required
+                      placeholder="Ваше полное имя"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Электронная почта *</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      placeholder="email@example.com"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="telefono">Телефон</label>
+                    <input
+                      type="tel"
+                      id="telefono"
+                      name="telefono"
+                      placeholder="+52 (55) 1234 5678"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="mensaje">Сообщение *</label>
+                    <textarea
+                      id="mensaje"
+                      name="mensaje"
+                      required
+                      placeholder="Чем мы можем вам помочь?"
+                    ></textarea>
+                  </div>
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                    style="width: 100%"
+                  >
+                    Отправить сообщение
+                  </button>
+                  <div id="formStatus" class="form-status"></div>
+                </form>
+              </div>
+
+              <!-- Contact Information -->
+              <div class="contact-info">
+                <h3>Контактная информация</h3>
+                <ul class="contact-info-list">
+                  <li>
+                    <i class="fas fa-location-dot"></i>
+                    <div>
+                      <strong>Адрес</strong>
+                      <span>Главный Пр 123, Москва</span>
+                    </div>
+                  </li>
+                  <li>
+                    <i class="fas fa-clock"></i>
+                    <div>
+                      <strong>Часы работы</strong>
+                      <span>Пн–Пт: 6:00 – 23:00<br />Сб–Вс: 8:00 – 21:00</span>
+                    </div>
+                  </li>
+                  <li>
+                    <i class="fas fa-phone"></i>
+                    <div>
+                      <strong>Телефон</strong>
+                      <span>+52 (55) 1234 5678</span>
+                    </div>
+                  </li>
+                  <li>
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                      <strong>Электронная почта</strong>
+                      <span>info@ironforgegym.mx</span>
+                    </div>
+                  </li>
+                </ul>
+
+                <div class="social-links-large">
+                  <a
+                    href="https://instagram.com"
+                    target="_blank"
+                    aria-label="Instagram"
+                    ><i class="fab fa-instagram"></i
+                  ></a>
+                  <a
+                    href="https://facebook.com"
+                    target="_blank"
+                    aria-label="Facebook"
+                    ><i class="fab fa-facebook-f"></i
+                  ></a>
+                  <a
+                    href="https://twitter.com"
+                    target="_blank"
+                    aria-label="X Twitter"
+                    ><i class="fab fa-x-twitter"></i
+                  ></a>
+                </div>
+
+                <!-- Map Placeholder -->
+                <div class="map-placeholder">
+                  <i class="fas fa-map-location-dot"></i>
+                  <p>Главный Проспект 123, Москва</p>
+                  <a href="https://yandex.ru/maps/213/moscow/" target="_blank"
+                    >Посмотреть на Яндекс Картах</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================================
+                          FOOTER
+         ============================================ -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <!-- Brand -->
+          <div>
+            <div class="logo" style="margin-bottom: 1rem">
+              Iron Forge <span>Gym</span>
+            </div>
+            <p
+              style="
+                color: var(--text-muted);
+                font-size: 0.95rem;
+                line-height: 1.5;
+              "
+            >
+              Мы куём настоящих атлетов. Тренируйтесь с интенсивностью, живите с
+              целью.
+            </p>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <h4 class="footer-heading">Быстрые ссылки</h4>
+            <ul class="footer-links">
+              <li>
+                <a href="#home" onclick="app.navigate('home')">Главная</a>
+              </li>
+              <li>
+                <a href="#classes" onclick="app.navigate('classes')">Занятия</a>
+              </li>
+              <li>
+                <a href="#trainers" onclick="app.navigate('trainers')"
+                  >Тренеры</a
+                >
+              </li>
+              <li>
+                <a href="#pricing" onclick="app.navigate('pricing')">Цены</a>
+              </li>
+              <li>
+                <a href="#contact" onclick="app.navigate('contact')"
+                  >Контакты</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Classes -->
+          <div>
+            <h4 class="footer-heading">Занятия</h4>
+            <ul class="footer-links">
+              <li>
+                <a href="#classes" onclick="app.navigate('classes')"
+                  >CrossFit</a
+                >
+              </li>
+              <li>
+                <a href="#classes" onclick="app.navigate('classes')">HIIT</a>
+              </li>
+              <li>
+                <a href="#classes" onclick="app.navigate('classes')">Бокс</a>
+              </li>
+              <li>
+                <a href="#classes" onclick="app.navigate('classes')">Йога</a>
+              </li>
+              <li>
+                <a href="#classes" onclick="app.navigate('classes')"
+                  >Spinning</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Social -->
+          <div>
+            <h4 class="footer-heading">Подписывайтесь</h4>
+            <div class="social-links">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                aria-label="Instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                aria-label="Facebook"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                aria-label="X Twitter"
+                ><i class="fab fa-x-twitter"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2026 Iron Forge Gym. Все права защищены. Москва.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-notification">
+      Сообщение уведомления
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="/js/script-gym.js"></script>
+  </body>
+</html>
