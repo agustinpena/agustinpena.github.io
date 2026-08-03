@@ -5,25 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IxeLab — Soluciones Web Para Pequeños Negocios</title>
 
-    <!-- Favicon: ICO + PNG for maximum compatibility -->
+    <!-- =============== FAVICONS =============== -->
+    <!-- Standard Legacy Favicon Fallback -->
+    <link rel="icon" type="image/x-icon" href="/assets/favicons/favicon.ico" />
+    <!-- Modern Browser Standard Icons -->
     <link
       rel="icon"
-      href="/assets/icons/favicon-spa.ico?v=2"
-      type="image/x-icon"
-      sizes="any"
-    />
-    <link
-      rel="icon"
-      href="/assets/icons/favicon-spa-32.png?v=2"
       type="image/png"
       sizes="32x32"
+      href="/assets/favicons/favicon-32x32.png"
     />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/favicons/favicon-16x16.png"
+    />
+    <!-- Apple Devices Home Screen Icon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/favicons/apple-touch-icon.png"
+    />
+    <!-- Android/PWA Manifest Configuration -->
+    <link rel="manifest" href="/assets/favicons/site.webmanifest" />
 
     <!-- ================= CSS =================-->
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/output.css" />
 
-    <!-- GOOGLE FONTS -->
+    <!-- =============== GOOGLE FONTS =============== -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -31,7 +42,7 @@
       rel="stylesheet"
     />
 
-    <!-------- FONT AWESOME -------->
+    <!-- =============== FONT AWESOME =============== -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -45,13 +56,13 @@
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16 lg:h-20">
-          <!-- Logo -->
           <a href="#hero" class="flex items-center gap-2 group">
-            <div
-              class="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-dark-900 font-bold text-lg group-hover:shadow-lg group-hover:shadow-primary/30 transition-shadow"
-            >
-              &lt;/&gt;
-            </div>
+            <!-- Logo image-->
+            <img
+              src="/assets/images/logo.svg"
+              alt="IxeLab logo"
+              class="w-9 h-9 object-contain group-hover:shadow-lg group-hover:shadow-primary/30 transition-shadow"
+            />
             <span class="text-xl font-bold tracking-tight"
               >Ixe<span class="text-primary">Lab</span></span
             >
@@ -1599,11 +1610,11 @@
           <!-- Brand -->
           <div class="sm:col-span-2 lg:col-span-1">
             <a href="#hero" class="flex items-center gap-2 mb-4">
-              <div
-                class="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-dark-900 font-bold text-lg"
-              >
-                &lt;/&gt;
-              </div>
+              <img
+                src="/assets/images/logo.svg"
+                alt="Ixelab"
+                class="h-8 object-contain"
+              />
               <span class="text-xl font-bold tracking-tight"
                 >Ixe<span class="text-primary">Lab</span></span
               >
