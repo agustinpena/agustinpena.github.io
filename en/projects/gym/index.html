@@ -1,0 +1,1369 @@
+<!doctype html>
+<html lang="en-MX">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Iron Forge Gym in Mexico City. High-performance gym with CrossFit, HIIT, Boxing and more. First week free. Forge your best version."
+    />
+    <meta
+      name="keywords"
+      content="gym Mexico City, CrossFit CDMX, personal training, fitness, Iron Forge Gym, HIIT, Boxing, Spinning"
+    />
+    <meta name="author" content="Iron Forge Gym" />
+    <meta
+      property="og:title"
+      content="Iron Forge Gym | Forge Your Best Version"
+    />
+    <meta
+      property="og:description"
+      content="Train at the best high-performance gym in Mexico City. First week free."
+    />
+    <meta property="og:type" content="website" />
+    <title>Iron Forge Gym | Forge Your Best Version - Mexico City</title>
+
+    <!-- Favicon placeholder using inline SVG -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🏋️%3C/text%3E%3C/svg%3E"
+    />
+
+    <!-- Google Fonts: Oswald for headings, Inter for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Oswald:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="/css/style-gym.css" />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+      <div class="container">
+        <a href="#home" class="logo" onclick="app.navigate('home')"
+          >Iron Forge <span>Gym</span></a
+        >
+
+        <!-- Hamburger Menu Button -->
+        <button
+          class="hamburger-btn"
+          id="hamburgerBtn"
+          aria-label="Toggle navigation menu"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Navigation Links -->
+        <ul class="nav-links" id="navLinks">
+          <li>
+            <a
+              href="#home"
+              class="nav-link active"
+              onclick="app.navigate('home')"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              href="#classes"
+              class="nav-link"
+              onclick="app.navigate('classes')"
+              >Classes</a
+            >
+          </li>
+          <li>
+            <a
+              href="#trainers"
+              class="nav-link"
+              onclick="app.navigate('trainers')"
+              >Trainers</a
+            >
+          </li>
+          <li>
+            <a
+              href="#pricing"
+              class="nav-link"
+              onclick="app.navigate('pricing')"
+              >Pricing</a
+            >
+          </li>
+          <li>
+            <a
+              href="#testimonials"
+              class="nav-link"
+              onclick="app.navigate('testimonials')"
+              >Testimonials</a
+            >
+          </li>
+          <li>
+            <a
+              href="#gallery"
+              class="nav-link"
+              onclick="app.navigate('gallery')"
+              >Gallery</a
+            >
+          </li>
+          <li>
+            <a
+              href="#contact"
+              class="nav-link"
+              onclick="app.navigate('contact')"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main id="mainContent">
+      <!-- ============================================
+                              HOME PAGE
+           ============================================ -->
+      <section class="page-section active" id="home">
+        <!-- Hero Section -->
+        <div class="hero">
+          <div class="hero-content">
+            <h1>Iron Forge Gym</h1>
+            <p class="tagline">Forge Your Best Version</p>
+            <div class="hero-ctas">
+              <a
+                href="#pricing"
+                class="btn btn-primary"
+                onclick="app.navigate('pricing')"
+                >Start Today</a
+              >
+              <a
+                href="#classes"
+                class="btn btn-outline"
+                onclick="app.navigate('classes')"
+                >View Classes</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Stats Bar -->
+        <div class="stats-bar">
+          <div class="container">
+            <div class="stats-grid">
+              <div class="stat-item">
+                <i class="fas fa-users"></i>
+                <span class="stat-number">500+</span>
+                <span class="stat-label">Members</span>
+              </div>
+              <div class="stat-item">
+                <i class="fas fa-dumbbell"></i>
+                <span class="stat-number">20+</span>
+                <span class="stat-label">Weekly Classes</span>
+              </div>
+              <div class="stat-item">
+                <i class="fas fa-medal"></i>
+                <span class="stat-number">5</span>
+                <span class="stat-label">Expert Trainers</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Featured Classes Preview -->
+        <div class="section-padding">
+          <div class="container text-center">
+            <h2 class="section-title">Our Specialties</h2>
+            <p class="section-subtitle">
+              Training designed for real results. No excuses.
+            </p>
+            <div class="preview-grid">
+              <article class="card">
+                <div class="card-body text-center">
+                  <div class="preview-icon"><i class="fas fa-fire"></i></div>
+                  <h3 class="card-title">CrossFit</h3>
+                  <p class="card-text">
+                    Power, endurance, and functional training that transforms
+                    your physical performance.
+                  </p>
+                </div>
+              </article>
+              <article class="card">
+                <div class="card-body text-center">
+                  <div class="preview-icon"><i class="fas fa-bolt"></i></div>
+                  <h3 class="card-title">HIIT</h3>
+                  <p class="card-text">
+                    Maximum calorie burn in minimum time. Intense and effective.
+                  </p>
+                </div>
+              </article>
+              <article class="card">
+                <div class="card-body text-center">
+                  <div class="preview-icon">
+                    <i class="fas fa-hand-fist"></i>
+                  </div>
+                  <h3 class="card-title">Boxing</h3>
+                  <p class="card-text">
+                    Technique, speed, and conditioning. Unleash your inner power.
+                  </p>
+                </div>
+              </article>
+            </div>
+
+            <div style="margin-top: 2.5rem">
+              <a
+                href="#classes"
+                class="btn btn-outline"
+                onclick="app.navigate('classes')"
+                >View All Classes</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Call-to-Action Banner -->
+        <div class="cta-banner">
+          <div class="container">
+            <h2>Ready to Transform Your Body?</h2>
+            <p>
+              Join now and get your first week completely free. No commitment.
+            </p>
+            <a
+              href="#pricing"
+              class="btn btn-outline"
+              onclick="app.navigate('pricing')"
+              style="border-color: #ffffff; color: #ffffff"
+              >Sign Up Now</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================
+                           CLASSES PAGE
+           ============================================ -->
+      <section class="page-section" id="classes">
+        <div class="section-padding">
+          <div class="container">
+            <div class="text-center">
+              <h2 class="section-title">Our Classes</h2>
+              <p class="section-subtitle">
+                Flexible schedules and intense workouts for all levels.
+              </p>
+            </div>
+
+            <!-- Class Filters -->
+            <div class="filter-bar">
+              <button class="filter-btn active" data-filter="all">All</button>
+              <button class="filter-btn" data-filter="strength">Strength</button>
+              <button class="filter-btn" data-filter="cardio">Cardio</button>
+              <button class="filter-btn" data-filter="recovery">
+                Recovery
+              </button>
+            </div>
+
+            <!-- Classes Grid -->
+            <div class="classes-grid">
+              <!-- Class 1: CrossFit -->
+              <article class="class-card" data-category="strength">
+                <img
+                  src="/assets/images/gym/classes/crossfit.jpg?auto=format&fit=crop&w=800&q=80"
+                  alt="CrossFit class in progress with barbells"
+                  class="class-img"
+                  loading="lazy"
+                />
+                <div class="class-info">
+                  <h3 class="card-title">CrossFit</h3>
+                  <div class="class-meta">
+                    <span><i class="far fa-clock"></i> 60 min</span>
+                    <span><i class="fas fa-person-running"></i> High</span>
+                  </div>
+                  <p class="card-text">
+                    High-intensity functional training with Olympic lifting and
+                    gymnastics.
+                  </p>
+                  <div class="class-footer">
+                    <span class="intensity">High</span>
+                    <span><i class="fas fa-user"></i> Marcos Ruiz</span>
+                  </div>
+                  <button
+                    class="btn btn-primary btn-small action-reserve"
+                    style="margin-top: 1.2rem; width: 100%"
+                  >
+                    Book Class
+                  </button>
+                </div>
+              </article>
+
+              <!-- Class 2: HIIT -->
+              <article class="class-card" data-category="cardio">
+                <img
+                  src="/assets/images/gym/classes/hiit.jpg?auto=format&fit=crop&w=800&q=80"
+                  alt="HIIT high intensity interval training ropes"
+                  class="class-img"
+                  loading="lazy"
+                />
+                <div class="class-info">
+                  <h3 class="card-title">HIIT</h3>
+                  <div class="class-meta">
+                    <span><i class="far fa-clock"></i> 45 min</span>
+                    <span><i class="fas fa-heart-pulse"></i> High</span>
+                  </div>
+                  <p class="card-text">
+                    Explosive intervals designed to burn fat and boost your
+                    cardiovascular capacity.
+                  </p>
+                  <div class="class-footer">
+                    <span class="intensity">High</span>
+                    <span><i class="fas fa-user"></i> Ana López</span>
+                  </div>
+                  <button
+                    class="btn btn-primary btn-small action-reserve"
+                    style="margin-top: 1.2rem; width: 100%"
+                  >
+                    Book Class
+                  </button>
+                </div>
+              </article>
+
+              <!-- Class 3: Boxing -->
+              <article class="class-card" data-category="cardio">
+                <img
+                  src="/assets/images/gym/classes/boxing.jpg?auto=format&fit=crop&w=800&q=80"
+                  alt="Boxing gloves and punching bag"
+                  class="class-img"
+                  loading="lazy"
+                />
+                <div class="class-info">
+                  <h3 class="card-title">Boxing</h3>
+                  <div class="class-meta">
+                    <span><i class="far fa-clock"></i> 60 min</span>
+                    <span><i class="fas fa-fire"></i> Med-High</span>
+                  </div>
+                  <p class="card-text">
+                    Learn striking technique, defensive movements, and combat
+                    conditioning.
+                  </p>
+                  <div class="class-footer">
+                    <span class="intensity">Med-High</span>
+                    <span><i class="fas fa-user"></i> Carlos Vega</span>
+                  </div>
+                  <button
+                    class="btn btn-primary btn-small action-reserve"
+                    style="margin-top: 1.2rem; width: 100%"
+                  >
+                    Book Class
+                  </button>
+                </div>
+              </article>
+
+              <!-- Class 4: Yoga -->
+              <article class="class-card" data-category="recovery">
+                <img
+                  src="/assets/images/gym/classes/yoga.jpg?auto=format&fit=crop&w=800&q=80"
+                  alt="Yoga and stretching practice session"
+                  class="class-img"
+                  loading="lazy"
+                />
+                <div class="class-info">
+                  <h3 class="card-title">Yoga</h3>
+                  <div class="class-meta">
+                    <span><i class="far fa-clock"></i> 60 min</span>
+                    <span><i class="fas fa-spa"></i> Low</span>
+                  </div>
+                  <p class="card-text">
+                    Flexibility, breathing, and mental focus. Active recovery to
+                    maximize results.
+                  </p>
+                  <div class="class-footer">
+                    <span class="intensity">Low</span>
+                    <span><i class="fas fa-user"></i> Diana Flores</span>
+                  </div>
+                  <button
+                    class="btn btn-primary btn-small action-reserve"
+                    style="margin-top: 1.2rem; width: 100%"
+                  >
+                    Book Class
+                  </button>
+                </div>
+              </article>
+
+              <!-- Class 5: Spinning -->
+              <article class="class-card" data-category="cardio">
+                <img
+                  src="/assets/images/gym/classes/spinning.jpg?auto=format&fit=crop&w=800&q=80"
+                  alt="Indoor cycling spinning class"
+                  class="class-img"
+                  loading="lazy"
+                />
+                <div class="class-info">
+                  <h3 class="card-title">Spinning</h3>
+                  <div class="class-meta">
+                    <span><i class="far fa-clock"></i> 45 min</span>
+                    <span><i class="fas fa-bicycle"></i> Medium</span>
+                  </div>
+                  <p class="card-text">
+                    Indoor cycling with music and lights. Fun, high-impact
+                    cardio.
+                  </p>
+                  <div class="class-footer">
+                    <span class="intensity">Medium</span>
+                    <span><i class="fas fa-user"></i> Ana López</span>
+                  </div>
+                  <button
+                    class="btn btn-primary btn-small action-reserve"
+                    style="margin-top: 1.2rem; width: 100%"
+                  >
+                    Book Class
+                  </button>
+                </div>
+              </article>
+
+              <!-- Class 6: Strength -->
+              <article class="class-card" data-category="strength">
+                <img
+                  src="/assets/images/gym/classes/force.jpg?auto=format&fit=crop&w=800&q=80"
+                  alt="Strength training with dumbbells"
+                  class="class-img"
+                  loading="lazy"
+                />
+                <div class="class-info">
+                  <h3 class="card-title">Strength</h3>
+                  <div class="class-meta">
+                    <span><i class="far fa-clock"></i> 60 min</span>
+                    <span><i class="fas fa-hand-fist"></i> Med-High</span>
+                  </div>
+                  <p class="card-text">
+                    Science-based muscle hypertrophy. Machines, dumbbells, and
+                    free weights.
+                  </p>
+                  <div class="class-footer">
+                    <span class="intensity">Med-High</span>
+                    <span><i class="fas fa-user"></i> Marcos Ruiz</span>
+                  </div>
+                  <button
+                    class="btn btn-primary btn-small action-reserve"
+                    style="margin-top: 1.2rem; width: 100%"
+                  >
+                    Book Class
+                  </button>
+                </div>
+              </article>
+            </div>
+
+            <!-- Weekly Schedule -->
+            <div class="text-center" style="margin-top: 4rem">
+              <h2 class="section-title">Weekly Schedule</h2>
+              <p class="section-subtitle">
+                Find a schedule that fits your routine.
+              </p>
+            </div>
+
+            <div class="schedule-wrapper">
+              <table class="schedule-table">
+                <thead>
+                  <tr>
+                    <th>Time</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                    <th>Saturday</th>
+                    <th>Sunday</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="schedule-time">06:00</span></td>
+                    <td>
+                      <span class="schedule-class">CrossFit</span
+                      ><span class="schedule-time">60 min</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">HIIT</span
+                      ><span class="schedule-time">45 min</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Strength</span
+                      ><span class="schedule-time">60 min</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">CrossFit</span
+                      ><span class="schedule-time">60 min</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">HIIT</span
+                      ><span class="schedule-time">45 min</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Yoga</span
+                      ><span class="schedule-time">60 min</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Boxing</span
+                      ><span class="schedule-time">60 min</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="schedule-time">07:00</span></td>
+                    <td>
+                      <span class="schedule-class">HIIT</span
+                      ><span class="schedule-time">45 min</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Spinning</span
+                      ><span class="schedule-time">45 min</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">CrossFit</span
+                      ><span class="schedule-time">60 min</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Yoga</span
+                      ><span class="schedule-time">60 min</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Spinning</span
+                      ><span class="schedule-time">45 min</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">CrossFit</span
+                      ><span class="schedule-time">60 min</span>
+                    </td>
+                    <td>-</td>
+                  </tr>
+                  <tr>
+                    <td><span class="schedule-time">18:00</span></td>
+                    <td>
+                      <span class="schedule-class">Boxing</span
+                      ><span class="schedule-time">60 min</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">CrossFit</span
+                      ><span class="schedule-time">60 min</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">HIIT</span
+                      ><span class="schedule-time">45 min</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Boxing</span
+                      ><span class="schedule-time">60 min</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Strength</span
+                      ><span class="schedule-time">60 min</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">HIIT</span
+                      ><span class="schedule-time">45 min</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Spinning</span
+                      ><span class="schedule-time">45 min</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="schedule-time">19:00</span></td>
+                    <td>
+                      <span class="schedule-class">Spinning</span
+                      ><span class="schedule-time">45 min</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Strength</span
+                      ><span class="schedule-time">60 min</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Yoga</span
+                      ><span class="schedule-time">60 min</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Strength</span
+                      ><span class="schedule-time">60 min</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">CrossFit</span
+                      ><span class="schedule-time">60 min</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Boxing</span
+                      ><span class="schedule-time">60 min</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Yoga</span
+                      ><span class="schedule-time">60 min</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="schedule-time">20:00</span></td>
+                    <td>
+                      <span class="schedule-class">Strength</span
+                      ><span class="schedule-time">60 min</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Yoga</span
+                      ><span class="schedule-time">60 min</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Boxing</span
+                      ><span class="schedule-time">60 min</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">HIIT</span
+                      ><span class="schedule-time">45 min</span>
+                    </td>
+                    <td>
+                      <span class="schedule-class">Boxing</span
+                      ><span class="schedule-time">60 min</span>
+                    </td>
+                    <td>-</td>
+                    <td>
+                      <span class="schedule-class">Strength</span
+                      ><span class="schedule-time">60 min</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================
+                        TRAINERS PAGE
+           ============================================ -->
+      <section class="page-section" id="trainers">
+        <div class="section-padding">
+          <div class="container">
+            <div class="text-center">
+              <h2 class="section-title">Expert Trainers</h2>
+              <p class="section-subtitle">
+                Certified professionals committed to your transformation.
+              </p>
+            </div>
+
+            <div class="trainers-grid">
+              <!-- Trainer 1 -->
+              <article class="trainer-card">
+                <div class="trainer-img-wrapper">
+                  <img
+                    src="/assets/images/gym/trainers/marcos.jpg?auto=format&fit=crop&w=600&q=80"
+                    alt="Professional trainer profile photo"
+                    class="trainer-img"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="trainer-content">
+                  <div class="trainer-role">
+                    CrossFit & Strength Specialist
+                  </div>
+                  <h3 class="trainer-name">Marcos Ruiz</h3>
+                  <div class="trainer-tags">
+                    <span class="tag">CF-L1</span>
+                    <span class="tag">NSCA-CPT</span>
+                    <span class="tag">8 yrs exp.</span>
+                  </div>
+                  <p class="trainer-bio">
+                    Former competitive athlete focused on Olympic lifting and
+                    strength programming for performance.
+                  </p>
+                  <p class="trainer-quote">
+                    "Discipline beats talent when talent isn't disciplined."
+                  </p>
+                </div>
+              </article>
+
+              <!-- Trainer 2 -->
+              <article class="trainer-card">
+                <div class="trainer-img-wrapper">
+                  <img
+                    src="/assets/images/gym/trainers/ana.jpg?auto=format&fit=crop&w=600&q=80"
+                    alt="Professional female trainer profile photo"
+                    class="trainer-img"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="trainer-content">
+                  <div class="trainer-role">
+                    HIIT & Nutrition Specialist
+                  </div>
+                  <h3 class="trainer-name">Ana López</h3>
+                  <div class="trainer-tags">
+                    <span class="tag">ACE</span>
+                    <span class="tag">ISAK</span>
+                    <span class="tag">6 yrs exp.</span>
+                  </div>
+                  <p class="trainer-bio">
+                    Passionate about exercise science and sports nutrition.
+                    Helps you optimize every workout.
+                  </p>
+                  <p class="trainer-quote">
+                    "Your care is your health. Invest in yourself every day."
+                  </p>
+                </div>
+              </article>
+
+              <!-- Trainer 3 -->
+              <article class="trainer-card">
+                <div class="trainer-img-wrapper">
+                  <img
+                    src="/assets/images/gym/trainers/carlos.jpg?auto=format&fit=crop&w=600&q=80"
+                    alt="Boxing coach trainer profile photo"
+                    class="trainer-img"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="trainer-content">
+                  <div class="trainer-role">
+                    Boxing & Conditioning Specialist
+                  </div>
+                  <h3 class="trainer-name">Carlos Vega</h3>
+                  <div class="trainer-tags">
+                    <span class="tag">AIBA</span>
+                    <span class="tag">NASM</span>
+                    <span class="tag">10 yrs exp.</span>
+                  </div>
+                  <p class="trainer-bio">
+                    With over 30 amateur fights, he turns boxing technique into a
+                    tool for physical transformation.
+                  </p>
+                  <p class="trainer-quote">
+                    "Every punch gets you closer to your goal. Don't stop."
+                  </p>
+                </div>
+              </article>
+
+              <!-- Trainer 4 -->
+              <article class="trainer-card">
+                <div class="trainer-img-wrapper">
+                  <img
+                    src="/assets/images/gym/trainers/diana.jpg?auto=format&fit=crop&w=600&q=80"
+                    alt="Yoga mobility instructor profile photo"
+                    class="trainer-img"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="trainer-content">
+                  <div class="trainer-role">
+                    Yoga & Mobility Specialist
+                  </div>
+                  <h3 class="trainer-name">Diana Flores</h3>
+                  <div class="trainer-tags">
+                    <span class="tag">E-RYT 500</span>
+                    <span class="tag">7 yrs exp.</span>
+                  </div>
+                  <p class="trainer-bio">
+                    Her approach combines physical strength with mental calm.
+                    Ideal for recovery and sustained performance.
+                  </p>
+                  <p class="trainer-quote">
+                    "Strength is also found in calm and in breath."
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================
+                          PRICING PAGE
+           ============================================ -->
+      <section class="page-section" id="pricing">
+        <div class="section-padding">
+          <div class="container">
+            <div class="text-center">
+              <h2 class="section-title">Plans & Pricing</h2>
+              <p class="section-subtitle">
+                Invest in your health, no complicated contracts or fine print.
+              </p>
+            </div>
+
+            <div class="pricing-grid">
+              <!-- Tier 1 -->
+              <div class="pricing-card">
+                <div class="pricing-name">Drop-in Class</div>
+                <div class="price">$250 <span>MXN</span></div>
+                <p class="pricing-best-for">
+                  Best for: Occasional visitors
+                </p>
+                <ul class="pricing-features">
+                  <li><i class="fas fa-check"></i> 1 class access</li>
+                  <li><i class="fas fa-check"></i> Locker use</li>
+                  <li><i class="fas fa-check"></i> Towel included</li>
+                  <li class="cross-text">
+                    <i class="fas fa-times" style="color: #555"></i> Free weight
+                    area
+                  </li>
+                </ul>
+                <button
+                  class="btn btn-outline action-enroll"
+                  style="width: 100%"
+                >
+                  Join Now
+                </button>
+              </div>
+
+              <!-- Tier 2: Popular -->
+              <div class="pricing-card popular">
+                <div class="popular-badge">Most Popular</div>
+                <div class="pricing-name">Monthly Unlimited</div>
+                <div class="price">$3,000 <span>MXN</span></div>
+                <p class="pricing-best-for">
+                  Best for: Serious, consistent results
+                </p>
+                <ul class="pricing-features">
+                  <li><i class="fas fa-check"></i> 24/7 unlimited access</li>
+                  <li>
+                    <i class="fas fa-check"></i> All classes included
+                  </li>
+                  <li><i class="fas fa-check"></i> Free weight area</li>
+                  <li><i class="fas fa-check"></i> Tracking app</li>
+                  <li><i class="fas fa-check"></i> 1 guest pass per month</li>
+                  <li><i class="fas fa-check"></i>1 monthly consultation</li>
+                </ul>
+                <button
+                  class="btn btn-primary action-enroll"
+                  style="width: 100%"
+                >
+                  Join Now
+                </button>
+              </div>
+
+              <!-- Tier 3 -->
+              <div class="pricing-card">
+                <div class="pricing-name">10-Class Pack</div>
+                <div class="price">$2,000 <span>MXN</span></div>
+                <p class="pricing-best-for">Best for: Moderate frequency</p>
+                <ul class="pricing-features">
+                  <li><i class="fas fa-check"></i> 10 classes</li>
+                  <li><i class="fas fa-check"></i> Valid for 2 months</li>
+                  <li><i class="fas fa-check"></i> Locker use</li>
+                  <li>
+                    <i class="fas fa-check"></i> 1 consultation (15 min)
+                  </li>
+                  <li><i class="fas fa-check"></i> Towel included</li>
+                </ul>
+                <button
+                  class="btn btn-outline action-enroll"
+                  style="width: 100%"
+                >
+                  Join Now
+                </button>
+              </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="comparison-section">
+              <div class="text-center" style="margin-bottom: 1.5rem">
+                <h3 class="section-title" style="font-size: 1.5rem">
+                  Benefits Comparison
+                </h3>
+              </div>
+              <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                  <thead>
+                    <tr>
+                      <th>Benefit</th>
+                      <th>Drop-in</th>
+                      <th>10 Classes</th>
+                      <th>Unlimited</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Class access</td>
+                      <td>1</td>
+                      <td>10</td>
+                      <td class="check-icon">Unlimited</td>
+                    </tr>
+                    <tr>
+                      <td>Free weight area</td>
+                      <td><i class="fas fa-times cross-icon"></i></td>
+                      <td><i class="fas fa-times cross-icon"></i></td>
+                      <td><i class="fas fa-check check-icon"></i></td>
+                    </tr>
+                    <tr>
+                      <td>Lockers</td>
+                      <td><i class="fas fa-check check-icon"></i></td>
+                      <td><i class="fas fa-check check-icon"></i></td>
+                      <td><i class="fas fa-check check-icon"></i></td>
+                    </tr>
+                    <tr>
+                      <td>Tracking app</td>
+                      <td><i class="fas fa-times cross-icon"></i></td>
+                      <td><i class="fas fa-times cross-icon"></i></td>
+                      <td><i class="fas fa-check check-icon"></i></td>
+                    </tr>
+                    <tr>
+                      <td>Guest pass / month</td>
+                      <td><i class="fas fa-times cross-icon"></i></td>
+                      <td><i class="fas fa-times cross-icon"></i></td>
+                      <td><i class="fas fa-check check-icon"></i></td>
+                    </tr>
+                    <tr>
+                      <td>Initial consultation</td>
+                      <td><i class="fas fa-times cross-icon"></i></td>
+                      <td><i class="fas fa-check check-icon"></i></td>
+                      <td><i class="fas fa-check check-icon"></i></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================
+                      TESTIMONIALS PAGE
+           ============================================ -->
+      <section class="page-section" id="testimonials">
+        <div class="section-padding">
+          <div class="container">
+            <div class="text-center">
+              <h2 class="section-title">Testimonials</h2>
+              <p class="section-subtitle">
+                What our community says about their transformation.
+              </p>
+            </div>
+
+            <div class="testimonials-grid">
+              <article class="testimonial-card">
+                <img
+                  src="/assets/images/gym/testimonials/fernanda.jpg?auto=format&fit=crop&w=200&h=200&q=80"
+                  alt="Client testimonial portrait"
+                  class="testimonial-avatar"
+                  loading="lazy"
+                />
+                <div class="stars">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">
+                  "I lost 12 kg in 4 months without giving up the food I love.
+                  The coaching team is incredibly dedicated."
+                </p>
+                <div class="testimonial-name">Fernanda R.</div>
+                <div class="testimonial-result">-12 kg in 4 months</div>
+              </article>
+
+              <article class="testimonial-card">
+                <img
+                  src="/assets/images/gym/testimonials/ricardo.jpg?auto=format&fit=crop&w=200&h=200&q=80"
+                  alt="Client testimonial portrait"
+                  class="testimonial-avatar"
+                  loading="lazy"
+                />
+                <div class="stars">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">
+                  "I significantly increased my muscle mass and my energy at
+                  work skyrocketed. I've never felt this strong."
+                </p>
+                <div class="testimonial-name">Ricardo M.</div>
+                <div class="testimonial-result">+6 kg muscle / 6 months</div>
+              </article>
+
+              <article class="testimonial-card">
+                <img
+                  src="/assets/images/gym/testimonials/elena.jpg?auto=format&fit=crop&w=200&h=200&q=80"
+                  alt="Client testimonial portrait"
+                  class="testimonial-avatar"
+                  loading="lazy"
+                />
+                <div class="stars">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">
+                  "The atmosphere and coaches make me not want to miss a single
+                  day. Iron Forge has become my second home."
+                </p>
+                <div class="testimonial-name">Elena G.</div>
+                <div class="testimonial-result">5 days / week attendance</div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================ 
+                          GALLERY PAGE
+           ============================================ -->
+      <section class="page-section" id="gallery">
+        <div class="section-padding">
+          <div class="container">
+            <div class="text-center">
+              <h2 class="section-title">Gallery</h2>
+              <p class="section-subtitle">
+                Explore our world-class facilities in Mexico City.
+              </p>
+            </div>
+
+            <div class="gallery-grid">
+              <div class="gallery-item">
+                <img
+                  src="/assets/images/gym/gallery/gym.jpg?auto=format&fit=crop&w=600&q=80"
+                  alt="Gym main floor with equipment"
+                  loading="lazy"
+                />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="/assets/images/gym/gallery/weights.jpg?auto=format&fit=crop&w=600&q=80"
+                  alt="Weightlifting area and squat racks"
+                  loading="lazy"
+                />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="/assets/images/gym/gallery/group-class.jpg?auto=format&fit=crop&w=600&q=80"
+                  alt="Group class training in action"
+                  loading="lazy"
+                />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="/assets/images/gym/gallery/barbell-plates.jpg?auto=format&fit=crop&w=600&q=80"
+                  alt="Barbell and plates close up"
+                  loading="lazy"
+                />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="/assets/images/gym/gallery/boxing-ring.jpg?auto=format&fit=crop&w=600&q=80"
+                  alt="Boxing ring and punching bags"
+                  loading="lazy"
+                />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="/assets/images/gym/gallery/yoga.jpg?auto=format&fit=crop&w=600&q=80"
+                  alt="Yoga and stretching zone"
+                  loading="lazy"
+                />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="/assets/images/gym/gallery/spinning.jpg?auto=format&fit=crop&w=600&q=80"
+                  alt="Indoor cycling spinning room"
+                  loading="lazy"
+                />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="/assets/images/gym/gallery/personal.jpg?auto=format&fit=crop&w=600&q=80"
+                  alt="Personal training session"
+                  loading="lazy"
+                />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </div>
+              <div class="gallery-item">
+                <img
+                  src="/assets/images/gym/gallery/lockers.jpg?auto=format&fit=crop&w=600&q=80"
+                  alt="Locker rooms and amenities"
+                  loading="lazy"
+                />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================
+                         CONTACT PAGE
+           ============================================ -->
+      <section class="page-section" id="contact">
+        <div class="section-padding">
+          <div class="container">
+            <div class="text-center">
+              <h2 class="section-title">Contact Us</h2>
+              <p class="section-subtitle">
+                We're here to answer your questions and schedule your first visit.
+              </p>
+            </div>
+
+            <div class="contact-grid">
+              <!-- Contact Form -->
+              <div class="contact-form">
+                <form id="contactForm" novalidate>
+                  <div class="form-group">
+                    <label for="nombre">Full Name *</label>
+                    <input
+                      type="text"
+                      id="nombre"
+                      name="nombre"
+                      required
+                      placeholder="Your full name"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      placeholder="email@example.com"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="telefono">Phone</label>
+                    <input
+                      type="tel"
+                      id="telefono"
+                      name="telefono"
+                      placeholder="+52 (55) 1234 5678"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="mensaje">Message *</label>
+                    <textarea
+                      id="mensaje"
+                      name="mensaje"
+                      required
+                      placeholder="How can we help you?"
+                    ></textarea>
+                  </div>
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                    style="width: 100%"
+                  >
+                    Send Message
+                  </button>
+                  <div id="formStatus" class="form-status"></div>
+                </form>
+              </div>
+
+              <!-- Contact Information -->
+              <div class="contact-info">
+                <h3>Contact Information</h3>
+                <ul class="contact-info-list">
+                  <li>
+                    <i class="fas fa-location-dot"></i>
+                    <div>
+                      <strong>Address</strong>
+                      <span
+                        >Av. Insurgentes Sur 123, Col. Roma, Mexico City</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <i class="fas fa-clock"></i>
+                    <div>
+                      <strong>Hours</strong>
+                      <span
+                        >Monday to Friday: 6:00 – 23:00<br />Saturday to Sunday:
+                        8:00 – 21:00</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <i class="fas fa-phone"></i>
+                    <div>
+                      <strong>Phone</strong>
+                      <span>+52 (55) 1234 5678</span>
+                    </div>
+                  </li>
+                  <li>
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                      <strong>Email</strong>
+                      <span>info@ironforgegym.mx</span>
+                    </div>
+                  </li>
+                </ul>
+
+                <div class="social-links-large">
+                  <a
+                    href="https://instagram.com"
+                    target="_blank"
+                    aria-label="Instagram"
+                    ><i class="fab fa-instagram"></i
+                  ></a>
+                  <a
+                    href="https://facebook.com"
+                    target="_blank"
+                    aria-label="Facebook"
+                    ><i class="fab fa-facebook-f"></i
+                  ></a>
+                  <a
+                    href="https://twitter.com"
+                    target="_blank"
+                    aria-label="X Twitter"
+                    ><i class="fab fa-x-twitter"></i
+                  ></a>
+                </div>
+
+                <!-- Map Placeholder -->
+                <div class="map-placeholder">
+                  <i class="fas fa-map-location-dot"></i>
+                  <p>Av. Insurgentes Sur 123, Mexico City</p>
+                  <a
+                    href="https://maps.google.com/?q=Av.+Insurgentes+Sur+123,+Ciudad+de+México"
+                    target="_blank"
+                    >View on Google Maps</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================================
+                          FOOTER
+         ============================================ -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <!-- Brand -->
+          <div>
+            <div class="logo" style="margin-bottom: 1rem">
+              Iron Forge <span>Gym</span>
+            </div>
+            <p
+              style="
+                color: var(--text-muted);
+                font-size: 0.95rem;
+                line-height: 1.5;
+              "
+            >
+              Forging real-life athletes. Train with intensity, live with
+              purpose.
+            </p>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <h4 class="footer-heading">Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="#home" onclick="app.navigate('home')">Home</a></li>
+              <li>
+                <a href="#classes" onclick="app.navigate('classes')">Classes</a>
+              </li>
+              <li>
+                <a href="#trainers" onclick="app.navigate('trainers')"
+                  >Trainers</a
+                >
+              </li>
+              <li>
+                <a href="#pricing" onclick="app.navigate('pricing')">Pricing</a>
+              </li>
+              <li>
+                <a href="#contact" onclick="app.navigate('contact')"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Classes -->
+          <div>
+            <h4 class="footer-heading">Classes</h4>
+            <ul class="footer-links">
+              <li>
+                <a href="#classes" onclick="app.navigate('classes')"
+                  >CrossFit</a
+                >
+              </li>
+              <li>
+                <a href="#classes" onclick="app.navigate('classes')">HIIT</a>
+              </li>
+              <li>
+                <a href="#classes" onclick="app.navigate('classes')">Boxing</a>
+              </li>
+              <li>
+                <a href="#classes" onclick="app.navigate('classes')">Yoga</a>
+              </li>
+              <li>
+                <a href="#classes" onclick="app.navigate('classes')"
+                  >Spinning</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Social -->
+          <div>
+            <h4 class="footer-heading">Follow Us</h4>
+            <div class="social-links">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                aria-label="Instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                aria-label="Facebook"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                aria-label="X Twitter"
+                ><i class="fab fa-x-twitter"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>
+            &copy; 2026 Iron Forge Gym. All rights reserved. Mexico City.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-notification">
+      Notification message
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="/js/script-gym.js"></script>
+  </body>
+</html>
